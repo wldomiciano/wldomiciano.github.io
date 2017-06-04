@@ -24,6 +24,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wldomiciano
 github_username:  wldomiciano
 permalink: /blog/:title
+disqus: 
+    shortname: wldomiciano
 
 # Build settings
 markdown: kramdown
