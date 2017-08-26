@@ -12,7 +12,7 @@ Há várias formas de se instalar o MinGW e a que apresento aqui é a que consid
 
 Acesse o link da página de download abaixo e clique em "Sourceforge".
 
-https://mingw-w64.org/doku.php/download/mingw-builds
+[https://mingw-w64.org/doku.php/download/mingw-builds](https://mingw-w64.org/doku.php/download/mingw-builds)
 
 ![Print da tela de download](/assets/pagina-de-download.jpg)
 
