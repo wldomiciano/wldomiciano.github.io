@@ -1,5 +1,7 @@
 ---
 title: Instalando o GCC no Windows com MinGW
+layout: post
+comments: true
 ---
 
 O [GCC](https://gcc.gnu.org/) é um compilador de C, C++ e de [algumas outras linguagens](https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/G_002b_002b-and-GCC.html).
