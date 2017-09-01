@@ -18,7 +18,7 @@ email: wldomiciano@gmail.com
 description: Blog dedicado a publicação de artigos
     sobre coisas que tenho aprendido
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://wldomiciano.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wldomiciano
 github_username:  wldomiciano
 permalink: /blog/:title
