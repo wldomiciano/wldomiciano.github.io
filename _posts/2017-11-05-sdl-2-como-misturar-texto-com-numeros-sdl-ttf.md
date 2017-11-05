@@ -30,7 +30,7 @@ Então a solução para esse problema é o [`snprintf()`](http://www.cplusplus.c
 A diferença do `snprintf` é que ao invés de imprimir texto na saida padrão, ele armazena o texto gerado em um array.
 
 ```c
-snprintf(BUFFER, BUFFER_SIZE, "Contador: %d", 123);
+snprintf(BUFFER, BUFFER_SIZE, "Your Score: %d", 123);
 ```
 
 Depois é só fazer o que quiser com o BUFFER. Experimente com:
