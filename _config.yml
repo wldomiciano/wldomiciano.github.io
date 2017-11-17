@@ -2,6 +2,8 @@ title: Wellington Domiciano
 email: wldomiciano@gmail.com
 description: Blog dedicado a publicação de artigos
     sobre coisas que tenho aprendido
+author: Wellington Domiciano
+lang: pt-br
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://wldomiciano.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wldomiciano
