@@ -10,4 +10,6 @@ Pensando nisso, resolvi fazer um vídeo onde mostro como realizar essas configur
 
 Tentei ser breve, objetivo e não editar tanto.
 
+<div class="video-responsive">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UlB515bZRWc" frameborder="0" allowfullscreen></iframe>
+</div>
