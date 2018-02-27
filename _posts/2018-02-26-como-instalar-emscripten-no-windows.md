@@ -26,7 +26,7 @@ emsdk activate latest
 
 Durante a minha instalação, apareceu uma mensagem avisando de um erro no download do pacote abaixo:
 
-https://github.com/kripken/emscripten/archive/1.37.35.zip
+[https://github.com/kripken/emscripten/archive/1.37.35.zip][3]
 
 Para corrigir:
 - Baixe o pacote manualmente pelo link acima.
@@ -87,6 +87,8 @@ emsdk activate --global latest
 
 Para saber mais, siga o tutorial oficial que, apesar de breve, nos dá uma visão geral das possibilidades:
 
-http://kripken.github.io/emscripten-site/docs/getting_started/Tutorial.html
+[http://kripken.github.io/emscripten-site/docs/getting_started/Tutorial.html][2]
 
 [1]: http://kripken.github.io/emscripten-site/docs/getting_started/downloads.html
+[2]: http://kripken.github.io/emscripten-site/docs/getting_started/Tutorial.html
+[3]: https://github.com/kripken/emscripten/archive/1.37.35.zip
