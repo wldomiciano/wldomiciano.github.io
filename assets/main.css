@@ -200,11 +200,10 @@ table td { border: 1px solid #e8e8e8; }
 
 .highlight code {
   color: #fee;
+  background-color: transparent;
 }
 
-p > code {
-  background-color: #eef;
-  display: inline-block;
-  border: solid 1px #ccc;
+code {
   color: #b00;
+  background-color: #eef;
 }
