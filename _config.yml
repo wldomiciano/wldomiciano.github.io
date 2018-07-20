@@ -14,6 +14,8 @@ disqus:
 
 google_analytics: UA-48568115-1
 
+incremental: true
+
 markdown: kramdown
 theme: minima
 plugins_dir:
