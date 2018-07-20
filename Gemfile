@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
 group :jekyll_plugins do
-  gem "minima", "~> 2.0"
+  gem "minima"
   gem "github-pages"
-  gem "jekyll-feed", "~> 0.6"
+  gem "jekyll-feed"
 end
 
 gem 'eventmachine'

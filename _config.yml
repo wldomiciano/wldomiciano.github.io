@@ -18,8 +18,5 @@ incremental: true
 
 markdown: kramdown
 theme: minima
-plugins_dir:
+plugins:
   - jekyll-feed
-exclude:
-  - Gemfile
-  - Gemfile.lock
