@@ -1,3 +1,13 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseURL = "https://wldomiciano.com/"
+languageCode = "pt-br"
+title = "Wellington Domiciano"
+email = "wldomiciano@gmail.com"
+description = "Blog dedicado a publicação de artigos sobre coisas que tenho aprendido"
+author = "Wellington Domiciano"
+github_username = "wldomiciano"
+twitter_username = "wldomiciano"
+
+[frontmatter]
+date  = [":filename", ":default"]
+googleAnalytics = "UA-48568115-1"
+disqus_shortname = "wldomiciano"
