@@ -8,6 +8,7 @@ github_username = "wldomiciano"
 twitter_username = "wldomiciano"
 
 disableKinds = ["section", "taxonomy", "taxonomyTerm"]
+pygmentsCodefences = true
 
 [frontmatter]
 date = [":filename", ":default"]
@@ -19,5 +20,3 @@ posts = "/:slug/"
 
 [blackfriday]
 hrefTargetBlank = true
-
-pygmentsCodefences = true
