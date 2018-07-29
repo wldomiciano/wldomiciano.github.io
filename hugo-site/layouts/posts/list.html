@@ -6,7 +6,7 @@
   {{ if gt ( len (where .Site.RegularPages "Section" "==" "posts")) 0 }}
     <h2 class="post-list-heading">Posts</h2>
     <ul class="post-list">
-      {{ range where .Site.Pages "Section" "posts" }}
+      {{ range where .Site.Pages "Section" "==" "posts" }}
 
         <li>
           <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
