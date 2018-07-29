@@ -58,7 +58,7 @@ Após a conversão, a função multiplica essas coordenadas por `SIZE`, que é o
 
 Ela recebe também mais 3 inteiros representando uma cor em RGB.
 
-Destas, a função `main()` é a que tem maior responsabilidade pois, além de conter o [*main loop*](http://gameprogrammingpatterns.com/game-loop.html){:target="_blank"}, verifica as teclas digitadas pelo usuário e também calcula o **delta** para a função `update()` que veremos mais tarde.
+Destas, a função `main()` é a que tem maior responsabilidade pois, além de conter o [*main loop*](http://gameprogrammingpatterns.com/game-loop.html), verifica as teclas digitadas pelo usuário e também calcula o **delta** para a função `update()` que veremos mais tarde.
 
 <div id="main">{{< highlight c >}}
 int main(int argc, char** argv) {
