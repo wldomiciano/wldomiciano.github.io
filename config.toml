@@ -4,14 +4,16 @@ title = "Wellington Domiciano"
 author = "Wellington Domiciano"
 disableKinds = ["section", "taxonomy", "taxonomyTerm"]
 pygmentsCodefences = true
+googleAnalytics = "UA-48568115-1"
+disqusShortname = "wldomiciano"
 
 [outputs]
-home = [ "RSS", "HTML"]
+  home = [ "RSS", "HTML"]
 
 [outputFormats]
 [outputFormats.RSS]
-mediatype = "application/rss"
-baseName = "feed"
+  mediatype = "application/rss"
+  baseName = "feed"
 
 [params]
   email = "wldomiciano@gmail.com"
@@ -21,8 +23,6 @@ baseName = "feed"
 
 [frontmatter]
   date = [":filename", ":default"]
-  googleAnalytics = "UA-48568115-1"
-  disqusShortname = "wldomiciano"
 
 [permalinks]
   posts = "/:slug/"

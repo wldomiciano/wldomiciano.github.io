@@ -1,3 +1,4 @@
+{{ if not .Site.IsServer }}
 <script>
 if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -7,3 +8,4 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
   ga('create', '{{ .Site.GoogleAnalytics }}', 'auto');
   ga('send', 'pageview');
 }</script>
+{{ end }}

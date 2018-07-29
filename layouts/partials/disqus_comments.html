@@ -1,4 +1,4 @@
-{{ if .Params.comments and not .Site.BuildDrafts }}
+{{ if not .Site.IsServer }}
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
