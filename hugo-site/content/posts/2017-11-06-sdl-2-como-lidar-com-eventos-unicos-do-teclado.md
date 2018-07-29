@@ -1,6 +1,5 @@
 ---
 title: SDL 2 - Como lidar com eventos únicos do teclado
-layout: post
 comments: true
 ---
 

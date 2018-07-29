@@ -1,0 +1,31 @@
+<footer class="site-footer h-card">
+  <data class="u-url" href="{{ "/" | relURL }}"></data>
+  <div class="wrapper">
+    <h2 class="footer-heading">{{ .Site.Title }}</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            {{ if .Site.Author }}
+              {{ .Site.Author }}
+            {{ else }}
+              {{ .Site.Title }}
+            {{ end }}
+            </li>
+            {{ if .Site.Params.email }}
+            <li><a class="u-email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></li>
+            {{ end }}
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        {{ partial "social.html" . }}
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>{{ .Site.Params.Description }}</p>
+      </div>
+    </div>
+  </div>
+</footer>

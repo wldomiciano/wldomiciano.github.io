@@ -1,6 +1,5 @@
 ---
 title: Como criar um template customizado para SDL 2 no Visual Studio 2017
-layout: post
 comments: true
 ---
 

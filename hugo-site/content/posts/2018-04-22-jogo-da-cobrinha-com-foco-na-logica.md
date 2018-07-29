@@ -1,6 +1,5 @@
 ---
 title: Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica
-layout: post
 comments: true
 ---
 

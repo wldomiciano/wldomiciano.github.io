@@ -1,7 +1,6 @@
 ---
-layout: post
-comments: true
 title: Como instalar Emscripten no Windows
+comments: true
 ---
 
 Neste tutorial vou mostrar como instalar e configurar o Emscripten, uma ferramenta que compila seu código nativo C ou C++ para JavaScript e permite rodar seu programa em navegadores Web ou no servidor com Node.js.

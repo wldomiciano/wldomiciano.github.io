@@ -11,3 +11,6 @@ twitter_username = "wldomiciano"
 date = [":filename", ":default"]
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
+
+[permalinks]
+posts = "/:slug/"

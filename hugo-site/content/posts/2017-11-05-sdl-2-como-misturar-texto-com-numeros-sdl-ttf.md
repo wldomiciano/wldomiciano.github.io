@@ -1,6 +1,5 @@
 ---
 title: SDL 2 - Como misturar texto com números usando SDL_ttf
-layout: post
 comments: true
 ---
 

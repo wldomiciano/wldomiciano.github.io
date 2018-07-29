@@ -1,6 +1,5 @@
 ---
 title: Instalando o GCC no Windows com MinGW
-layout: post
 comments: true
 ---
 
