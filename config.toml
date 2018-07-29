@@ -7,6 +7,8 @@ author = "Wellington Domiciano"
 github_username = "wldomiciano"
 twitter_username = "wldomiciano"
 
+disableKinds = ["section", "taxonomy", "taxonomyTerm"]
+
 [frontmatter]
 date = [":filename", ":default"]
 googleAnalytics = "UA-48568115-1"

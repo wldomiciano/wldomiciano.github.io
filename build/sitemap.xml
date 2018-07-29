@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://localhost:1313/jogo-da-cobrinha-com-foco-na-logica/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/como-instalar-emscripten-no-windows/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/como-criar-template-sdl2-no-visual-studio/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/sdl-2-como-lidar-com-eventos-unicos-do-teclado/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/sdl-2-como-misturar-texto-com-numeros-sdl-ttf/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/instalando-gcc-no-windows-com-mingw/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/sobre/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

@@ -1,25 +1,16 @@
 {{ define "main" }}
 <div class="home">
-  {{ .Content }}
-
-  >>> {{ len (where .Site.RegularPages "Section" "==" "posts") }}
-  {{ if gt ( len (where .Site.RegularPages "Section" "==" "posts")) 0 }}
     <h2 class="post-list-heading">Posts</h2>
     <ul class="post-list">
-      {{ range where .Site.Pages "Section" "==" "posts" }}
-
+      {{ range where .Pages "Section" "posts" }}
         <li>
           <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
           <h3><a class="post-link" href="{{ .URL | relURL }}">{{ .Title }}</a></h3>
           {{ if .Site.Params.show_excerpt }}{{ .Summary }}{{ end }}
         </li>
-
-
       {{ end }}
     </ul>
 
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relURL }}">via RSS</a></p>
-  {{ end }}
-
 </div>
 {{ end }}

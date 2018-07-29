@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SDL 2 - Como lidar com eventos únicos do teclado</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/molokai.css">
+  <link rel="canonical" href="http://localhost:1313/sdl-2-como-lidar-com-eventos-unicos-do-teclado/">
+  <link rel="alternate" type="application/rss+xml" title="Wellington Domiciano" href="/feed.xml">
+
+  <style>
+    .video-responsive{
+        overflow:hidden;
+        padding-bottom:56.25%;
+        position:relative;
+        height:0;
+    }
+    .video-responsive iframe{
+        left:0;
+        top:0;
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
+  </style>
+
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+}</script>
+
+  
+</head>
+
+
+  <body>
+    <header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">Wellington Domiciano</a>
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger">
+        <a class="page-link" href="/sobre">Sobre</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">SDL 2 - Como lidar com eventos únicos do teclado</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-11-06T00:00:00Z" itemprop="datePublished">
+        November 6, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Em <a href="https://www.libsdl.org/">SDL</a>, quando queremos tratar eventos, usamos uma função parecida com a do trecho abaixo dentro do nosso <a href="https://en.wikipedia.org/wiki/Game_programming#Game_structure"><em>game loop</em></a>.</p>
+
+<pre><code class="language-c">void handleInput() {
+    SDL_Event event;
+    while (SDL_PollEvent(&amp;event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                quit = SDL_TRUE;
+                break;
+            case SDL_KEYDOWN:
+                // do something
+                break;
+            case SDL_KEYUP:
+                // do something
+                break;
+        }
+    }
+}
+</code></pre>
+
+<p>Mas há momentos em que queremos tratar certos eventos (no caso, eventos de teclado) fora dessa função, e para esses momentos o SDL nos fornece a <a href="https://wiki.libsdl.org/SDL_GetKeyboardState"><code>SDL_GetKeyboardState()</code></a>, que podemos &ldquo;embrulhar&rdquo; numa outra função pra ficar mais amigável.</p>
+
+<pre><code class="language-c">// A tecla está pressionada?
+SDL_bool isKeyPressed(int key) {
+    return SDL_GetKeyboardState(NULL) [key];
+}
+</code></pre>
+
+<p>Um exemplo simples seria fazer o personagem pular ao pressionarmos a tecla de espaço.</p>
+
+<pre><code class="language-c">if ( isKeyPressed(SDL_SCANCODE_SPACE) )
+    player.y -= JUMP_FORCE;
+</code></pre>
+
+<p>O problema com o trecho acima é que, enquanto a tecla de espaço estiver pressionada, nosso personagem continuará a subir indefinidamente.</p>
+
+<p>O comportamento que desejamos aqui é que, ao pressionarmos &ldquo;espaço&rdquo;, o personagem realize o pulo e o encerre normalmente e só seja capaz de pular novamente caso paremos de apertar e a apertemos novamente.</p>
+
+<p>A solução que encontrei foi a seguinte:</p>
+
+<pre><code class="language-c">// Variável global
+Uint8 keyStates[SDL_NUM_SCANCODES];
+
+// Reinicia estados
+void resetKeyStates() {
+    for (size_t i = 0; i &lt; SDL_NUM_SCANCODES; i++)
+        keyStates[i] = 0;
+}
+
+// A tecla foi pressinada?
+Uint8 wasKeyPressed(int key) {    
+    return keyStates[key] == 1;
+}
+
+// A tecla foi liberada?
+Uint8 wasKeyReleased(int key) {
+    return keyStates[key] == 2;
+}
+</code></pre>
+
+<p>O próximo passo é modificar um pouco o nosso loop de eventos:</p>
+
+<pre><code class="language-c">void handleInput() {
+    resetKeyStates();
+    SDL_Event event;
+    while (SDL_PollEvent(&amp;event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                quit = SDL_TRUE;
+                break;
+            case SDL_KEYDOWN:
+                keyStates[event.key.keysym.scancode] = !event.key.repeat;
+                break;
+            case SDL_KEYUP:
+                keyStates[event.key.keysym.scancode] = 2;
+                break;
+        }
+    }
+}
+</code></pre>
+
+<p>E pronto. Faça o teste com isso:</p>
+
+<pre><code class="language-c">int main(int argc, char *argv[]) {
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window* window = SDL_CreateWindow(&quot;Window Title&quot;, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
+
+    while ( !quit ) {
+        handleInput();
+
+        if ( isKeyPressed(SDL_SCANCODE_A) )
+            SDL_Log(&quot;A is pressed!&quot;);
+
+        if ( wasKeyPressed(SDL_SCANCODE_SPACE) )
+            SDL_Log(&quot;Space was pressed!&quot;);
+
+        if ( wasKeyReleased(SDL_SCANCODE_SPACE) )
+            SDL_Log(&quot;Space was released!&quot;);
+    }
+
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
+}
+</code></pre>
+
+<p>O código de teste acima está completo aqui: <a href="https://gist.github.com/wldomiciano/26ca464b697e61d6bc85f2b07026631e">test.c</a></p>
+
+<p>E aqui tem um exemplo mais visual: <a href="https://gist.github.com/wldomiciano/533f83bd399409ef723beff401fa22f2">game.c</a></p>
+
+  </div>
+
+  
+
+  <a class="u-url" href="/sdl-2-como-lidar-com-eventos-unicos-do-teclado/" hidden></a>
+</article>
+</div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+  <div class="wrapper">
+    <h2 class="footer-heading">Wellington Domiciano</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            
+              Wellington Domiciano
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+  <li><a href="https://github.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username"></span></a></li>
+  <li><a href="https://twitter.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username"></span></a></li>
+</ul>
+
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+</html>
