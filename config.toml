@@ -1,22 +1,31 @@
 baseURL = "https://wldomiciano.com/"
 languageCode = "pt-br"
 title = "Wellington Domiciano"
-email = "wldomiciano@gmail.com"
-description = "Blog dedicado a publicação de artigos sobre coisas que tenho aprendido"
 author = "Wellington Domiciano"
-github_username = "wldomiciano"
-twitter_username = "wldomiciano"
-
 disableKinds = ["section", "taxonomy", "taxonomyTerm"]
 pygmentsCodefences = true
 
+[outputs]
+home = [ "RSS", "HTML"]
+
+[outputFormats]
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "feed"
+
+[params]
+  email = "wldomiciano@gmail.com"
+  description = "Blog dedicado a publicação de artigos sobre coisas que tenho aprendido"
+  github_username = "wldomiciano"
+  twitter_username = "wldomiciano"
+
 [frontmatter]
-date = [":filename", ":default"]
-googleAnalytics = "UA-48568115-1"
-disqusShortname = "wldomiciano"
+  date = [":filename", ":default"]
+  googleAnalytics = "UA-48568115-1"
+  disqusShortname = "wldomiciano"
 
 [permalinks]
-posts = "/:slug/"
+  posts = "/:slug/"
 
 [blackfriday]
-hrefTargetBlank = true
+  hrefTargetBlank = true
