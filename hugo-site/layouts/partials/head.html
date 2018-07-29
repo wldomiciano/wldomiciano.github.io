@@ -1,0 +1,33 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "/assets/molokai.css" | relURL }}">
+  <link rel="canonical" href="{{ replace .URL "index.html" "" | absURL }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/feed.xml" | relURL }}">
+
+  <style>
+    .video-responsive{
+        overflow:hidden;
+        padding-bottom:56.25%;
+        position:relative;
+        height:0;
+    }
+    .video-responsive iframe{
+        left:0;
+        top:0;
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
+  </style>
+
+  {{ if not .Site.BuildDrafts and .Site.GoogleAnalytics }}
+  {{ partial "google-analytics.html" . }}
+  {{ end }}
+</head>

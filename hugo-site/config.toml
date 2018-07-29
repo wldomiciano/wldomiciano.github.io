@@ -8,6 +8,6 @@ github_username = "wldomiciano"
 twitter_username = "wldomiciano"
 
 [frontmatter]
-date  = [":filename", ":default"]
+date = [":filename", ":default"]
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
