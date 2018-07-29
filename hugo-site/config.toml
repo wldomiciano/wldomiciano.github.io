@@ -10,4 +10,4 @@ twitter_username = "wldomiciano"
 [frontmatter]
 date  = [":filename", ":default"]
 googleAnalytics = "UA-48568115-1"
-disqus_shortname = "wldomiciano"
+disqusShortname = "wldomiciano"
