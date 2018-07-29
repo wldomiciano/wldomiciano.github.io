@@ -15,13 +15,13 @@ Extraia o arquivo baixado para um local a sua escolha.
 
 Abra o Prompt de Comando, navegue até o local escolhido e execute os comandos abaixo.
 
-```
+{{< highlight bash >}}
 emsdk update
 
 emsdk install latest
 
 emsdk activate latest
-```
+{{< / highlight >}}
 
 ### Possíveis Erros
 
@@ -41,34 +41,33 @@ Para testar a instalação execute o comando `notepad hello-world.c`.
 
 No Bloco de Notas, digite o seguinte código:
 
-```c
+{{< highlight c >}}
 #include <stdio.h>
-
 int main() {
   printf("hello, world!\n");
   return 0;
 }
-```
+{{< / highlight >}}
 
 Salve, feche o programa e execute o comando abaixo para compilar:
 
-```
+{{< highlight bash >}}
 emcc hello-world.c
-```
+{{< / highlight >}}
 
 Execute seu programa recém compilado com:
 
-```
+{{< highlight bash >}}
 node a.out.js
-```
+{{< / highlight >}}
 
 A mensagem "hello, world!" deve aparecer no console.
 
 Para criar uma página HTML com seu programa, utilize o seguinte comando:
 
-```
+{{< highlight bash >}}
 emcc hello-world.c -o hello-world.html
-```
+{{< / highlight >}}
 
 Basta abrir o arquivo HTML gerado no navegador para ver o resultado.
 
@@ -82,9 +81,9 @@ Para usar as ferramentas do SDK, você terá 3 opções:
 
 3. Definir as variáveis de ambiente permanentemente usando o comando abaixo (não recomendo):
 
-```
+{{< highlight bash >}}
 emsdk activate --global latest
-```
+{{< / highlight >}}
 
 Para saber mais, siga o tutorial oficial que, apesar de breve, nos dá uma visão geral das possibilidades:
 

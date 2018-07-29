@@ -8,7 +8,7 @@ O objetivo deste artigo é apresentar uma lógica independente de biblioteca, fr
 Abaixo estão os links para as versões em C (com SDL 2), JavaScript e Java do código completo.
 
 - [C version](https://gist.github.com/wldomiciano/b28fc30450c5aac0e8df21a4910388ed)
-- [JavaScript version](https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad) ([jogue aqui](https://codepen.io/wldomiciano/full/wjKYzx/){:target="_blank"})
+- [JavaScript version](https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad) ([jogue aqui](https://codepen.io/wldomiciano/full/wjKYzx/))
 - [Java version](https://gist.github.com/wldomiciano/92fd8ac6939b7dc6711be2ac8bd1b8ca)
 
 Ao todo são 10 funções das quais apenas 3 são dependentes da plataforma. Aqui eu apresento a versão em C.
@@ -28,15 +28,15 @@ Ao todo são 10 funções das quais apenas 3 são dependentes da plataforma. Aqu
 
 A função `random()` gera números aleatórios e será usada para determinar a posição da maçã.
 
-<div id="random">{% highlight c %}
+<div id="random">{{< highlight c >}}
 int random() {
     return rand() % BOARD_COLS;
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 A função `draw()` que recebe 4 argumentos do tipo `int`.
 
-<div id="draw">{% highlight c %}
+<div id="draw">{{< highlight c >}}
 void draw(int position, int r, int g, int b) {
     SDL_Rect rect = {position % BOARD_COLS, position / BOARD_COLS, SIZE, SIZE};
     rect.x *= SIZE;
@@ -45,14 +45,14 @@ void draw(int position, int r, int g, int b) {
     SDL_SetRenderDrawColor(ctx, r, g, b, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(ctx, &rect);
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 O primeiro argumento representa uma posição no tabuleiro que é convertida para coordenadas em 2D seguindo a seguinte fórmula:
 
-```
+{{< highlight c >}}
 int x = position % BOARD_COLS
 int y = position / BOARD_COLS
-```
+{{< / highlight >}}
 
 Após a conversão, a função multiplica essas coordenadas por `SIZE`, que é o tamanho em pixel de cada retângulo, desenhando tudo no seu devido lugar.
 
@@ -60,7 +60,7 @@ Ela recebe também mais 3 inteiros representando uma cor em RGB.
 
 Destas, a função `main()` é a que tem maior responsabilidade pois, além de conter o [*main loop*](http://gameprogrammingpatterns.com/game-loop.html){:target="_blank"}, verifica as teclas digitadas pelo usuário e também calcula o **delta** para a função `update()` que veremos mais tarde.
 
-<div id="main">{% highlight c %}
+<div id="main">{{< highlight c >}}
 int main(int argc, char** argv) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) return EXIT_FAILURE;
     if (SDL_CreateWindowAndRenderer(SIZE * BOARD_COLS, SIZE * BOARD_ROWS, 0, &canvas, &ctx) < 0) return EXIT_FAILURE;
@@ -88,18 +88,18 @@ int main(int argc, char** argv) {
     SDL_Quit();
     return EXIT_SUCCESS;
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 ## Funções portáveis
 
 Aproveitando a deixa e já entrando na parte especifica da lógica do jogo, podemos ver que a função `setDirection()` é bastante simples.
 
-<div id="setDirection">{% highlight c %}
+<div id="setDirection">{{< highlight c >}}
 void setDirection(int dir) {
     if (dir != -direction || length == 0)
         direction = dir;
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 Quando a cobrinha tem comprimento (medido pela variável `length`) 0, ela pode se mover pra qualquer direção à qualquer momento, porém, quando seu comprimento é maior que 0, alguns cuidados devem ser tomados.
 
@@ -118,19 +118,19 @@ A direção só é alterada se a nova direção não for a oposta da atual ou se
 
 Outra função importante é a que verifica se colisões ocorreram com a cauda.
 
-<div id="hasCollisionWithTail">{% highlight c %}
+<div id="hasCollisionWithTail">{{< highlight c >}}
 bool hasCollisionWithTail(int position) {
     for (int i = 0; i < length; i++)
         if (tail[i] == pos) return true;
     return false;
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 A cauda é representada por um array de `int`. O tamanho desse array deve ser igual ao tamanho total do tabuleiro (colunas * linhas).
 
-{% highlight c %}
+{{< highlight c >}}
 int tail[BOARD_SIZE];
-{% endhighlight %}
+{{< / highlight >}}
 
 Apesar do array ter esse tamanho todo, a quantidade de elementos utilizados será igual ao valor da variável `length`. Logo, não utilizaremos sua capacidade total, mas é bom estarmos preparados.
 
@@ -138,18 +138,18 @@ Utilizaremos a função acima em duas situações:
 
 - Ao definir uma nova posição para a maçã. Uma posição aleatória será escolhida, mas se essa posição coincidir com a posição da cauda (ou com a da cabeça), ela será recalculada.
 
-<div id="placeApple">{% highlight c %}
+<div id="placeApple">{{< highlight c >}}
 void placeApple() {
     do apple = random();
     while (head == apple || hasCollisionWithTail(apple));
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 - Para ver se houve colisão entre a cabeça e a cauda. Se o jogador colidir com o próprio corpo, o jogo acaba.
 
 Com a função `drawBoard()`, desenharemos o tabuleiro e todos os seus elementos. Ela é bastante simples, já que a função `draw` faz a parte dos calculos necessários.
 
-<div id="drawBoard">{% highlight c %}
+<div id="drawBoard">{{< highlight c >}}
 void drawBoard() {
     for (int i = 0; i < length; ++i)
         draw(tail[i], 0, 255, 0);
@@ -157,11 +157,11 @@ void drawBoard() {
     draw(head, 0, 0, 255);
     draw(apple, 255, 0, 0);
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 A função `move()` é bastante importante e a segunda função mais complexa desta lógica. Ela cuida do movimento da cobrinha verificando e corrigindo nos momentos em que ela ultrapassa os limites do tabuleiro.
 
-<div id="move">{% highlight c %}
+<div id="move">{{< highlight c >}}
 void move() {
     tail[i] = head;
     head += direction;
@@ -175,16 +175,16 @@ void move() {
     else if (head >= BOARD_SIZE)
         head -= BOARD_SIZE;
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 Enquanto `head < 0` e `head >= BOARD_SIZE` são suficientes para corrigir a posição da cobrinha caso ela exceda os limites superior e inferior do tabuleiro, para fazer a correção nas laterais, utilizamos `isOnLimits()`.
 
-<div id="isOnLimits">{% highlight c %}
+<div id="isOnLimits">{{< highlight c >}}
 bool isOnLimits() {
     return (direction ==  1 && head % BOARD_COLS == 0) ||
            (direction == -1 && (head + 1) % BOARD_COLS == 0);
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 O segredo para o movimento correto da cauda é posicionar uma de suas partes no mesmo lugar em que a cabeça está no momento e só depois disso mover a cabeça para a próxima posição.
 
@@ -192,7 +192,7 @@ Qual parte da cauda deve ser posicionada desta forma é definida pela variável 
 
 Por fim, temos a função `update()` que é a mais complexa.
 
-<div id="update">{% highlight c %}
+<div id="update">{{< highlight c >}}
 void update(int delta) {
     accumulator += delta;
 
@@ -208,7 +208,7 @@ void update(int delta) {
 
     drawBoard();
 }
-{% endhighlight %}</div>
+{{< / highlight >}}</div>
 
 Ela acumula (`accumulator`) o delta até atingir um certo valor e só então permite que a cobrinha se movimente. É com esse controle que podemos fazer a cobrinha se movimentar mais ou menos rápido, basta alterar o valor de `TIMEOUT`. Para fazê-la se movimentar apenas uma vez por segundo, `TIMEOUT` deveria ser 1000.
 

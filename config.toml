@@ -16,3 +16,8 @@ disqusShortname = "wldomiciano"
 
 [permalinks]
 posts = "/:slug/"
+
+[blackfriday]
+hrefTargetBlank = true
+
+pygmentsCodefences = true

@@ -35,27 +35,27 @@ Uma janela do Prompt de Comando reconfigurada pelo MinGW se abrirá.
 
 Digite o comando abaixo e aperte *Enter* para mudar de diretório.
 
-```
+{{< highlight bash >}}
 cd %homepath%\desktop
-```
+{{< / highlight >}}
 
 Digite o comando abaixo e aperte Enter para criar um arquivo chamado *teste.c* na Área de Trabalho.
 
-```
+{{< highlight bash >}}
 echo main() { puts("hello"); } > teste.c
-```
+{{< / highlight >}}
 
 Use o seguinte comando para compilar.
 
-```
+{{< highlight bash >}}
 gcc -w teste.c
-```
+{{< / highlight >}}
 
 Isso vai gerar um arquivo chamado *a.exe*, este é o programa já compilado. Execute-o com o seguinte comando:
 
- ```
+ {{< highlight bash >}}
  a.exe
- ```
+ {{< / highlight >}}
 
 A mensagem "hello" deve ser exibida. Se isso acontecer, parabéns, o GCC foi instalado com sucesso!
 
@@ -65,9 +65,9 @@ Ainda não é possível executar o GCC a partir de qualquer janela do Prompt de 
 
 Para corrigir isso é necessário adicionar o caminho do compilador à variável de ambiente *Path*. Para isso use o seguinte comando:
 
-```
+{{< highlight bash >}}
 setx path "%path%"
-```
+{{< / highlight >}}
 
 Para testar, segure a tecla *Shift*, clique com o **botão direito** do mouse em qualquer lugar na Área de Trabalho e clique em *Abrir janela de comando aqui*.
 
@@ -75,9 +75,9 @@ Para testar, segure a tecla *Shift*, clique com o **botão direito** do mouse em
 
 No Prompt de Comando recém aberto, tente compilar e executar novamente o programa com o comando abaixo.
 
-```
+{{< highlight bash >}}
 gcc -w teste.c && a.exe
-```
+{{< / highlight >}}
 
 Se a mensagem "hello" aparecer sem erros, significa que você está pronto para começar a programar sem limites!
 
