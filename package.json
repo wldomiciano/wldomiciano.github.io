@@ -1,0 +1,28 @@
+{
+  "name": "wldomiciano.github.io",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wldomiciano/wldomiciano.github.io.git"
+  },
+  "keywords": [
+    "programming",
+    "development"
+  ],
+  "author": "Wellington Domiciano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wldomiciano/wldomiciano.github.io/issues"
+  },
+  "homepage": "https://github.com/wldomiciano/wldomiciano.github.io#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.6",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0"
+  }
+}
