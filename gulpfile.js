@@ -10,6 +10,10 @@ function hugo(done) {
   return exec('hugo');
 }
 
+function hugoWithDrafts(done) {
+  return exec('hugo -D');
+}
+
 function reload(done) {
   server.reload();
   done();
@@ -22,9 +26,10 @@ function serve(done) {
 
 const watch = () => gulp.watch(
   ['layouts/**/*.html', 'content/**/*.md'],
-  gulp.series(hugo, reload));
+  gulp.series(hugoWithDrafts, reload));
+
 const prod = gulp.series(clean, hugo);
-const dev = gulp.series(clean, hugo, serve, watch);
+const dev = gulp.series(clean, hugoWithDrafts, serve, watch);
 
 exports.default = dev;
 exports.production = prod;
