@@ -3,8 +3,6 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const exec = require('child_process').exec;
 
-
-
 const server = browserSync.create();
 const clean = () => del(['public']);
 
@@ -22,7 +20,9 @@ function serve(done) {
   done();
 }
 
-const watch = () => gulp.watch('layouts/**/*.html', gulp.series(hugo, reload));
+const watch = () => gulp.watch(
+  ['layouts/**/*.html', 'content/**/*.md'],
+  gulp.series(hugo, reload));
 const prod = gulp.series(clean, hugo);
 const dev = gulp.series(clean, hugo, serve, watch);
 

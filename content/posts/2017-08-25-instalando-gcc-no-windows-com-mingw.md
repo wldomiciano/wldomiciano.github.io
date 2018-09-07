@@ -1,7 +1,10 @@
 ---
 title: Instalando o GCC no Windows com MinGW
-comments: true
 ---
+
+**UPDATE (07-09-2018)<br>Descobri uma forma ainda mais simples de instalar o GCC que é usando o Scoop. Para saber mais sobre esta ferramenta, leia [Instalando e usando o Scoop, um instalador de linha de comando para Windows](/instalando-e-usando-o-instalador-scoop/).**
+
+<hr><br>
 
 O [GCC](https://gcc.gnu.org/) é um compilador de C, C++ e de [algumas outras linguagens](https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/G_002b_002b-and-GCC.html).
 
@@ -13,7 +16,7 @@ Há várias formas de se instalar o MinGW e a que apresento aqui é a que consid
 
 Acesse o link da página de download abaixo e clique em "Sourceforge".
 
-[https://mingw-w64.org/doku.php/download/mingw-builds](https://mingw-w64.org/doku.php/download/mingw-builds)
+https://mingw-w64.org/doku.php/download/mingw-builds
 
 ![Print da tela de download](/assets/pagina-de-download.jpg)
 
@@ -35,27 +38,27 @@ Uma janela do Prompt de Comando reconfigurada pelo MinGW se abrirá.
 
 Digite o comando abaixo e aperte *Enter* para mudar de diretório.
 
-{{< highlight bash >}}
+```bash
 cd %homepath%\desktop
-{{< / highlight >}}
+```
 
 Digite o comando abaixo e aperte Enter para criar um arquivo chamado *teste.c* na Área de Trabalho.
 
-{{< highlight bash >}}
+```bash
 echo main() { puts("hello"); } > teste.c
-{{< / highlight >}}
+```
 
 Use o seguinte comando para compilar.
 
-{{< highlight bash >}}
+```bash
 gcc -w teste.c
-{{< / highlight >}}
+```
 
 Isso vai gerar um arquivo chamado *a.exe*, este é o programa já compilado. Execute-o com o seguinte comando:
 
- {{< highlight bash >}}
+ ```bash
  a.exe
- {{< / highlight >}}
+ ```
 
 A mensagem "hello" deve ser exibida. Se isso acontecer, parabéns, o GCC foi instalado com sucesso!
 
@@ -65,9 +68,9 @@ Ainda não é possível executar o GCC a partir de qualquer janela do Prompt de 
 
 Para corrigir isso é necessário adicionar o caminho do compilador à variável de ambiente *Path*. Para isso use o seguinte comando:
 
-{{< highlight bash >}}
+```bash
 setx path "%path%"
-{{< / highlight >}}
+```
 
 Para testar, segure a tecla *Shift*, clique com o **botão direito** do mouse em qualquer lugar na Área de Trabalho e clique em *Abrir janela de comando aqui*.
 
@@ -75,9 +78,9 @@ Para testar, segure a tecla *Shift*, clique com o **botão direito** do mouse em
 
 No Prompt de Comando recém aberto, tente compilar e executar novamente o programa com o comando abaixo.
 
-{{< highlight bash >}}
+```bash
 gcc -w teste.c && a.exe
-{{< / highlight >}}
+```
 
 Se a mensagem "hello" aparecer sem erros, significa que você está pronto para começar a programar sem limites!
 

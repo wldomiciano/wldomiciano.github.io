@@ -1,6 +1,5 @@
 ---
 title: Como criar um template customizado para SDL 2 no Visual Studio 2017
-comments: true
 ---
 
 Configurar um ambiente de desenvolvimento para SDL 2 no Windows com Visual Studio, não é difícil, porém, devido aos vários detalhes nas configurações, pode ser um tanto complicado.

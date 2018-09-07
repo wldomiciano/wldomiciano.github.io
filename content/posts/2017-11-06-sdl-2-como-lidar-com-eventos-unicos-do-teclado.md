@@ -1,11 +1,10 @@
 ---
 title: SDL 2 - Como lidar com eventos únicos do teclado
-comments: true
 ---
 
 Em [SDL](https://www.libsdl.org/), quando queremos tratar eventos, usamos uma função parecida com a do trecho abaixo dentro do nosso [*game loop*](https://en.wikipedia.org/wiki/Game_programming#Game_structure).
 
-{{< highlight c >}}
+```c
 void handleInput() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -22,23 +21,23 @@ void handleInput() {
         }
     }
 }
-{{< / highlight >}}
+```
 
 Mas há momentos em que queremos tratar certos eventos (no caso, eventos de teclado) fora dessa função, e para esses momentos o SDL nos fornece a [`SDL_GetKeyboardState()`](https://wiki.libsdl.org/SDL_GetKeyboardState), que podemos "embrulhar" numa outra função pra ficar mais amigável.
 
-{{< highlight c >}}
+```c
 // A tecla está pressionada?
 SDL_bool isKeyPressed(int key) {
     return SDL_GetKeyboardState(NULL) [key];
 }
-{{< / highlight >}}
+```
 
 Um exemplo simples seria fazer o personagem pular ao pressionarmos a tecla de espaço.
 
-{{< highlight c >}}
+```c
 if ( isKeyPressed(SDL_SCANCODE_SPACE) )
     player.y -= JUMP_FORCE;
-{{< / highlight >}}
+```
 
 O problema com o trecho acima é que, enquanto a tecla de espaço estiver pressionada, nosso personagem continuará a subir indefinidamente.
 
@@ -46,7 +45,7 @@ O comportamento que desejamos aqui é que, ao pressionarmos "espaço", o persona
 
 A solução que encontrei foi a seguinte:
 
-{{< highlight c >}}
+```c
 // Variável global
 Uint8 keyStates[SDL_NUM_SCANCODES];
 
@@ -65,11 +64,11 @@ Uint8 wasKeyPressed(int key) {
 Uint8 wasKeyReleased(int key) {
     return keyStates[key] == 2;
 }
-{{< / highlight >}}
+```
 
 O próximo passo é modificar um pouco o nosso loop de eventos:
 
-{{< highlight c >}}
+```c
 void handleInput() {
     resetKeyStates();
     SDL_Event event;
@@ -87,11 +86,11 @@ void handleInput() {
         }
     }
 }
-{{< / highlight >}}
+```
 
 E pronto. Faça o teste com isso:
 
-{{< highlight c >}}
+```c
 int main(int argc, char *argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("Window Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
@@ -113,7 +112,7 @@ int main(int argc, char *argv[]) {
     SDL_Quit();
     return 0;
 }
-{{< / highlight >}}
+```
 
 O código de teste acima está completo aqui: [test.c](https://gist.github.com/wldomiciano/26ca464b697e61d6bc85f2b07026631e)
 
