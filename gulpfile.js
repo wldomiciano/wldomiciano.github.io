@@ -25,7 +25,7 @@ function serve(done) {
 }
 
 const watch = () => gulp.watch(
-  ['layouts/**/*.html', 'content/**/*.md'],
+  ['**/*', '!public'],
   gulp.series(hugoWithDrafts, reload));
 
 const prod = gulp.series(clean, hugo);
