@@ -25,7 +25,7 @@ printf("Your Score: %d", score);
 
 Então a solução para esse problema é o [`snprintf()`](http://www.cplusplus.com/reference/cstdio/snprintf/).
 
-A diferença do `snprintf` é que ao invés de imprimir texto na saida padrão, ele armazena o texto gerado em um array.
+A diferença do `snprintf` é que ao invés de imprimir texto na saída padrão, ele armazena o texto gerado em um array.
 
 ```c
 snprintf(BUFFER, BUFFER_SIZE, "Your Score: %d", 123);
@@ -45,7 +45,7 @@ int main() {
 }
 ```
 
-Voltando pro nosso problema em SDL, poderiámos alterar o código mostrado no inicio pro `while` ficar assim:
+Voltando pro nosso problema em SDL, poderíamos alterar o código mostrado no inicio pro `while` ficar assim:
 
 ```c
 int counter = 0;

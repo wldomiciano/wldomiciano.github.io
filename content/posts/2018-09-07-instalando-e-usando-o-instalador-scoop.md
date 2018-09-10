@@ -9,7 +9,7 @@ Nem todos os programas estão disponíveis para serem instalados através do Sco
 
 Os passos para instalação são simples e qualquer dúvida basta visitar o site oficial em https://scoop.sh.
 
-# Como instalar
+## Como instalar
 
 No PowerShell, execute o comando abaixo para alterar as configurações que permitem a instalação do Scoop.
 
@@ -27,7 +27,7 @@ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
 Ao terminar, recomendo instalar os programas `openssh` e `git`, pois o Scoop os utiliza para atualizar a si mesmo.
 
-# Instalando, listando de buscando programas
+## Instalando, listando de buscando programas
 
 E falando em instalação de programas, como já disse no início, usamos o comando `scoop install`. Use este comando seguido pelo nome do programa desejado.
 
@@ -49,7 +49,7 @@ E se quisermos saber se um determinado programa pode ser instalado com Scoop, ba
 scoop search sed
 ```
 
-# Atualizando
+## Atualizando
 
 O comando `scoop update` nos permite atualizar o Scoop em si.
 
@@ -59,13 +59,13 @@ E com `scoop update *` podemos atualizar todos os programas instalados de uma s�
 
 Para saber se há programas desatualizados, utilizamos o comando `scoop status`.
 
-# Buckets &#8212; O que são e como adicioná-los
+## Buckets &#8212; O que são e como adicioná-los
 
 O segredo do Scoop está nos *buckets*.
 
 Os buckets são repositórios Git onde se encontram os programas, ou melhor, onde se encontram as instruções de como instalar os programas e suas dependências.
 
-Quando vc instala o Scoop, apenas o bucket principal está disponível e é necessário adicionar outros buckets caso queira ter acesso ao conteúdo deles.
+Quando você instala o Scoop, apenas o bucket principal está disponível e é necessário adicionar outros buckets caso queira ter acesso ao conteúdo deles.
 
 Para adicionar um novo bucket usamos o seguinte comando:
 
@@ -77,7 +77,7 @@ Programas como Inkscape, VLC ou Firefox se encontram no bucket "extras", adicion
 
 Use `scoop bucket list` para ver a lista de buckets adicionados e `scoop bucket known` para ver quais buckets conhecidos estão disponíveis.
 
-# Considerações finais
+## Considerações finais
 
 Quando preciso trabalhar com certos programas (como GCC ou Git) no Windows, uso o Scoop como intermediário, pois o considero ainda mais simples do que a forma descrita na minha postagem sobre [como instalar o MinGW no Windows](https://wldomiciano.com/instalando-gcc-no-windows-com-mingw/).
 

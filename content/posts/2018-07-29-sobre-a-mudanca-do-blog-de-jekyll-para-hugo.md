@@ -31,7 +31,7 @@ Sem esta integração, eu teria que construir meu site localmente e fazer o uplo
 
 Só que recentemente conheci o [Netlify](//www.netlify.com/). Ele faz com sites usando Hugo (ou outros geradores) o que o GitHub Pages faz com o Jekyll, constrói as páginas automaticamente sempre que ele detecta uma mudança no repositório.
 
-Com Netlify você não fica restrito ao GitHub, pois ele integra também com o [GitLab](//gitlab.com/) e [Bitbucket](//bitbucket.org).
+Com Netlify você não fica restrito ao GitHub, pois ele integra também com o [GitLab](//gitlab.com/) e [BitBucket](//bitbucket.org).
 
 Este tipo de serviço permite um fluxo de trabalho bem legal. Você clona o repositório do site, escreve sua postagem ou realiza qualquer modificação e, quando estiver satisfeito, dá um `git push` que em segundos, qualquer alteração estará online.
 

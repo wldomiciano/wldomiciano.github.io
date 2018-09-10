@@ -1,7 +1,7 @@
 ---
 title: Nomeando posts no Hugo seguindo o padrão do Jekyll
 ---
-No jekyll, por padrão, os posts devem ser nomeados seguindo a convenção ANO-MES-DIA-TITULO-DO-POST.md.
+No Jekyll, por padrão, os posts devem ser nomeados seguindo a convenção ANO-MES-DIA-TITULO-DO-POST.md.
 
     2018-07-29-minha-postagem.md
     2018-07-29-outra-postagem.md

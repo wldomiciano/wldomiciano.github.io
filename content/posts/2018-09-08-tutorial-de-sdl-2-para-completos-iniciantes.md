@@ -7,7 +7,7 @@ Neste artigo quero lhe ajudar a dar seus primeiros passos com [SDL 2](https://ww
 
 Começaremos instalando os componentes necessários para o desenvolvimento no Ubuntu e em seguida apresentarei o código que servirá de base para as explicações.
 
-# Instalando as ferramentas no Ubuntu
+## Instalando as ferramentas no Ubuntu
 
 Abra o terminal e use o comando abaixo para instalar o compilador e a biblioteca.
 
@@ -29,7 +29,7 @@ E para rodar o programa, basta executar o seguinte comando:
 
 Como usaremos o terminal para compilar nosso programa, você é livre para usar o editor de texto que quiser.
 
-# O código base
+## O código base
 
 Considere o código abaixo e não se preocupe se sentir-se perdido, pois explicarei parte por parte.
 
@@ -64,7 +64,7 @@ int main() {
 }
 ```
 
-# O cabeçalho e a função main
+## O cabeçalho e a função main
 
 ```c
 #include <SDL.h>
@@ -79,7 +79,7 @@ Em seguida temos a função `main()` que dará inicio ao nosso programa.
 
 A variável `window` representa a janela que nos fornecerá o contexto para desenharmos formas e imagens, e receberá eventos vindos de fontes diversas como teclado e mouse.
 
-# A inicialização e criação da janela
+## A inicialização e criação da janela
 
 ```c
     /*
@@ -125,7 +125,7 @@ Mesmo que você use esta função para encerrar todos os subsistemas, ainda é n
 
 Há também a função [`SDL_InitSubSystem()`](https://wiki.libsdl.org/SDL_InitSubSystem), ela é idêntica à `SDL_Init()` (na verdade `SDL_Init()` invoca `SDL_InitSubSystem()` internamente).
 
-## Logging e erros
+### Logging e erros
 
 A função [`SDL_Log()`](https://wiki.libsdl.org/SDL_Log) imprime no console uma mensagem, ela funciona de forma semelhante à função `printf()` da biblioteca padrão.
 
@@ -133,7 +133,7 @@ A função [`SDL_Log()`](https://wiki.libsdl.org/SDL_Log) imprime no console uma
 
 E se ocorrer, a função [`SDL_GetError()`](https://wiki.libsdl.org/SDL_GetError) retornará uma string contendo uma descrição mais especifica.
 
-## A criação da janela
+### A criação da janela
 
 Se tudo sair como planejado, a função [`SDL_CreateWindow()`](https://wiki.libsdl.org/SDL_CreateWindow) retornará um ponteiro para a janela criada ou `NULL` em caso de falha. Ela aceita 6 argumentos.
 
@@ -157,7 +157,7 @@ Por exemplo, com a flag `SDL_WINDOW_FULLSCREEN` a janela será criada já em tel
 
 Para saber mais sobre as outras flags disponíveis, visite a [documentação oficial](https://wiki.libsdl.org/SDL_CreateWindow#Remarks).
 
-# O Main Loop
+## O Main Loop
 
 ```c
     /*
@@ -177,7 +177,7 @@ A macro [`SDL_QuitRequested()`](https://wiki.libsdl.org/SDL_QuitRequested) verif
 
 Há várias formas do encerramento ser requisitado e uma delas é clicar no botão "fechar" (no "X") da janela.
 
-# A finalização
+## A finalização
 
 ```c
     /*
@@ -191,7 +191,7 @@ Há várias formas do encerramento ser requisitado e uma delas é clicar no bot�
 
 Por fim, devemos chamar a função [`SDL_DestroyWindow()`](https://wiki.libsdl.org/SDL_DestroyWindow) para destruir a janela e `SDL_Quit()` para finalizar corretamente a biblioteca antes de terminar o programa.
 
-# Considerações finais
+## Considerações finais
 
 Apesar de simples, sei que pra muita gente pode ser difícil dar os primeiros passos, por isso espero que este tutorial lhe seja útil de alguma forma.
 
