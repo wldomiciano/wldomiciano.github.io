@@ -1,5 +1,6 @@
 baseURL = "https://wldomiciano.com/"
 languageCode = "pt-br"
+defaultContentLanguage = "pt-br"
 title = "Wellington Domiciano"
 author = "Wellington Domiciano"
 disableKinds = ["section", "taxonomy", "taxonomyTerm"]
