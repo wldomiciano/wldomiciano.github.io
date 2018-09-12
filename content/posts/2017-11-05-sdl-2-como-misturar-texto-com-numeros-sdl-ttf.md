@@ -11,6 +11,13 @@ Usar a biblioteca [SDL_ttf](https://www.libsdl.org/projects/SDL_ttf/) (com [SDL 
 
 Olha um exemplo [aqui neste gist][exemplo-01].
 
+> Obs.: Para usar os exemplo deste artigo é necessário que o arquivo *VT323.ttf* esteja na mesma pasta que os códigos.
+> 
+> Você pode baixar esta fonte neste link: 
+> https://fonts.google.com/specimen/VT323
+> 
+> Renomeie o arquivo baixado caso seja necessário.
+
 Este tipo de dado muda constantemente e o pior: mistura números e texto!
 
 Como você faria pra escrever, por exemplo, "Your Score: 123"?
@@ -101,5 +108,8 @@ void drawText(const char* fmt, ...) {
 
 Tem outro gist com o [resultado final aqui][exemplo-02]
 
+**UPDATE (12/09/18):**<br>Usei o exemplo anterior para fazer uma versão usando renderer. O gist com [o código é este][exemplo-03]
+
 [exemplo-01]:https://gist.github.com/wldomiciano/c7fecb4e7af1cd57342390b22800c771
 [exemplo-02]:https://gist.github.com/wldomiciano/d16bea2d66365cf0113c7abaa0b84de7
+[exemplo-03]:https://gist.github.com/wldomiciano/316b9b6fd2ecc5b1af76005e76691c42
