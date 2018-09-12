@@ -9,9 +9,7 @@ Usar a biblioteca [SDL_ttf](https://www.libsdl.org/projects/SDL_ttf/) (com [SDL 
 - Cria um texto com `TTF_RenderText_Solid()`
 - E desenha na tela com `SDL_BlitSurface()`
 
-Olha um exemplo aqui: https://pastebin.com/HU7CfNmR
-
-Mas e se o texto que queremos colocar na tela for a pontuação do personagem ou um contador de tempo?
+Olha um exemplo [aqui neste gist][exemplo-01].
 
 Este tipo de dado muda constantemente e o pior: mistura números e texto!
 
@@ -101,4 +99,7 @@ void drawText(const char* fmt, ...) {
 }
 ```
 
-E o resultado final pode ser visto aqui: https://pastebin.com/9mKKtkcv
+Tem outro gist com o [resultado final aqui][exemplo-02]
+
+[exemplo-01]:https://gist.github.com/wldomiciano/c7fecb4e7af1cd57342390b22800c771
+[exemplo-02]:https://gist.github.com/wldomiciano/d16bea2d66365cf0113c7abaa0b84de7
