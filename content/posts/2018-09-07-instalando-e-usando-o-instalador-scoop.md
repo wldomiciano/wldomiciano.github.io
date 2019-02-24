@@ -27,7 +27,7 @@ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
 Ao terminar, recomendo instalar os programas `openssh` e `git`, pois o Scoop os utiliza para atualizar a si mesmo.
 
-## Instalando, listando de buscando programas
+## Instalando, listando e buscando programas
 
 E falando em instalação de programas, como já disse no início, usamos o comando `scoop install`. Use este comando seguido pelo nome do programa desejado.
 
