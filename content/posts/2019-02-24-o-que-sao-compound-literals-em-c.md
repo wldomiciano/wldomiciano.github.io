@@ -5,7 +5,7 @@ Você já ouviu falar sobre _Compound Literals_ em C?
 
 O nome pode lhe ser estranho, mas há grandes chances de que você já tenha usado este recurso.
 
-Se não conhece, eu vou te explicar.
+Ele faz parte da linguagem desde o C99 e se ainda não o conhece, eu vou te explicar.
 
 Imagina que você tem uma `struct` chamada `Point` e uma função capaz de somar dois Points.
 
