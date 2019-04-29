@@ -72,7 +72,7 @@ http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf
 
 ## Considerações finais
 
-Particularmente achei bem legal esse recurso, pois há um tempo eu queria criar um framework para criação de jogos 2D baseado em [SDL 2](https://www.libsdl.org/) onde haveria uma função chamada `createGame()` que aceitava uma uma série configurações como argumento.
+Particularmente achei bem legal esse recurso, pois há um tempo eu queria criar um framework para criação de jogos 2D baseado em [SDL 2](https://www.libsdl.org/) onde haveria uma função chamada `createGame()` que aceitava uma uma série de configurações como argumento.
 
 Através dessas configurações, era possível escolher, dentre outras coisas, a altura e a largura da janela.
 
