@@ -6,7 +6,7 @@
     "@type": "blogPosting",
     "datePublished": "{{ .Date.Format "2006-01-02T15" }}",
 
-    "dateModified": "{{ if .Params.updated }}{{ .Params.updated }}{{ else }}{{ .Date }}{{ end }}",
+    "dateModified": "{{ if .Params.updated }}{{ .Params.updated }}{{ else }}{{ .Date.Format "2006-01-02T15" }}{{ end }}",
 
     "name": "{{ .Title }}",
 
