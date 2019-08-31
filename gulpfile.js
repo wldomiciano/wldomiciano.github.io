@@ -6,11 +6,11 @@ const exec = require('child_process').exec;
 const server = browserSync.create();
 const clean = () => del(['public']);
 
-function hugo(done) {
+function hugo() {
   return exec('hugo');
 }
 
-function hugoWithDrafts(done) {
+function hugoWithDrafts() {
   return exec('hugo -D');
 }
 
@@ -24,9 +24,8 @@ function serve(done) {
   done();
 }
 
-const watch = () => gulp.watch(
-  ['**/*', '!public'],
-  gulp.series(hugoWithDrafts, reload));
+const watch = () =>
+  gulp.watch(['**/*', '!public'], gulp.series(hugoWithDrafts, reload));
 
 const prod = gulp.series(clean, hugo);
 const dev = gulp.series(clean, hugoWithDrafts, serve, watch);
