@@ -30,14 +30,18 @@
 <article class="post h-entry">
   <header class="post-header">
     <h1 class="post-title p-name">{{ .Title }}</h1>
-    <p class="post-meta">
+
+    <div class="post-meta">
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Date.Format "January 2, 2006" }}
       </time>
       {{ if .Site.Author }}
       • <span><span class="p-author h-card">{{ .Site.Author }}</span></span>
-      {{ end }}</p>
+      {{ end }}</div>
+
+    {{ partial "tags-list.html" . }}
   </header>
+
 
   <div class="post-content e-content">
     {{ .Content }}
