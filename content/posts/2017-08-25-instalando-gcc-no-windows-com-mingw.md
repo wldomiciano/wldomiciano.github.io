@@ -5,7 +5,7 @@ tags:
   - GCC
   - MinGW
   - Windows
-updated: 07-09-2018
+lastmod: 2018-09-07
 ---
 
 **UPDATE (07-09-2018)<br>Descobri uma forma ainda mais simples de instalar o GCC que é usando o Scoop. Para saber mais sobre esta ferramenta, leia [Instalando e usando o Scoop, um instalador de linha de comando para Windows](/instalando-e-usando-o-instalador-scoop/).**
