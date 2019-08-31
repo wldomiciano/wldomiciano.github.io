@@ -4,14 +4,10 @@
   {
     "@context": "https://schema.org",
     "@type": "blogPosting",
-    "datePublished": "{{ .Date.Format "2006-01-02T15" }}",
-
-    "dateModified": "{{ if .Params.updated }}{{ .Params.updated }}{{ else }}{{ .Date.Format "2006-01-02T15" }}{{ end }}",
-
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "dateModified": "{{ (cond (isset .Params "lastmod") .Lastmod .Date).Format "2006-01-02" }}",
     "name": "{{ .Title }}",
-
-    "headline": "{{ if .Description }}{{ .Description }}{{ else }}{{ .Title }}{{ end }}",
-
+    "headline": "{{ cond (isset .Params "description") .Description .Title }}",
     "author": {
       "@type": "Person",
       "name": "{{ .Site.Title }}"
@@ -31,15 +27,15 @@
 
 
 
-<article class="post h-entry" >
+<article class="post h-entry">
   <header class="post-header">
-    <h1 class="post-title p-name" >{{ .Title }}</h1>
+    <h1 class="post-title p-name">{{ .Title }}</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" >
+      <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Date.Format "January 2, 2006" }}
       </time>
       {{ if .Site.Author }}
-        • <span><span class="p-author h-card">{{ .Site.Author }}</span></span>
+      • <span><span class="p-author h-card">{{ .Site.Author }}</span></span>
       {{ end }}</p>
   </header>
 
@@ -48,7 +44,7 @@
   </div>
 
   {{ if .Site.DisqusShortname }}
-    {{ partial "disqus_comments.html" . }}
+  {{ partial "disqus_comments.html" . }}
   {{ end }}
 
   <a class="u-url" href="{{ .URL | relURL }}" hidden></a>
