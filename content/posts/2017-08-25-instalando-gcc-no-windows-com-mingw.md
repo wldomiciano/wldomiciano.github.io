@@ -1,6 +1,10 @@
 ---
 title: Instalando o GCC no Windows com MinGW
 description: Veja como instalar o MinGW no Windows
+tags:
+  - GCC
+  - MinGW
+  - Windows
 updated: 07-09-2018
 ---
 

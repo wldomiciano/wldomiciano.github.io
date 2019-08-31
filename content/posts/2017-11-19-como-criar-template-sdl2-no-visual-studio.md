@@ -1,6 +1,9 @@
 ---
 title: Como criar um template customizado para SDL 2 no Visual Studio 2017
-description: Passa a passo de como criar um template de um projeto SDL 2 para Visual Studio
+description: Passa a passo de como criar um template de um projeto
+  SDL 2 para Visual Studio
+tags:
+  - SDL 2
 ---
 
 Configurar um ambiente de desenvolvimento para SDL 2 no Windows com Visual Studio, não é difícil, porém, devido aos vários detalhes nas configurações, pode ser um tanto complicado.
