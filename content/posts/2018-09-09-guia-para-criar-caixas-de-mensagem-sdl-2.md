@@ -1,6 +1,8 @@
 ---
 title: O guia definitivo para criar caixas de mensagem com SDL 2
+description: Caixas de mensagens são popups informativos, veja aqui tudo o que você precisa para usar no SDL 2
 ---
+
 ## Apresentação
 
 Quando trabalhando com SDL 2, como desenvolvedor, gosto de fazer testes usando a função `SDL_Log()` para imprimir mensagens no terminal e saber como anda a execução do meu código.
@@ -29,7 +31,7 @@ As funções que criam essas caixas podem ser invocadas mesmo antes da invocaç�
 
 Se tudo o que você quer é uma caixa com uma mensagem simples, a função `SDL_ShowSimpleMessageBox()` fará bem o trabalho.
 
-Trata-se de uma caixinha com título, uma mensagem (que é opcional) e um botão *OK*.
+Trata-se de uma caixinha com título, uma mensagem (que é opcional) e um botão _OK_.
 
 ```cs
 #include <SDL.h>
@@ -83,7 +85,7 @@ Ela permite a criação de caixas com nenhum ou vários botões e com o texto qu
 
 E também podemos alterar as cores de cada elemento em plataformas que suportam este recurso! Em meus testes, foi possível criar caixas coloridas no Ubuntu e no Android.
 
-O primeiro argumento representa os dados da caixa que veremos mais [a frente](#definindo-dados-da-caixa-de-mensagem), e o segundo é um ponteiro para uma variável que conterá o *id* do botão clicado pelo usuário, é por ela que saberemos qual ação tomar.
+O primeiro argumento representa os dados da caixa que veremos mais [a frente](#definindo-dados-da-caixa-de-mensagem), e o segundo é um ponteiro para uma variável que conterá o _id_ do botão clicado pelo usuário, é por ela que saberemos qual ação tomar.
 
 ### Verificando erros
 
@@ -105,7 +107,7 @@ int main()
     message_box_data.message     = "Mensagem";
     message_box_data.numbuttons  = 0;
     message_box_data.buttons     = NULL;
-    message_box_data.colorScheme = NULL; 
+    message_box_data.colorScheme = NULL;
 
     if ( SDL_ShowMessageBox(&message_box_data, NULL) < 0 )
         SDL_Log("%s", SDL_GetError());
@@ -170,13 +172,13 @@ O membro `flags` é usado para definir um comportamento especial. Ela pode ter 3
 
 Com o valor 0 nada de especial acontece.
 
-Com `SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT` significa que aquele botão será ativado caso o usuário pressionar a tecla *Enter*.
+Com `SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT` significa que aquele botão será ativado caso o usuário pressionar a tecla _Enter_.
 
-Com `SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT` significa que o botão será ativado caso o usuário pressione a tecla *Esc*.
+Com `SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT` significa que o botão será ativado caso o usuário pressione a tecla _Esc_.
 
-> **NOTA:** *No Windows há um comportamento estranho ao usar estas teclas. Pressionando Enter, ele entende como "Não" e pressionando Esc, ele entende como "Cancelar".*
+> **NOTA:** _No Windows há um comportamento estranho ao usar estas teclas. Pressionando Enter, ele entende como "Não" e pressionando Esc, ele entende como "Cancelar"._
 >
-> *No Android, com um teclado físico, não houve esse problema.*
+> _No Android, com um teclado físico, não houve esse problema._
 
 #### Testando nossos botões
 
@@ -216,7 +218,7 @@ int main()
     message_box_data.message     = "Mensagem";
     message_box_data.numbuttons  = 3;
     message_box_data.buttons     = button_data;
-    message_box_data.colorScheme = NULL; 
+    message_box_data.colorScheme = NULL;
 
     int buttonid;
 
@@ -231,9 +233,9 @@ int main()
 }
 ```
 
-> **NOTA:** *No Ubuntu a caixa é exibida com o botão "Fechar", aquele "X" no topo das janelas, e, se clicarmos neste botão, `buttonid` será igual a -1.*
+> **NOTA:** _No Ubuntu a caixa é exibida com o botão "Fechar", aquele "X" no topo das janelas, e, se clicarmos neste botão, `buttonid` será igual a -1._
 >
-> *Isso não acontece no Windows e nem no Android, pois a caixa exibida nessas plataformas não possui este "X".*
+> _Isso não acontece no Windows e nem no Android, pois a caixa exibida nessas plataformas não possui este "X"._
 
 ## Personalizando cores
 
@@ -340,7 +342,6 @@ int main()
 E o resultado:
 
 ![Print da caixa de mensagem com cores personalizadas](/assets/print-caixa-de-mensagem-colorida.jpg)
-
 
 Como somos programadores e não designers, o resultado não ficou muito atrativo, contudo, o objetivo aqui é aprender como personalizar as cores, se vai ficar bonito é outra história.
 

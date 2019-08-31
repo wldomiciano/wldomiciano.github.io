@@ -1,9 +1,11 @@
 ---
 title: Instalando e usando o Scoop, um instalador de linha de comando para Windows
+description: Conheça o Scoop e aprenda como instalar esta maravilhosa ferramenta no Windows
 ---
+
 O Scoop é um instalador de linha de comando para Windows.
 
-Em outras palavras, com um simples `scoop install` é possível instalar programas a partir do *Prompt de Comando* ou do *PowerShell* de forma semelhante ao que acontece nas distribuições Linux.
+Em outras palavras, com um simples `scoop install` é possível instalar programas a partir do _Prompt de Comando_ ou do _PowerShell_ de forma semelhante ao que acontece nas distribuições Linux.
 
 Nem todos os programas estão disponíveis para serem instalados através do Scoop, mas há uma lista extensa deles que vai desde ferramentas de linha de comando como o compilador GCC até programas gráficos como Gimp e Blender.
 
@@ -17,7 +19,7 @@ No PowerShell, execute o comando abaixo para alterar as configurações que perm
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-Uma pergunta vai aparecer. Responda digitando *y* e pressione Enter.
+Uma pergunta vai aparecer. Responda digitando _y_ e pressione Enter.
 
 Em seguida, execute o comando abaixo para realizar a instalação.
 
@@ -61,7 +63,7 @@ Para saber se há programas desatualizados, utilizamos o comando `scoop status`.
 
 ## Buckets &#8212; O que são e como adicioná-los
 
-O segredo do Scoop está nos *buckets*.
+O segredo do Scoop está nos _buckets_.
 
 Os buckets são repositórios Git onde se encontram os programas, ou melhor, onde se encontram as instruções de como instalar os programas e suas dependências.
 
@@ -84,4 +86,3 @@ Quando preciso trabalhar com certos programas (como GCC ou Git) no Windows, uso 
 Caso queira conhecer os outros comandos disponíveis, basta usar `scoop help` e para obter ajuda sobre comandos específicos, use `scoop help <nome-do-comando>`.
 
 Espero que este indicação seja útil. Até a próxima.
-

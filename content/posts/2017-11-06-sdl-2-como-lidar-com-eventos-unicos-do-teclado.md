@@ -1,8 +1,9 @@
 ---
 title: SDL 2 - Como lidar com eventos únicos do teclado
+description: Recurso util para implementar sistemas de pulo em SDL 2
 ---
 
-Em [SDL](https://www.libsdl.org/), quando queremos tratar eventos, usamos uma função parecida com a do trecho abaixo dentro do nosso [*game loop*](https://en.wikipedia.org/wiki/Game_programming#Game_structure).
+Em [SDL](https://www.libsdl.org/), quando queremos tratar eventos, usamos uma função parecida com a do trecho abaixo dentro do nosso [_game loop_](https://en.wikipedia.org/wiki/Game_programming#Game_structure).
 
 ```c
 void handleInput() {
@@ -56,7 +57,7 @@ void resetKeyStates() {
 }
 
 // A tecla foi pressinada?
-Uint8 wasKeyPressed(int key) {    
+Uint8 wasKeyPressed(int key) {
     return keyStates[key] == 1;
 }
 

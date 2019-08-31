@@ -1,6 +1,8 @@
 ---
 title: Apenas um tutorial básico de SDL 2 para completos iniciantes
+description: Veja como começar a usar a biblioteca SDL 2
 ---
+
 Olá.
 
 Neste artigo quero lhe ajudar a dar seus primeiros passos com [SDL 2](https://www.libsdl.org/), uma biblioteca multimídia escrita em C, bastante usada no desenvolvimento de jogos.

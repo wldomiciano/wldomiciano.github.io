@@ -1,6 +1,8 @@
 ---
 title: Nomeando posts no Hugo seguindo o padrão do Jekyll
+description: Como criar postagens no Hugo seguindo o padrão usado no Jekyll
 ---
+
 No Jekyll, por padrão, os posts devem ser nomeados seguindo a convenção ANO-MES-DIA-TITULO-DO-POST.md.
 
     2018-07-29-minha-postagem.md
@@ -14,7 +16,7 @@ No Hugo, por padrão, não há essa extração e o nome do arquivo inteiro é us
 
     https://wldomiciano.com/blog/2018-07-30-minha-postagem/
 
-Felizmente é possível facilmente alterar este comportamento acrescentando apenas 2 linhas ao `config.toml`  da seguinte forma:
+Felizmente é possível facilmente alterar este comportamento acrescentando apenas 2 linhas ao `config.toml` da seguinte forma:
 
 {{< highlight toml "hl_lines=5 6" >}}
 baseURL = "https://wldomiciano.com/"

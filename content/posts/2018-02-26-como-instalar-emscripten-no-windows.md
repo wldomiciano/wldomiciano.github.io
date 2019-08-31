@@ -1,5 +1,6 @@
 ---
 title: Como instalar Emscripten no Windows
+description: Emscripten permite usar código em C ou C++ no navegador, aprenda aqui como instalar no Windows
 ---
 
 Neste tutorial vou mostrar como instalar e configurar o Emscripten, uma ferramenta que compila seu código nativo C ou C++ para JavaScript e permite rodar seu programa em navegadores Web ou no servidor com Node.js.
@@ -29,6 +30,7 @@ Durante a minha instalação, apareceu uma mensagem avisando de um erro no downl
 https://github.com/kripken/emscripten/archive/1.37.35.zip
 
 Para corrigir:
+
 - Baixe o pacote manualmente pelo link acima.
 - Renomeie o arquivo baixado de **emscripten-1.37.35.zip** para **1.37.35.zip**.
 - Mova o arquivo para a pasta **zips** que está dentro da pasta do SDK.

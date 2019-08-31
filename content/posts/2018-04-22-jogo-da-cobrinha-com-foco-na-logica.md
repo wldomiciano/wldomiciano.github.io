@@ -1,5 +1,6 @@
 ---
 title: Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica
+description: Aqui apresento a minha implementação do jogo da cobrinha e explico o código em C por partes
 ---
 
 O objetivo deste artigo é apresentar uma lógica independente de biblioteca, framework ou linguagem e que, por isso, pode ser facilmente portada.
@@ -61,7 +62,7 @@ Após a conversão, a função multiplica essas coordenadas por `SIZE`, que é o
 
 Ela recebe também mais 3 inteiros representando uma cor em RGB.
 
-Destas, a função `main()` é a que tem maior responsabilidade pois, além de conter o [*main loop*](http://gameprogrammingpatterns.com/game-loop.html), verifica as teclas digitadas pelo usuário e também calcula o **delta** para a função `update()` que veremos mais tarde.
+Destas, a função `main()` é a que tem maior responsabilidade pois, além de conter o [_main loop_](http://gameprogrammingpatterns.com/game-loop.html), verifica as teclas digitadas pelo usuário e também calcula o **delta** para a função `update()` que veremos mais tarde.
 
 <div id="main"></div>
 
@@ -135,7 +136,7 @@ bool hasCollisionWithTail(int position) {
 }
 ```
 
-A cauda é representada por um array de `int`. O tamanho desse array deve ser igual ao tamanho total do tabuleiro (colunas * linhas).
+A cauda é representada por um array de `int`. O tamanho desse array deve ser igual ao tamanho total do tabuleiro (colunas \* linhas).
 
 ```c
 int tail[BOARD_SIZE];
@@ -245,15 +246,15 @@ Embora o resultado final não seja visualmente atraente, a lógica básica está
 
 Se comparar os códigos em C e em JavaScript, verá que pouquíssima coisa muda além das funções não portáveis, as diferenças maiores ficam por conta de certas palavras chaves e por C ser estaticamente tipada.
 
-A versão em Java é a mais diferente, pois ao invés de usar um loop com `while`, usei um timer para controlar a atualização do jogo e tive que lidar com as particularidades do *Swing*.
+A versão em Java é a mais diferente, pois ao invés de usar um loop com `while`, usei um timer para controlar a atualização do jogo e tive que lidar com as particularidades do _Swing_.
 
 É claro que tanto JavaScript quanto Java fornecem certas facilidades ao se trabalhar com arrays, tornando a variável `length` desnecessária. Mas tentei manter a estrutura do código o mais semelhante a C que pude como uma prova de conceito.
 
-Teste os códigos e modifique-os para entender melhor seu funcionamento. Tente implementar o resto do jogo. Acrescente um contador para mostrar os pontos, uma mensagem de inicio e uma de *game over* e uma opção para reiniciar o jogo.
+Teste os códigos e modifique-os para entender melhor seu funcionamento. Tente implementar o resto do jogo. Acrescente um contador para mostrar os pontos, uma mensagem de inicio e uma de _game over_ e uma opção para reiniciar o jogo.
 
 Boa sorte.
 
-[1]:https://gist.github.com/wldomiciano/b28fc30450c5aac0e8df21a4910388ed
-[2]:https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad
-[3]:https://codepen.io/wldomiciano/full/wjKYzx/
-[4]:https://gist.github.com/wldomiciano/92fd8ac6939b7dc6711be2ac8bd1b8ca
+[1]: https://gist.github.com/wldomiciano/b28fc30450c5aac0e8df21a4910388ed
+[2]: https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad
+[3]: https://codepen.io/wldomiciano/full/wjKYzx/
+[4]: https://gist.github.com/wldomiciano/92fd8ac6939b7dc6711be2ac8bd1b8ca

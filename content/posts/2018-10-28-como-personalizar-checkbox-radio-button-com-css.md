@@ -1,6 +1,8 @@
 ---
 title: Como criar checkbox e radio buttons personalizados com CSS
+description: Como criar elementos de formulários mais interessantes apenas com CSS
 ---
+
 Quando criando formulários, é fácil personalizar caixas de texto e botões, mas é necessário algum trabalho adicional para fazer o mesmo com checkboxes e radio buttons.
 
 Neste artigo, mostro o passo-a-passo para a personalização da checkbox e, ao final, apresento o código pronto juntamente com um exemplo usando radio button.
@@ -10,7 +12,7 @@ Neste artigo, mostro o passo-a-passo para a personalização da checkbox e, ao f
 O segredo para começar está na interação entre o elemento `<input>` e o elemento `<label>` associado a ele.
 
 ```html
-<input id="teste" type="checkbox">
+<input id="teste" type="checkbox" />
 <label for="teste">Testando checkbox</label>
 ```
 
@@ -26,13 +28,13 @@ O resultado disso, além das implicações na acessibilidade, é que não é nec
 Desta forma, precisamos apenas esconder o `<input>` e definir estilos básicos pro nosso `<label>`.
 
 ```css
-input[type=checkbox] {
+input[type='checkbox'] {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
 
-input[type=checkbox] + label {
+input[type='checkbox'] + label {
   position: relative;
   cursor: pointer;
   padding-left: 30px;
@@ -48,7 +50,7 @@ Assim ficamos livres para criar nossa própria checkbox usando os pseudo-element
 A caixa será representada pelo `::before`.
 
 ```css
-input[type=checkbox] + label::before {
+input[type='checkbox'] + label::before {
   content: '';
   position: absolute;
   width: 20px;
@@ -63,11 +65,11 @@ input[type=checkbox] + label::before {
 O check será o `::after`. Aqui o truque é o uso do pseudo-seletor `:checked`.
 
 ```css
-input[type=checkbox]:checked + label::after {
+input[type='checkbox']:checked + label::after {
   content: '';
   position: absolute;
   left: 10px;
-  bottom: 10px;  
+  bottom: 10px;
   width: 10px;
   height: 20px;
   border-right: solid 3px green;
