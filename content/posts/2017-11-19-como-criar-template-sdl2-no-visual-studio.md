@@ -1,5 +1,5 @@
 ---
-title: Como criar um template customizado para SDL 2 no Visual Studio 2017
+title: SDL 2 - Como criar um template customizado para o Visual Studio 2017
 description: Passa a passo de como criar um template de um projeto
   SDL 2 para Visual Studio
 tags:
