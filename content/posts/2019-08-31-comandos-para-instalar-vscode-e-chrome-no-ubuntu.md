@@ -16,25 +16,25 @@ Comparadas com as instruções oficiais do VS Code, as minhas intruções difere
 
 ## Passos para instalar o Visual Studio Code
 
-1. Baixa a chave da Microsoft
+1 - Baixa a chave da Microsoft
 
 ```sh
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 ```
 
-2. Move a chave para o diretório apropriado e remove arquivo temporário
+2 - Move a chave para o diretório apropriado e remove arquivo temporário
 
 ```sh
 sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ && rm packages.microsoft.gpg
 ```
 
-3. Adiciona o novo repositório à nossa lista
+3 - Adiciona o novo repositório à nossa lista
 
 ```sh
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 ```
 
-4. Atualiza a lista de pocotes disponíveis e instala o editor
+4 - Atualiza a lista de pocotes disponíveis e instala o editor
 
 ```sh
 sudo apt update && sudo apt install code
@@ -42,19 +42,19 @@ sudo apt update && sudo apt install code
 
 ## Passos para instalar o Google Chrome
 
-1. Baixa e adiciona a chave do Google
+1 - Baixa e adiciona a chave do Google
 
 ```sh
 wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 ```
 
-2. Adiciona o repositório do Google à nossa lista de repositórios
+2 - Adiciona o repositório do Google à nossa lista de repositórios
 
 ```sh
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 ```
 
-3. Atualiza lista de pacotes disníveis e instala o navegador
+3 - Atualiza lista de pacotes disníveis e instala o navegador
 
 ```sh
 sudo apt update && sudo apt install google-chrome-stable
