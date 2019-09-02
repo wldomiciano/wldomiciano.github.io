@@ -30,3 +30,4 @@ disqusShortname = "wldomiciano"
 
 [blackfriday]
   hrefTargetBlank = true
+  noreferrerLinks = true
