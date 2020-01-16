@@ -14,7 +14,7 @@ lastmod: 2018-09-07
 
 O [GCC](https://gcc.gnu.org/) é um compilador de C, C++ e de [algumas outras linguagens](https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/G_002b_002b-and-GCC.html).
 
-Ele é parte do projeto [GNU](https://www.gnu.org/gnu/gnu-history.html) e pode ser instalado no Windows através do [MinGW](https://mingw-w64.org/doku.php).
+Ele é parte do projeto [GNU](https://www.gnu.org/gnu/gnu-history.html) e pode ser instalado no Windows através do [MinGW](http://mingw-w64.org).
 
 Há várias formas de se instalar o MinGW e a que apresento aqui é a que considero mais simples.
 
