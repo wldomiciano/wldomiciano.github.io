@@ -450,3 +450,9 @@ table td {
   text-decoration: none;
   border-color: #666;
 }
+
+h2:not(:first-child),
+h3 {
+  margin-top: 2rem;
+  font-weight: bold;
+}
