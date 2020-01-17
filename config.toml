@@ -4,9 +4,11 @@ defaultContentLanguage = "pt-br"
 title = "Wellington Domiciano"
 author = "Wellington Domiciano"
 disableKinds = ["section", "taxonomyTerm"]
-pygmentsCodefences = true
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
+
+pygmentsCodefences = true
+pygmentsUseClasses = true
 
 [outputs]
   home = [ "RSS", "HTML"]
