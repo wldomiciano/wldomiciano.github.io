@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: wldomiciano.com
+Token: 921179d333ff504dd33d6d41774d7501fb78a2d91f5df987c642d0023d48ec39
