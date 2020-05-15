@@ -4,8 +4,9 @@
   "description": "My personal website",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp production"
+    "start": "hugo server -D",
+    "prebuild": "hugo version",
+    "build": "rm -rf public && hugo"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,6 @@
   },
   "homepage": "https://github.com/wldomiciano/wldomiciano.github.io#readme",
   "devDependencies": {
-    "browser-sync": "^2.24.6",
-    "del": "^3.0.0",
-    "gulp": "^4.0.0",
     "hugo-cli": "^0.11.0"
   }
 }
