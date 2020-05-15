@@ -1,10 +1,5 @@
 {
-    "spellright.language": [
-        "Portuguese (Brazilian)"
-    ],
-    "spellright.documentTypes": [
-        "latex",
-        "plaintext",
-        "markdown"
-    ]
+  "spellright.language": ["Portuguese (Brazilian)"],
+  "spellright.documentTypes": ["latex", "plaintext", "markdown"],
+  "editor.formatOnSave": false
 }
