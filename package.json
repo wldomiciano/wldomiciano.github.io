@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "hugo server -D",
-    "prebuild": "hugo version",
     "build": "rm -rf public && hugo"
   },
   "repository": {
