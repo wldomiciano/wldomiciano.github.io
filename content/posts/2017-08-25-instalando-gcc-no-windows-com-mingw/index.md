@@ -24,7 +24,7 @@ Acesse o link da página de download abaixo e clique em "SourceForge".
 
 https://mingw-w64.org/doku.php/download/mingw-builds
 
-![Print da tela de download](/assets/pagina-de-download.jpg)
+![Print da tela de download](pagina-de-download.jpg)
 
 Execute o arquivo baixado.
 
@@ -32,13 +32,13 @@ O instalador permitirá que você altere alguns dados do compilador e o local de
 
 Ele fará o download das dependências e o processo todo se resume a ir clicando em _Next_ e então em _Finish_ para concluir.
 
-![Telas do instalador](/assets/resumo-da-instalacao.jpg)
+![Telas do instalador](resumo-da-instalacao.jpg)
 
 ## Testando a instalação
 
 Abra o _Menu Iniciar_, digite "mingw" e clique em _Run terminal_.
 
-![Print do menu iniciar](/assets/menu-iniciar.jpg)
+![Print do menu iniciar](menu-iniciar.jpg)
 
 Uma janela do Prompt de Comando reconfigurada pelo MinGW se abrirá.
 
@@ -80,7 +80,7 @@ setx path "%path%"
 
 Para testar, segure a tecla _Shift_, clique com o **botão direito** do mouse em qualquer lugar na Área de Trabalho e clique em _Abrir janela de comando aqui_.
 
-![Print do menu de contexto aberto](/assets/abrir-janela-de-comando-aqui.jpg)
+![Print do menu de contexto aberto](abrir-janela-de-comando-aqui.jpg)
 
 No Prompt de Comando recém aberto, tente compilar e executar novamente o programa com o comando abaixo.
 
@@ -90,4 +90,4 @@ gcc -w teste.c && a.exe
 
 Se a mensagem "hello" aparecer sem erros, significa que você está pronto para começar a programar sem limites!
 
-![Resumo dos comandos](/assets/resumo-dos-comandos.jpg)
+![Resumo dos comandos](resumo-dos-comandos.jpg)

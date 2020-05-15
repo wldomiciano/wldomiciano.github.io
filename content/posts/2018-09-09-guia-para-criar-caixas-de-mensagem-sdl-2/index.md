@@ -13,7 +13,7 @@ Porém, como usuário, ao executar um jogo, não é muito atrativo ter que abrir
 
 Como uma alternativa ao uso das mensagens no terminal, a SDL 2 fornece funções para criar caixas de mensagem.
 
-![Print de uma caixa de mensagem simples](/assets/print-caixa-de-mensagem-simples.jpg)
+![Print de uma caixa de mensagem simples](print-caixa-de-mensagem-simples.jpg)
 
 Estas caixas podem conter apenas texto simples para alertar o usuário sobre um erro ou outro tipo de informação importante, bem como botões para que ele tome alguma decisão.
 
@@ -343,7 +343,7 @@ int main()
 
 E o resultado:
 
-![Print da caixa de mensagem com cores personalizadas](/assets/print-caixa-de-mensagem-colorida.jpg)
+![Print da caixa de mensagem com cores personalizadas](print-caixa-de-mensagem-colorida.jpg)
 
 Como somos programadores e não designers, o resultado não ficou muito atrativo, contudo, o objetivo aqui é aprender como personalizar as cores, se vai ficar bonito é outra história.
 
