@@ -1,6 +1,6 @@
 # wldomiciano.github.io
 
-My personal website
+This is my personal website, built with [Hugo](https://gohugo.io/).
 
 To begin, just run `npm i` to install dependencies.
 
