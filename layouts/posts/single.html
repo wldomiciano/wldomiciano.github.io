@@ -51,6 +51,6 @@
   {{ partial "disqus_comments.html" . }}
   {{ end }}
 
-  <a class="u-url" href="{{ .URL | relURL }}" hidden></a>
+  <a class="u-url" href="{{ .Permalink | relURL }}" hidden></a>
 </article>
 {{ end }}

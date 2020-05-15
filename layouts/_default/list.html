@@ -7,7 +7,7 @@
     {{ range where .Pages "Section" "posts" }}
     <li>
       <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
-      <h3 class="index-post-title"><a class="post-link" href="{{ .URL | relURL }}">{{ .Title }}</a></h3>
+      <h3 class="index-post-title"><a class="post-link" href="{{ .Permalink | relURL }}">{{ .Title }}</a></h3>
       {{ partial "tags-list.html" . }}
 
 

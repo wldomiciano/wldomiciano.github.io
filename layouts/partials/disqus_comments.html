@@ -2,8 +2,8 @@
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = '{{ .URL | absURL }}';
-    this.page.identifier = '{{ .URL | absURL }}';
+    this.page.url = '{{ .Permalink | absURL }}';
+    this.page.identifier = '{{ .Permalink | absURL }}';
   };
 
   (function() {
