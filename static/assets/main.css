@@ -451,6 +451,7 @@ table td {
   border-color: #666;
 }
 
+.index-post-title:not(:first-of-child),
 h2:not(:first-child),
 h3 {
   margin-top: 2rem;
