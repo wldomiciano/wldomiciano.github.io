@@ -1,6 +1,7 @@
 ---
 title: SDL 2 - O guia definitivo para criar caixas de mensagem
 description: Caixas de mensagens são popups informativos, veja aqui tudo o que você precisa para usar no SDL 2
+slug: guia-para-criar-caixas-de-mensagem-sdl-2
 tags:
   - SDL 2
 ---
