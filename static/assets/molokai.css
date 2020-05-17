@@ -78,3 +78,8 @@ code {
   color: #b00;
   background-color: #eef;
 }
+/*  */
+.highlight .language-json .err {
+  color: #75715e;
+  background-color: transparent;
+}
