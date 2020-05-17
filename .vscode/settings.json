@@ -1,5 +1,7 @@
 {
   "spellright.language": ["Portuguese (Brazilian)"],
   "spellright.documentTypes": ["latex", "plaintext", "markdown"],
-  "editor.formatOnSave": false
+  "[html]": {
+    "editor.formatOnSave": false
+  }
 }
