@@ -7,7 +7,7 @@
     "datePublished": "{{ .Date.Format "2006-01-02" }}",
     "dateModified": "{{ (cond (isset .Params "lastmod") .Lastmod .Date).Format "2006-01-02" }}",
     "name": "{{ .Title }}",
-    "headline": "{{ cond (isset .Params "description") .Description .Title }}",
+    "headline": {{ (cond (isset .Params "description") .Description .Title) | jsonify }},
     "author": {
       "@type": "Person",
       "name": "{{ .Site.Title }}"
