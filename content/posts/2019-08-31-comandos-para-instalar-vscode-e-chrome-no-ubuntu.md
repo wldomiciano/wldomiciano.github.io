@@ -77,7 +77,7 @@ wget -qO- https://gist.githubusercontent.com/wldomiciano/6e299c48b43ed91500f5291
 - Página de download do Visual Studio Code:<br>
   https://code.visualstudio.com/Download
 
-- Página de downlaod do Google Chrome:<br>
+- Página de download do Google Chrome:<br>
   https://www.google.com/chrome/
 
 - Como instalar o VS Code manualmente:<br>
@@ -86,5 +86,5 @@ wget -qO- https://gist.githubusercontent.com/wldomiciano/6e299c48b43ed91500f5291
 - Como adicionar a chave do Chrome manualmente:<br>
   https://www.google.com/linuxrepositories/
 
-- Artigo do Sempre Update sobre como instalar o Chrome via PPA<br><small>Eu vi aqui o código do passo 2 e fiz uma pequena modificação</small><br>
+- Artigo do Sempre Update sobre como instalar o Chrome via PPA (Eu vi aqui o código do passo 2 e fiz uma pequena modificação)
   https://sempreupdate.com.br/como-instalar-o-google-chrome-no-ubuntu-via-ppa/
