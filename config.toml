@@ -33,3 +33,6 @@ pygmentsUseClasses = true
 [blackfriday]
   hrefTargetBlank = true
   noreferrerLinks = true
+
+[markup.goldmark.renderer]
+  unsafe= true
