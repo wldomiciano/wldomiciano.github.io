@@ -34,7 +34,7 @@ sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ 
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 ```
 
-4 - Atualiza a lista de pocotes disponíveis e instala o editor
+4 - Atualiza a lista de pacotes disponíveis e instala o editor
 
 ```sh
 sudo apt update && sudo apt install code
@@ -54,7 +54,7 @@ wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 ```
 
-3 - Atualiza lista de pacotes disníveis e instala o navegador
+3 - Atualiza lista de pacotes disponíveis e instala o navegador
 
 ```sh
 sudo apt update && sudo apt install google-chrome-stable
