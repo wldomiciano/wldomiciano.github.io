@@ -9,10 +9,10 @@ lastmod: 2018-09-12
 
 Usar a biblioteca [SDL_ttf][sdl_ttf] (com [SDL 2][sdl2]) não tem segredo.
 
-- Você inicializa com `TTF_Init()`
-- Carrega uma fonte com `TTF_OpenFont()`
-- Cria um texto com `TTF_RenderText_Solid()`
-- E desenha na tela com `SDL_BlitSurface()`
+1. Você inicializa com `TTF_Init()`
+2. Carrega uma fonte com `TTF_OpenFont()`
+3. Cria um texto com `TTF_RenderText_Solid()`
+4. E desenha na tela com `SDL_BlitSurface()`
 
 Olha um exemplo [aqui neste gist][exemplo-01].
 
