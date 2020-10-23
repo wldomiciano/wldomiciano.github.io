@@ -1,5 +1,5 @@
 ---
-title: Como instalar o Visual Studio Code e Google Chorme oficiais no Ubuntu pela linha de comando
+title: Como instalar o Visual Studio Code e Google Chrome oficiais no Ubuntu pela linha de comando
 description: Aprenda como instalar VS Code e Google Chrome a partir dos repositórios oficiais pela linha de comando no Ubuntu
 tags:
   - Ubuntu
@@ -7,7 +7,7 @@ tags:
 
 Tenho costume de visitar os sites de cada um destes programas para baixar os arquivos `.deb` sempre que preciso instalá-los novamente no Ubuntu, mas fazer o processo pela linha de comando é muito mais cômodo.
 
-Comparadas com as instruções oficiais do VS Code, as minhas intruções diferem nos seguintes pontos:
+Comparadas com as instruções oficiais do VS Code, as minhas instruções diferem nos seguintes pontos:
 
 1. Eu uso o `apt` ao invés do `apt-get`.
 2. Aqui uso `wget` ao invés do `curl` porque o `wget` já vem instalado no Ubuntu.
@@ -62,7 +62,7 @@ sudo apt update && sudo apt install google-chrome-stable
 
 ## Toques finais
 
-Eu criei um script no Gist que vc pode conferir no link abaixo:
+Eu criei um script no Gist que você pode conferir no link abaixo:
 
 https://gist.github.com/wldomiciano/6e299c48b43ed91500f529100434b23e
 

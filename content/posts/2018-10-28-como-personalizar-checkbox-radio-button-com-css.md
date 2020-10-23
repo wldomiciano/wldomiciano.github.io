@@ -30,13 +30,13 @@ O resultado disso, além das implicações na acessibilidade, é que não é nec
 Desta forma, precisamos apenas esconder o `<input>` e definir estilos básicos pro nosso `<label>`.
 
 ```css
-input[type='checkbox'] {
+input[type="checkbox"] {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
 
-input[type='checkbox'] + label {
+input[type="checkbox"] + label {
   position: relative;
   cursor: pointer;
   padding-left: 30px;
@@ -52,8 +52,8 @@ Assim ficamos livres para criar nossa própria checkbox usando os pseudo-element
 A caixa será representada pelo `::before`.
 
 ```css
-input[type='checkbox'] + label::before {
-  content: '';
+input[type="checkbox"] + label::before {
+  content: "";
   position: absolute;
   width: 20px;
   height: 20px;
@@ -67,8 +67,8 @@ input[type='checkbox'] + label::before {
 O check será o `::after`. Aqui o truque é o uso do pseudo-seletor `:checked`.
 
 ```css
-input[type='checkbox']:checked + label::after {
-  content: '';
+input[type="checkbox"]:checked + label::after {
+  content: "";
   position: absolute;
   left: 10px;
   bottom: 10px;
@@ -80,7 +80,7 @@ input[type='checkbox']:checked + label::after {
 }
 ```
 
-Basicamente, aqui estamos dizendo "Aplique o seguinte estilo à todo `label::after` que precede um input checado". Ou seja, o estilo é aplicado apenas quando a checkbox estiver checkada.
+Basicamente, aqui estamos dizendo "Aplique o seguinte estilo à todo `label::after` que precede um input checado". Ou seja, o estilo é aplicado apenas quando a checkbox estiver marcada.
 
 O resultado final você confere no Pen abaixo.
 

@@ -22,13 +22,14 @@ Eu uso o **JDK 11**, o **Gradle 6.1** e o **Maven 3.6.3**.
 Use o comando abaixo para criar o diretório **MeuIncrivelApp** dentro do
 diretório atual.
 
-<div class="highlight"><pre><code
->mvn archetype:generate -B <span class="parameter">-DgroupId</span>=<span class="argument">com.wldomiciano.meuincrivelapp</span> \
-                          <span class="parameter">-Dversion</span>=<span class="argument">1.0-SNAPSHOT</span> \
-                          <span class="parameter">-DartifactId</span>=<span class="argument">MeuIncrivelApp</span> \
-                          <span class="parameter">-DarchetypeGroupId</span>=<span class="argument">org.apache.maven.archetypes</span> \
-                          <span class="parameter">-DarchetypeArtifactId</span>=<span class="argument">maven-archetype-quickstart</span
-></code></pre></div>
+```sh
+mvn archetype:generate -B
+                       -DgroupId=com.wldomiciano.meuincrivelapp \
+                       -Dversion=1.0-SNAPSHOT \
+                       -DartifactId=MeuIncrivelApp \
+                       -DarchetypeGroupId=org.apache.maven.archetypes \
+                       -DarchetypeArtifactId=maven-archetype-quickstart
+```
 
 Adicione o trecho abaixo à seção `<dependencies>` do arquivo `pom.xml`.
 
@@ -65,12 +66,14 @@ mkdir MeuIncrivelApp && cd MeuIncrivelApp
 
 Em seguida execute o próximo comando para gerar o projeto:
 
-<div class="highlight"><pre><code>gradle init <span class="parameter">--dsl</span> <span class="argument">groovy</span> \
-            <span  class="parameter">--type</span> <span class="argument">java-application</span> \
-            <span  class="parameter">--package</span> <span class="argument">com.wldomiciano.meuincrivelapp</span> \
-            <span  class="parameter">--project-name</span> <span class="argument">MeuIncrivelApp</span> \
-            <span  class="parameter">--test-framework</span> <span class="argument">junit-jupiter</span
-></code></pre></div>
+```sh
+mvn archetype:generate -B
+                       -DgroupId=com.wldomiciano.meuincrivelapp \
+                       -Dversion=1.0-SNAPSHOT \
+                       -DartifactId=MeuIncrivelApp \
+                       -DarchetypeGroupId=org.apache.maven.archetypes \
+                       -DarchetypeArtifactId=maven-archetype-quickstart
+```
 
 Então, substitua o bloco `plugins` do arquivo `build.gradle` pelo trecho abaixo.
 
