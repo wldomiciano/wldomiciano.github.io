@@ -30,9 +30,5 @@ pygmentsUseClasses = true
 [permalinks]
   posts = "/:slug/"
 
-[blackfriday]
-  hrefTargetBlank = true
-  noreferrerLinks = true
-
 [markup.goldmark.renderer]
-  unsafe= true
+  unsafe = true
