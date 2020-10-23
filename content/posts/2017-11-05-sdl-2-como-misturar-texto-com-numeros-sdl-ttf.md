@@ -7,7 +7,7 @@ tags:
 lastmod: 2018-09-12
 ---
 
-Usar a biblioteca [SDL_ttf](https://www.libsdl.org/projects/SDL_ttf/) (com [SDL 2](https://www.libsdl.org/)) não tem segredo.
+Usar a biblioteca [SDL_ttf][sdl_ttf] (com [SDL 2][sdl2]) não tem segredo.
 
 - Você inicializa com `TTF_Init()`
 - Carrega uma fonte com `TTF_OpenFont()`
@@ -118,3 +118,5 @@ Tem outro gist com o [resultado final aqui][exemplo-02]
 [exemplo-01]: https://gist.github.com/wldomiciano/c7fecb4e7af1cd57342390b22800c771
 [exemplo-02]: https://gist.github.com/wldomiciano/d16bea2d66365cf0113c7abaa0b84de7
 [exemplo-03]: https://gist.github.com/wldomiciano/316b9b6fd2ecc5b1af76005e76691c42
+[sdl_ttf]: https://www.libsdl.org/projects/SDL_ttf
+[sdl2]: https://www.libsdl.org
