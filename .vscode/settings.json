@@ -10,5 +10,9 @@
   ],
   "[html]": {
     "editor.formatOnSave": false
-  }
+  },
+  "[c]": {
+    "editor.wordWrapColumn": 100
+  },
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, AllowShortFunctionsOnASingleLine: false, ColumnLimit: 120 }"
 }
