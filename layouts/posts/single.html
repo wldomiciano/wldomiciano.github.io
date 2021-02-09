@@ -47,7 +47,7 @@
     {{ .Content }}
   </div>
 
-  {{ if .Site.DisqusShortname }}
+  {{ if and (.Site.DisqusShortname) (not .Site.IsServer) }}
   {{ partial "disqus_comments.html" . }}
   {{ end }}
 
