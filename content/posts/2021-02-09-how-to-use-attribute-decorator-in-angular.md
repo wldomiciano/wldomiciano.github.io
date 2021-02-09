@@ -38,7 +38,7 @@ export class AppComponent {}
 
 ## How DO NOT use
 
-You cannot to use data binding with `@Attribute`. The code below shows four **WRONG** ways to use this decorator.
+You cannot use data binding with `@Attribute`. The code below shows four **WRONG** ways to use this decorator.
 
 ```ts
 @Component({
