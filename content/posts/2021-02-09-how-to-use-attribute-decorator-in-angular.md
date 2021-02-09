@@ -12,7 +12,7 @@ But `@Attribute` is very limited in comparison to `@Input` as it only allows pas
 
 ## How to use
 
-First you must decorate a constructor parameter.
+First, you must decorate a constructor parameter.
 
 In the code below I used the `readonly` keyword just as a preference matter, your parameter doesn’t need to be read-only and you can use any access modifier you want.
 
