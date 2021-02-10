@@ -6,6 +6,8 @@ tags:
   - Angular
 ---
 
+> [Clique aqui][3] para ler em Português.
+
 The [`@Attribute`][2] decorator allows passing data from a parent to a child component in a way very similar to the [`@Input`][1] decorator.
 
 But `@Attribute` is very limited in comparison to `@Input` as it only allows passing simple static `string` data.
@@ -63,3 +65,4 @@ I hope this article was helpful.
 
 [1]: https://angular.io/api/core/Input
 [2]: https://angular.io/api/core/Attribute
+[3]: /como-usar-decorator-attribute-em-angular/
