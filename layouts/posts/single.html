@@ -44,6 +44,16 @@
 
 
   <div class="post-content e-content">
+    {{ $lang := .Params.language | default .Site.LanguageCode }}
+
+    {{ if (isset .Params "alternate") }}
+      {{ if eq $lang "en" }}
+      <blockquote><a href="{{ .Params.alternate }}">Clique aqui</a> para ler em Português.</blockquote>
+      {{ else if eq $lang "pt-br" }}
+      <blockquote><a href="{{ .Params.alternate }}">Click here</a> to read in English.</blockquote>
+      {{ end }}
+    {{ end }}
+    
     {{ .Content }}
   </div>
 
