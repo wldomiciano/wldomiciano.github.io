@@ -48,9 +48,9 @@
 
     {{ if (isset .Params "alternate") }}
       {{ if eq $lang "en" }}
-      <blockquote><a href="{{ .Params.alternate }}">Clique aqui</a> para ler em Português.</blockquote>
+      <blockquote><a href="{{ .Params.alternate }}">Clique aqui para ler em Português</a>.</blockquote>
       {{ else if eq $lang "pt-br" }}
-      <blockquote><a href="{{ .Params.alternate }}">Click here</a> to read in English.</blockquote>
+      <blockquote><a href="{{ .Params.alternate }}">Click here to read in English</a>.</blockquote>
       {{ end }}
     {{ end }}
     
