@@ -6,7 +6,7 @@
   <title>{{ .Title }}</title>
   <meta
     name="description"
-    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+    content="{{ default .Site.Params.description .Description }}"
   />
 
   <link rel="stylesheet" href="/assets/main.css" />
@@ -22,8 +22,8 @@
   {{ if (isset .Params "alternate") }}
   <link
     rel="alternate"
-    href="{{ .Params.alternate | absURL }}"
-    hreflang='{{ cond (eq (.Params.language | default .Site.LanguageCode) "en") "pt-br" "en" }}'
+    href="{{ .Params.alternate }}"
+    hreflang='{{ cond (eq (default .Site.LanguageCode .Params.language) "en") "pt-br" "en" }}'
   />
   {{ end }}
 
