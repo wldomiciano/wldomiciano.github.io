@@ -37,7 +37,5 @@
     }
   </style>
 
-  {{ if and (not .Site.BuildDrafts) .Site.GoogleAnalytics }}
   {{ partial "google-analytics.html" . }}
-  {{ end }}
 </head>
