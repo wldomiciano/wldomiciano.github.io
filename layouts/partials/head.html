@@ -6,12 +6,13 @@
   <title>{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "/assets/molokai.css" | relURL }}">
-  <link rel="canonical" href="{{ replace .Permalink "index.html" "" | absURL }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/feed.xml" | relURL }}">
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/molokai.css">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="/feed.xml">
 
   {{ $lang := .Params.language | default .Site.LanguageCode }}
+
   {{ if (isset .Params "alternate") }}
     {{ if eq $lang "en" }}
     <link rel="alternate" href="{{ .Params.alternate | absURL }}" hreflang="pt-br" />
