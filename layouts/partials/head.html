@@ -1,39 +1,45 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>{{ .Title }}</title>
-  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta
+    name="description"
+    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+  />
 
-  <link rel="stylesheet" href="/assets/main.css">
-  <link rel="stylesheet" href="/assets/molokai.css">
-  <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="/feed.xml">
-
-  {{ $lang := .Params.language | default .Site.LanguageCode }}
+  <link rel="stylesheet" href="/assets/main.css" />
+  <link rel="stylesheet" href="/assets/molokai.css" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="{{ .Site.Title }}"
+    href="/feed.xml"
+  />
 
   {{ if (isset .Params "alternate") }}
-    {{ if eq $lang "en" }}
-    <link rel="alternate" href="{{ .Params.alternate | absURL }}" hreflang="pt-br" />
-    {{ else if eq $lang "pt-br" }}
-    <link rel="alternate" href="{{ .Params.alternate | absURL }}" hreflang="en" />
-    {{ end }}
+  <link
+    rel="alternate"
+    href="{{ .Params.alternate | absURL }}"
+    hreflang='{{ cond (eq (.Params.language | default .Site.LanguageCode) "en") "pt-br" "en" }}'
+  />
   {{ end }}
 
   <style>
-    .video-responsive{
-        overflow:hidden;
-        padding-bottom:56.25%;
-        position:relative;
-        height:0;
+    .video-responsive {
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      position: relative;
+      height: 0;
     }
-    .video-responsive iframe{
-        left:0;
-        top:0;
-        height:100%;
-        width:100%;
-        position:absolute;
+    .video-responsive iframe {
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
     }
   </style>
 
