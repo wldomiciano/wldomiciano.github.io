@@ -20,9 +20,10 @@ O segredo para começar está na interação entre o elemento `<input>` e o elem
 
 Eis o resultado do código acima:
 
+<p>
 <input id="teste" type="checkbox">
 <label for="teste">Testando checkbox</label>
-<br>
+</p>
 
 Perceba que o valor do atributo `for` do `<label>` é igual ao `id` do `<input>`, é desse jeito que associamos os dois elementos.
 
