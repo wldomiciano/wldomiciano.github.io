@@ -22,6 +22,7 @@ Eis o resultado do código acima:
 
 <input id="teste" type="checkbox">
 <label for="teste">Testando checkbox</label>
+<br>
 
 Perceba que o valor do atributo `for` do `<label>` é igual ao `id` do `<input>`, é desse jeito que associamos os dois elementos.
 
