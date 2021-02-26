@@ -1,9 +1,8 @@
 ---
 title: Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica
-description: Aqui apresento a minha implementação do jogo da
-  cobrinha e explico o código em C por partes
-tags:
-  - C
+description: Aqui apresento a minha implementação do jogo da cobrinha e explico o código em C por partes
+date: 2018-04-22T00:00:00-03:00
+tags: [C]
 ---
 
 O objetivo deste artigo é apresentar uma lógica independente de biblioteca, framework ou linguagem e que, por isso, pode ser facilmente portada.

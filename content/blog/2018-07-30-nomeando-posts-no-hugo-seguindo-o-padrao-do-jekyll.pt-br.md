@@ -1,8 +1,8 @@
 ---
 title: Nomeando posts no Hugo seguindo o padrão do Jekyll
 description: Como criar postagens no Hugo seguindo o padrão usado no Jekyll
-tags:
-  - Hugo
+date: 2018-07-30T00:00:00-03:00
+tags: [Hugo]
 ---
 
 No Jekyll, por padrão, os posts devem ser nomeados seguindo a convenção ANO-MES-DIA-TITULO-DO-POST.md.

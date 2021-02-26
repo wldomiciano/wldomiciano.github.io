@@ -27,7 +27,6 @@ disqusShortname = "wldomiciano"
   tag = 'tags'
 
 [frontmatter]
-  date = [":filename", ":default"]
   lastmod = ["lastmod"]
 
 [permalinks]

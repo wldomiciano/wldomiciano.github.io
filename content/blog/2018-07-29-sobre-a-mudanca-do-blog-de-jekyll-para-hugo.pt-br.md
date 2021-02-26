@@ -1,9 +1,8 @@
 ---
 title: Sobre a mudança do blog de Jekyll para Hugo
-description: Mudei o gerador estático do blog de Jekyll
-  para Hugo e aqui explico o porquê
-tags:
-  - Meta
+description: Mudei o gerador estático do blog de Jekyll para Hugo e aqui explico o porquê
+date: 2018-07-29T00:00:00-03:00
+tags: [Meta]
 ---
 
 Quero deixar registrado aqui que hoje tirei o dia para migrar este blog de [Jekyll](https://jekyllrb.com) para [Hugo](https://gohugo.io), um outro gerador de sites estáticos.

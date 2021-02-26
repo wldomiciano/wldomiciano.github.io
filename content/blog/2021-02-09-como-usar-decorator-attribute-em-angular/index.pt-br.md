@@ -1,9 +1,9 @@
 ---
 title: Como usar o decorator @Attribute em Angular
 description: Aprenda como usar o decorator @Attribute em Angular e sua diferença em relação ao @Input
-tags:
-  - Angular
+date: 2021-02-09T00:00:00-03:00
 lastmod: 2021-02-20T00:23:54-03:00
+tags: [Angular]
 ---
 
 O _decorator_ [`@Attribute`][2] permite passar dados de um componente pai para um componente filho de forma bem parecida com como é feito com o decorator [`@Input`][1].

@@ -1,11 +1,9 @@
 ---
 title: Instalando o GCC no Windows com MinGW
 description: Veja como instalar o MinGW no Windows
-tags:
-  - GCC
-  - MinGW
-  - Windows
-lastmod: 2018-09-07
+date: 2017-08-25T00:00:00-03:00
+lastmod: 2018-09-07T00:00:00-03:00
+tags: [GCC, MinGW, Windows]
 ---
 
 **UPDATE (07-09-2018)<br>Descobri uma forma ainda mais simples de instalar o GCC que é usando o Scoop. Para saber mais sobre esta ferramenta, leia [Instalando e usando o Scoop, um instalador de linha de comando para Windows](/instalando-e-usando-o-instalador-scoop/).**

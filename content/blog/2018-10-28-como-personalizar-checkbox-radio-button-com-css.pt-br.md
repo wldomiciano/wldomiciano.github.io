@@ -1,8 +1,8 @@
 ---
 title: Como criar checkbox e radio buttons personalizados com CSS
 description: Como criar elementos de formulários mais interessantes apenas com CSS
-tags:
-  - CSS
+date: 2018-10-28T00:00:00-03:00
+tags: [CSS]
 ---
 
 Quando criando formulários, é fácil personalizar caixas de texto e botões, mas é necessário algum trabalho adicional para fazer o mesmo com checkboxes e radio buttons.

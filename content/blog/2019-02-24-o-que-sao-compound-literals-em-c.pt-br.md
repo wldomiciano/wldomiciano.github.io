@@ -1,8 +1,8 @@
 ---
 title: O que são os Compound Literals em C
 description: Descubra o que é e como utilizar este recurso da linguagem C
-tags:
-  - C
+date: 2019-02-24T00:00:00-03:00
+tags: [C]
 ---
 
 Você já ouviu falar sobre _Compound Literals_ em C?
