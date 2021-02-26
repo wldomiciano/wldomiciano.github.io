@@ -21,6 +21,9 @@ disqusShortname = "wldomiciano"
   github_username = "wldomiciano"
   twitter_username = "wldomiciano"
 
+[taxonomies]
+  tag = 'tags'
+
 [frontmatter]
   date = [":filename", ":default"]
 
