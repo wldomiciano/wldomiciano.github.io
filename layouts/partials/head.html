@@ -11,10 +11,9 @@
   <meta name="msapplication-TileColor" content="#da532c" />
 
   <title>{{ .Title }}</title>
-  <meta
-    name="description"
-    content="{{ default .Site.Params.description .Description }}"
-  />
+
+  <meta name="description" content='{{ .Param "description" }}' />
+  <meta name="keywords" content='{{ delimit (.Param "keywords") ", " }}' />
 
   <link rel="stylesheet" href="/assets/main.css" />
   <link rel="stylesheet" href="/assets/molokai.css" />
