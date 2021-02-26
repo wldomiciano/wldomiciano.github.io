@@ -1,5 +1,4 @@
 baseURL = "https://wldomiciano.com/"
-languageCode = "pt-br"
 defaultContentLanguage = "pt-br"
 title = "Wellington Domiciano"
 author = "Wellington Domiciano"
@@ -14,10 +13,12 @@ disqusShortname = "wldomiciano"
   twitter_username = "wldomiciano"
 
 [languages.en]
+  languageCode = "en"
   description = 'A simple blog to share what I have learned.'
   keywords = ['Programming', 'Tutorials']
   languageName = 'English'
 [languages.pt-br]
+  languageCode = "pt-br"
   description = 'Um simples blog para compartilhar o que tenho aprendido.'
   keywords = ['Programação', 'Tutoriais']
   languageName = 'Português'
