@@ -7,14 +7,6 @@ disableKinds = ["section", "taxonomyTerm"]
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
 
-[outputs]
-  home = [ "RSS", "HTML"]
-
-[outputFormats]
-[outputFormats.RSS]
-  mediatype = "application/rss"
-  baseName = "feed"
-
 [params]
   email = "wldomiciano@gmail.com"
   description = "Blog sobre coisas que tenho aprendido"
