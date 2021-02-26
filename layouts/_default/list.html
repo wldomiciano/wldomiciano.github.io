@@ -1,8 +1,23 @@
 {{ define "main" }}
 <div class="home">
-  <h2 class="post-list-heading">Posts</h2>
+  <div style="display: flex; align-items: baseline">
+    <h2 class="post-list-heading">Posts</h2>
+
+    <small style="margin-left: 10px">
+      {{ with index .Translations 0 }}
+      <a
+        class="post-info-item"
+        href="{{ .Permalink }}"
+        title="{{ .Language.LanguageName }}"
+        >{{ cond (eq .Lang "en") "View posts in" "Ver posts em" }} {{
+        .Language.LanguageName }}</a
+      >
+      {{ end }}
+    </small>
+  </div>
+
   <ul class="post-list">
-    {{ range where .Pages "Section" "posts" }}
+    {{ range where .Pages "Section" "blog" }}
     <li>
       <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
       <h3 class="index-post-title">

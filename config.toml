@@ -30,7 +30,7 @@ disqusShortname = "wldomiciano"
   lastmod = ["lastmod"]
 
 [permalinks]
-  posts = ":slug"
+  blog = ":slug"
 
 [markup.highlight]
   noClasses = false
