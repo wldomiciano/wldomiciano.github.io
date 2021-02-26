@@ -5,15 +5,15 @@
     {{ range where .Site.Pages "Section" "posts" }}
     <li>
       <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
-      <h3 class="index-post-title"><a class="post-link" href="{{ .Permalink | relURL }}">{{ .Title }}</a></h3>
-      {{ partial "tags-list.html" . }}
-
-
-      {{ if .Site.Params.show_excerpt }}{{ .Summary }}{{ end }}
+      <h3 class="index-post-title">
+        <a class="post-link" href="{{ .Permalink }}">{{ .Title }}</a>
+      </h3>
+      {{ partial "tags-list.html" . }} {{ if .Site.Params.show_excerpt }}{{
+      .Summary }}{{ end }}
     </li>
     {{ end }}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relURL }}">via RSS</a></p>
+  <p class="rss-subscribe">subscribe <a href="/index.xml">via RSS</a></p>
 </div>
 {{ end }}
