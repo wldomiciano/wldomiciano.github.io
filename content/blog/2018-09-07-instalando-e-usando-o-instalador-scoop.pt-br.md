@@ -1,9 +1,7 @@
 ---
 title: Instalando e usando o Scoop, um instalador de linha de comando para Windows
 description: Conheça o Scoop e aprenda como instalar esta maravilhosa ferramenta no Windows
-tags:
-  - Scoop
-  - Windows
+tags: [Scoop, Windows]
 ---
 
 O Scoop é um instalador de linha de comando para Windows.

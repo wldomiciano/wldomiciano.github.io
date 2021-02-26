@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ default .Site.LanguageCode .Params.language }}">
+<html lang="{{ .Language }}">
   {{ partial "head.html" . }}
 
   <body>
@@ -11,6 +11,9 @@
 
     {{ partial "footer.html" . }}
 
+    <!-- -->
+
+    {{ if not .Site.IsServer }}
     <script>
       if ("serviceWorker" in navigator) {
         const PREFETCH = true;
@@ -41,5 +44,6 @@
         });
       }
     </script>
+    {{ end }}
   </body>
 </html>

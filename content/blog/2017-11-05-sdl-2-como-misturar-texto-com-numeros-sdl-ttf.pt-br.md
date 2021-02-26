@@ -1,10 +1,8 @@
 ---
 title: SDL 2 - Como misturar texto com números usando SDL_ttf
-description: Veja como usar funções padrões do C junto com a
-  SDL_ttf para criar uma função gráfica semelhante a printf
-tags:
-  - SDL 2
-lastmod: 2018-09-12
+description: Veja como usar funções padrões do C junto com a SDL_ttf para criar uma função gráfica semelhante a printf
+lastmod: 2018-09-12T00:00:00-03:00
+tags: ["SDL 2"]
 ---
 
 Usar a biblioteca [SDL_ttf][sdl_ttf] (com [SDL 2][sdl2]) não tem segredo.

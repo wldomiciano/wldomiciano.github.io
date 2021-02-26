@@ -1,8 +1,7 @@
 ---
 title: SDL 2 - Apenas um tutorial básico para completos iniciantes
 description: Veja como começar a usar a biblioteca SDL 2
-tags:
-  - SDL 2
+tags: ["SDL 2"]
 ---
 
 Olá.
