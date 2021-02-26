@@ -7,9 +7,6 @@ disableKinds = ["section", "taxonomyTerm"]
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
 
-pygmentsCodefences = true
-pygmentsUseClasses = true
-
 [outputs]
   home = [ "RSS", "HTML"]
 
@@ -28,7 +25,10 @@ pygmentsUseClasses = true
   date = [":filename", ":default"]
 
 [permalinks]
-  posts = "/:slug/"
+  posts = ":slug"
+
+[markup.highlight]
+  noClasses = false
 
 [markup.goldmark.renderer]
   unsafe = true
