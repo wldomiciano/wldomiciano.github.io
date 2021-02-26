@@ -13,11 +13,21 @@ disqusShortname = "wldomiciano"
   github_username = "wldomiciano"
   twitter_username = "wldomiciano"
 
+[languages.en]
+  description = 'A simple blog to share what I have learned.'
+  keywords = ['Programming', 'Tutorials']
+  languageName = 'English'
+[languages.pt-br]
+  description = 'Um simples blog para compartilhar o que tenho aprendido.'
+  keywords = ['Programação', 'Tutoriais']
+  languageName = 'Português'
+
 [taxonomies]
   tag = 'tags'
 
 [frontmatter]
   date = [":filename", ":default"]
+  lastmod = ["lastmod"]
 
 [permalinks]
   posts = ":slug"

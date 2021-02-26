@@ -5,9 +5,9 @@
     "@context": "https://schema.org",
     "@type": "blogPosting",
     "datePublished": "{{ .Date.Format "2006-01-02" }}",
-    "dateModified": "{{ (cond (isset .Params "lastmod") .Lastmod .Date).Format "2006-01-02" }}",
+    "dateModified": "{{ (default .Date .Lastmod).Format "2006-01-02" }}",
     "name": "{{ .Title }}",
-    "headline": {{ (cond (isset .Params "description") .Description .Title) | jsonify }},
+    "headline": {{ .Param "description" }},
     "author": {
       "@type": "Person",
       "name": "{{ .Site.Title }}"
@@ -25,8 +25,6 @@
 </script>
 
 
-
-
 <article class="post h-entry">
   <header class="post-header">
     <h1 class="post-title p-name">{{ .Title }}</h1>
@@ -42,17 +40,17 @@
     {{ partial "tags-list.html" . }}
   </header>
 
-
   <div class="post-content e-content">
-    {{ $lang := .Params.language | default .Site.LanguageCode }}
-
-    {{ if (isset .Params "alternate") }}
-      {{ if eq $lang "en" }}
-      <blockquote><a href="{{ .Params.alternate }}">Clique aqui para ler em Português</a>.</blockquote>
-      {{ else if eq $lang "pt-br" }}
-      <blockquote><a href="{{ .Params.alternate }}">Click here to read in English</a>.</blockquote>
+    <p>
+      {{ with index .Translations 0 }}
+      <a
+        class="post-info-item"
+        href="{{ .Permalink }}"
+        title="{{ .Language.LanguageName }}"
+        >{{ cond (eq .Lang "en") "Read in" "Leia em" }} {{ .Language.LanguageName }}</a
+      >
       {{ end }}
-    {{ end }}
+    </p>
     
     {{ .Content }}
   </div>
@@ -60,7 +58,5 @@
   {{ if and (.Site.DisqusShortname) (not .Site.IsServer) }}
   {{ partial "disqus_comments.html" . }}
   {{ end }}
-
-  <a class="u-url" href="{{ .Permalink | relURL }}" hidden></a>
 </article>
 {{ end }}
