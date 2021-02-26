@@ -11,6 +11,9 @@
 
     {{ partial "footer.html" . }}
 
+    <!-- -->
+
+    {{ if not .Site.IsServer }}
     <script>
       if ("serviceWorker" in navigator) {
         const PREFETCH = true;
@@ -41,5 +44,6 @@
         });
       }
     </script>
+    {{ end }}
   </body>
 </html>
