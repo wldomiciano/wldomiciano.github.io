@@ -2,7 +2,6 @@
 title: How to use @Attribute decorator in Angular
 description: Learn how to use the @Attribute decorator in Angular and its difference from @Input
 slug: how-to-use-attribute-decorator-in-angular
-date: 2021-02-09T00:00:00-03:00
 tags: [Angular]
 ---
 

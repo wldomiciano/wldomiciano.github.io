@@ -1,7 +1,6 @@
 ---
 title: Como instalar Emscripten no Windows
 description: Emscripten permite usar código em C ou C++ no navegador, aprenda aqui como instalar no Windows
-date: 2018-02-26T00:00:00-03:00
 tags: [Emscripten, Windows]
 ---
 

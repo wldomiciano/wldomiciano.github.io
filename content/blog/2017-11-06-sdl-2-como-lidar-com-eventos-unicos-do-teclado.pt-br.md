@@ -1,7 +1,6 @@
 ---
 title: SDL 2 - Como lidar com eventos únicos do teclado
 description: Recurso util para implementar sistemas de pulo em SDL 2
-date: 2017-11-06T00:00:00-03:00
 tags: ["SDL 2"]
 ---
 

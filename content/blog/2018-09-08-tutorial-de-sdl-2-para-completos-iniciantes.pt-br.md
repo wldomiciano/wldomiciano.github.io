@@ -1,7 +1,6 @@
 ---
 title: SDL 2 - Apenas um tutorial básico para completos iniciantes
 description: Veja como começar a usar a biblioteca SDL 2
-date: 2018-09-08T00:00:00-03:00
 tags: ["SDL 2"]
 ---
 

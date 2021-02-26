@@ -1,7 +1,6 @@
 ---
 title: Sobre a mudança do blog de Jekyll para Hugo
 description: Mudei o gerador estático do blog de Jekyll para Hugo e aqui explico o porquê
-date: 2018-07-29T00:00:00-03:00
 tags: [Meta]
 ---
 
