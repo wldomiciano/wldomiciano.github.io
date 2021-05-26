@@ -452,8 +452,9 @@ table td {
 }
 
 .index-post-title:not(:first-of-child),
-h2:not(:first-child),
+h2,
 h3 {
+  background-color: #faa;
   margin-top: 2rem;
   font-weight: bold;
 }
@@ -461,4 +462,8 @@ h3 {
 .social-media-list a {
   display: inline-block;
   padding: 3px;
+}
+
+h2 {
+  margin-top: 2rem;
 }
