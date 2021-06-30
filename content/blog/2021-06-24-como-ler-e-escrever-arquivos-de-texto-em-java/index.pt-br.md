@@ -1,5 +1,6 @@
 ---
 title: Como ler e escrever arquivos de texto com Java
+description: Aprenda a ler e escrever arquivos de texto com Java
 tags: [Java]
 ---
 
