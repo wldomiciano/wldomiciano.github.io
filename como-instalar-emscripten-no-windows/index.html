@@ -1,0 +1,126 @@
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=theme-color content="#ffffff">
+<meta name=msapplication-TileColor content="#da532c">
+<title>Como instalar Emscripten no Windows</title>
+<meta name=description content="Emscripten permite usar código em C ou C++ no navegador, aprenda aqui como instalar no Windows">
+<meta name=keywords content="Programação,Tutoriais">
+<link rel=stylesheet href=/assets/main.css>
+<link rel=stylesheet href=/assets/molokai.css>
+<link rel=canonical href=https://wldomiciano.com/como-instalar-emscripten-no-windows/>
+<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
+<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
+<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
+</head>
+<body>
+<header class=site-header role=banner>
+<div class=wrapper>
+<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
+</div>
+</header>
+<main class=page-content aria-label=Content>
+<div class=wrapper>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-02-26","dateModified":"2018-02-26","name":"Como instalar Emscripten no Windows","headline":"Emscripten permite usar código em C ou C++ no navegador, aprenda aqui como instalar no Windows","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
+<article class="post h-entry">
+<header class=post-header>
+<h1 class="post-title p-name">Como instalar Emscripten no Windows</h1>
+<div class=post-meta>
+<time class=dt-published datetime=2018-02-26T00:00:00Z>
+February 26, 2018
+</time>
+</div>
+<div class=post-tag-list>
+<a class=post-tag-item href=https://wldomiciano.com/tags/emscripten/>Emscripten</a>
+<a class=post-tag-item href=https://wldomiciano.com/tags/windows/>Windows</a>
+</div>
+</header>
+<div class="post-content e-content">
+<p>
+</p>
+<p>Neste tutorial vou mostrar como instalar e configurar o Emscripten, uma ferramenta que compila seu código nativo C ou C++ para JavaScript e permite rodar seu programa em navegadores Web ou no servidor com Node.js.</p>
+<h2 id=download-e-preparação>Download e Preparação</h2>
+<p>Visite a <a href=https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html target=_blank rel=noopener>página de download</a> e baixe o SDK para Windows.</p>
+<p>Extraia o arquivo baixado para um local a sua escolha.</p>
+<h2 id=processo-de-instalação>Processo de Instalação</h2>
+<p>Abra o Prompt de Comando, navegue até o local escolhido e execute os comandos abaixo.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>emsdk update
+
+emsdk install latest
+
+emsdk activate latest
+</code></pre></div><h2 id=possíveis-erros>Possíveis Erros</h2>
+<p>Durante a minha instalação, apareceu uma mensagem avisando de um erro no download do pacote abaixo:</p>
+<p><a href=https://github.com/kripken/emscripten/archive/1.37.35.zip target=_blank rel=noopener>https://github.com/kripken/emscripten/archive/1.37.35.zip</a></p>
+<p>Para corrigir:</p>
+<ul>
+<li>Baixe o pacote manualmente pelo link acima.</li>
+<li>Renomeie o arquivo baixado de <strong>emscripten-1.37.35.zip</strong> para <strong>1.37.35.zip</strong>.</li>
+<li>Mova o arquivo para a pasta <strong>zips</strong> que está dentro da pasta do SDK.</li>
+<li>Continue a instalação executando novamente os comandos acima.</li>
+</ul>
+<h2 id=testando-a-instalação>Testando a Instalação</h2>
+<p>Para testar a instalação execute o comando <code>notepad hello-world.c</code>.</p>
+<p>No Bloco de Notas, digite o seguinte código:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span><span class=cp></span><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+  <span class=n>printf</span><span class=p>(</span><span class=s>&#34;hello, world!</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+  <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>Salve, feche o programa e execute o comando abaixo para compilar:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>emcc hello-world.c
+</code></pre></div><p>Execute seu programa recém compilado com:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>node a.out.js
+</code></pre></div><p>A mensagem &ldquo;hello, world!&rdquo; deve aparecer no console.</p>
+<p>Para criar uma página HTML com seu programa, utilize o seguinte comando:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>emcc hello-world.c -o hello-world.html
+</code></pre></div><p>Basta abrir o arquivo HTML gerado no navegador para ver o resultado.</p>
+<h2 id=toques-finais>Toques Finais</h2>
+<p>Para usar as ferramentas do SDK, você terá 3 opções:</p>
+<ol>
+<li>
+<p>Abrir o Prompt de Comando, e executar o arquivo <code>emsdk_env.bat</code> que está na pasta do SDK. Isto fará com que todas as variáveis necessárias sejam definidas dentro do prompt atual, mas apenas temporariamente.</p>
+</li>
+<li>
+<p>Executar o arquivo <code>emcmdprompt.bat</code> que está na pasta do SDK. Isto abrirá um Prompt de Comando já configurado.</p>
+</li>
+<li>
+<p>Definir as variáveis de ambiente permanentemente usando o comando abaixo (não recomendo):</p>
+</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>emsdk activate --global latest
+</code></pre></div><p>Para saber mais, siga o tutorial oficial que, apesar de breve, nos dá uma visão geral das possibilidades:</p>
+<p><a href=https://kripken.github.io/emscripten-site/docs/getting_started/Tutorial.html target=_blank rel=noopener>https://kripken.github.io/emscripten-site/docs/getting_started/Tutorial.html</a></p>
+</div>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-instalar-emscripten-no-windows/",this.page.identifier="https://wldomiciano.com/como-instalar-emscripten-no-windows/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</article>
+</div>
+</main>
+<footer class="site-footer h-card">
+<div class=wrapper>
+<div class=footer-col-wrapper>
+<ul class=social-media-list>
+<li>
+<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+<li>
+<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
+</body>
+</html>

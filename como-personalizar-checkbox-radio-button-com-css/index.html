@@ -1,0 +1,127 @@
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=theme-color content="#ffffff">
+<meta name=msapplication-TileColor content="#da532c">
+<title>Como criar checkbox e radio buttons personalizados com CSS</title>
+<meta name=description content="Como criar elementos de formulários mais interessantes apenas com CSS">
+<meta name=keywords content="Programação,Tutoriais">
+<link rel=stylesheet href=/assets/main.css>
+<link rel=stylesheet href=/assets/molokai.css>
+<link rel=canonical href=https://wldomiciano.com/como-personalizar-checkbox-radio-button-com-css/>
+<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
+<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
+<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
+</head>
+<body>
+<header class=site-header role=banner>
+<div class=wrapper>
+<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
+</div>
+</header>
+<main class=page-content aria-label=Content>
+<div class=wrapper>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-10-28","dateModified":"2018-10-28","name":"Como criar checkbox e radio buttons personalizados com CSS","headline":"Como criar elementos de formulários mais interessantes apenas com CSS","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
+<article class="post h-entry">
+<header class=post-header>
+<h1 class="post-title p-name">Como criar checkbox e radio buttons personalizados com CSS</h1>
+<div class=post-meta>
+<time class=dt-published datetime=2018-10-28T00:00:00Z>
+October 28, 2018
+</time>
+</div>
+<div class=post-tag-list>
+<a class=post-tag-item href=https://wldomiciano.com/tags/css/>CSS</a>
+</div>
+</header>
+<div class="post-content e-content">
+<p>
+</p>
+<p>Quando criando formulários, é fácil personalizar caixas de texto e botões, mas é necessário algum trabalho adicional para fazer o mesmo com checkboxes e radio buttons.</p>
+<p>Neste artigo, mostro o passo-a-passo para a personalização da checkbox e, ao final, apresento o código pronto juntamente com um exemplo usando radio button.</p>
+<h2 id=primeiros-passos>Primeiros passos</h2>
+<p>O segredo para começar está na interação entre o elemento <code>&lt;input></code> e o elemento <code>&lt;label></code> associado a ele.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>input</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;teste&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;checkbox&#34;</span> <span class=p>/&gt;</span>
+<span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&#34;teste&#34;</span><span class=p>&gt;</span>Testando checkbox<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
+</code></pre></div><p>Eis o resultado do código acima:</p>
+<p>
+<input id=teste type=checkbox>
+<label for=teste>Testando checkbox</label>
+</p>
+<p>Perceba que o valor do atributo <code>for</code> do <code>&lt;label></code> é igual ao <code>id</code> do <code>&lt;input></code>, é desse jeito que associamos os dois elementos.</p>
+<p>O resultado disso, além das implicações na acessibilidade, é que não é necessário clicar diretamente em cima da checkbox para ativá-la, basta clicar no label associado a ela.</p>
+<p>Desta forma, precisamos apenas esconder o <code>&lt;input></code> e definir estilos básicos pro nosso <code>&lt;label></code>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=nt>input</span><span class=o>[</span><span class=nt>type</span><span class=o>=</span><span class=s2>&#34;checkbox&#34;</span><span class=o>]</span> <span class=p>{</span>
+  <span class=k>position</span><span class=p>:</span> <span class=kc>absolute</span><span class=p>;</span>
+  <span class=k>z-index</span><span class=p>:</span> <span class=mi>-1</span><span class=p>;</span>
+  <span class=k>opacity</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=nt>input</span><span class=o>[</span><span class=nt>type</span><span class=o>=</span><span class=s2>&#34;checkbox&#34;</span><span class=o>]</span> <span class=o>+</span> <span class=nt>label</span> <span class=p>{</span>
+  <span class=k>position</span><span class=p>:</span> <span class=kc>relative</span><span class=p>;</span>
+  <span class=k>cursor</span><span class=p>:</span> <span class=kc>pointer</span><span class=p>;</span>
+  <span class=k>padding-left</span><span class=p>:</span> <span class=mi>30</span><span class=kt>px</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>Perceba que usamos o seletor + (<a href=https://www.w3.org/TR/selectors-3/#adjacent-sibling-combinators target=_blank rel=noopener>Next-sibling combinator</a>) e o <a href=https://www.w3.org/TR/selectors-3/#attribute-selectors target=_blank rel=noopener>Attribute Selector</a>, pois queremos selecionar apenas elementos <code>&lt;label></code> que sucedem um <code>&lt;input></code> do tipo <strong>checkbox</strong>.</p>
+<p>Assim ficamos livres para criar nossa própria checkbox usando os pseudo-elementos <code>::before</code> e <code>::after</code>.</p>
+<h2 id=criando-a-checkbox>Criando a checkbox</h2>
+<p>A caixa será representada pelo <code>::before</code>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=nt>input</span><span class=o>[</span><span class=nt>type</span><span class=o>=</span><span class=s2>&#34;checkbox&#34;</span><span class=o>]</span> <span class=o>+</span> <span class=nt>label</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+  <span class=k>content</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+  <span class=k>position</span><span class=p>:</span> <span class=kc>absolute</span><span class=p>;</span>
+  <span class=k>width</span><span class=p>:</span> <span class=mi>20</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>height</span><span class=p>:</span> <span class=mi>20</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>left</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>bottom</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>border</span><span class=p>:</span> <span class=kc>solid</span> <span class=mi>2</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>vertical-align</span><span class=p>:</span> <span class=kc>bottom</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>O check será o <code>::after</code>. Aqui o truque é o uso do pseudo-seletor <code>:checked</code>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=nt>input</span><span class=o>[</span><span class=nt>type</span><span class=o>=</span><span class=s2>&#34;checkbox&#34;</span><span class=o>]</span><span class=p>:</span><span class=nd>checked</span> <span class=o>+</span> <span class=nt>label</span><span class=p>::</span><span class=nd>after</span> <span class=p>{</span>
+  <span class=k>content</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+  <span class=k>position</span><span class=p>:</span> <span class=kc>absolute</span><span class=p>;</span>
+  <span class=k>left</span><span class=p>:</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>bottom</span><span class=p>:</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>width</span><span class=p>:</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>height</span><span class=p>:</span> <span class=mi>20</span><span class=kt>px</span><span class=p>;</span>
+  <span class=k>border-right</span><span class=p>:</span> <span class=kc>solid</span> <span class=mi>3</span><span class=kt>px</span> <span class=kc>green</span><span class=p>;</span>
+  <span class=k>border-bottom</span><span class=p>:</span> <span class=kc>solid</span> <span class=mi>3</span><span class=kt>px</span> <span class=kc>green</span><span class=p>;</span>
+  <span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>45</span><span class=kt>deg</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><p>Basicamente, aqui estamos dizendo &ldquo;Aplique o seguinte estilo à todo <code>label::after</code> que precede um input checado&rdquo;. Ou seja, o estilo é aplicado apenas quando a checkbox estiver marcada.</p>
+<p>O resultado final você confere no Pen abaixo.</p>
+<p data-height=265 data-theme-id=0 data-slug-hash=PyLLRL data-default-tab=css,result data-user=wldomiciano data-pen-title="Checkbox e Radio Button Personalizados" class=codepen>See the Pen <a href=https://codepen.io/wldomiciano/pen/PyLLRL/>Checkbox e Radio Button Personalizados</a> by Wellington Domiciano (<a href=https://codepen.io/wldomiciano>@wldomiciano</a>) on <a href=https://codepen.io>CodePen</a>.</p>
+<script async src=https://static.codepen.io/assets/embed/ei.js></script>
+</div>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-personalizar-checkbox-radio-button-com-css/",this.page.identifier="https://wldomiciano.com/como-personalizar-checkbox-radio-button-com-css/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</article>
+</div>
+</main>
+<footer class="site-footer h-card">
+<div class=wrapper>
+<div class=footer-col-wrapper>
+<ul class=social-media-list>
+<li>
+<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+<li>
+<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
+</body>
+</html>

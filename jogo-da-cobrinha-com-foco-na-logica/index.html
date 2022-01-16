@@ -1,0 +1,249 @@
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=theme-color content="#ffffff">
+<meta name=msapplication-TileColor content="#da532c">
+<title>Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica</title>
+<meta name=description content="Aqui apresento a minha implementação do jogo da cobrinha e explico o código em C por partes">
+<meta name=keywords content="Programação,Tutoriais">
+<link rel=stylesheet href=/assets/main.css>
+<link rel=stylesheet href=/assets/molokai.css>
+<link rel=canonical href=https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/>
+<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
+<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
+<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
+</head>
+<body>
+<header class=site-header role=banner>
+<div class=wrapper>
+<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
+</div>
+</header>
+<main class=page-content aria-label=Content>
+<div class=wrapper>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-04-22","dateModified":"2018-04-22","name":"Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica","headline":"Aqui apresento a minha implementação do jogo da cobrinha e explico o código em C por partes","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
+<article class="post h-entry">
+<header class=post-header>
+<h1 class="post-title p-name">Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica</h1>
+<div class=post-meta>
+<time class=dt-published datetime=2018-04-22T00:00:00Z>
+April 22, 2018
+</time>
+</div>
+<div class=post-tag-list>
+<a class=post-tag-item href=https://wldomiciano.com/tags/c/>C</a>
+</div>
+</header>
+<div class="post-content e-content">
+<p>
+</p>
+<p>O objetivo deste artigo é apresentar uma lógica independente de biblioteca, framework ou linguagem e que, por isso, pode ser facilmente portada.</p>
+<p>Abaixo estão os links para as versões em C (com SDL 2), JavaScript e Java do código completo.</p>
+<ul>
+<li><a href=https://gist.github.com/wldomiciano/b28fc30450c5aac0e8df21a4910388ed target=_blank rel=noopener>C version</a></li>
+<li><a href=https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad target=_blank rel=noopener>JavaScript version</a> (<a href=https://codepen.io/wldomiciano/full/wjKYzx/ target=_blank rel=noopener>jogue aqui</a>)</li>
+<li><a href=https://gist.github.com/wldomiciano/92fd8ac6939b7dc6711be2ac8bd1b8ca target=_blank rel=noopener>Java version</a></li>
+</ul>
+<p>Ao todo são 10 funções das quais apenas 3 são dependentes da plataforma. Aqui eu apresento a versão em C.</p>
+<ul>
+<li><a href=#random><code>random()</code></a> (não portável)</li>
+<li><a href=#draw><code>draw(int, int, int, int)</code></a> (não portável)</li>
+<li><a href=#main><code>main(int, char**)</code></a> (não portável)</li>
+<li><a href=#setDirection><code>setDirection(int)</code></a></li>
+<li><a href=#isOnLimits><code>isOnLimits()</code></a></li>
+<li><a href=#hasCollisionWithTail><code>hasCollisionWithTail(int)</code></a></li>
+<li><a href=#placeApple><code>placeApple()</code></a></li>
+<li><a href=#drawBoard><code>drawBoard()</code></a></li>
+<li><a href=#move><code>move()</code></a></li>
+<li><a href=#update><code>update(int)</code></a></li>
+</ul>
+<h2 id=funções-não-portáveis>Funções não portáveis</h2>
+<p>A função <code>random()</code> gera números aleatórios e será usada para determinar a posição da maçã.</p>
+<div id=random></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=nf>random</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=n>rand</span><span class=p>()</span> <span class=o>%</span> <span class=n>BOARD_COLS</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>A função <code>draw()</code> que recebe 4 argumentos do tipo <code>int</code>.</p>
+<div id=draw></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>draw</span><span class=p>(</span><span class=kt>int</span> <span class=n>position</span><span class=p>,</span> <span class=kt>int</span> <span class=n>r</span><span class=p>,</span> <span class=kt>int</span> <span class=n>g</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>SDL_Rect</span> <span class=n>rect</span> <span class=o>=</span> <span class=p>{</span><span class=n>position</span> <span class=o>%</span> <span class=n>BOARD_COLS</span><span class=p>,</span> <span class=n>position</span> <span class=o>/</span> <span class=n>BOARD_COLS</span><span class=p>,</span> <span class=n>SIZE</span><span class=p>,</span> <span class=n>SIZE</span><span class=p>};</span>
+    <span class=n>rect</span><span class=p>.</span><span class=n>x</span> <span class=o>*=</span> <span class=n>SIZE</span><span class=p>;</span>
+    <span class=n>rect</span><span class=p>.</span><span class=n>y</span> <span class=o>*=</span> <span class=n>SIZE</span><span class=p>;</span>
+
+    <span class=n>SDL_SetRenderDrawColor</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=n>r</span><span class=p>,</span> <span class=n>g</span><span class=p>,</span> <span class=n>b</span><span class=p>,</span> <span class=n>SDL_ALPHA_OPAQUE</span><span class=p>);</span>
+    <span class=n>SDL_RenderFillRect</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>rect</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><p>O primeiro argumento representa uma posição no tabuleiro que é convertida para coordenadas em 2D seguindo a seguinte fórmula:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=n>x</span> <span class=o>=</span> <span class=n>position</span> <span class=o>%</span> <span class=n>BOARD_COLS</span>
+<span class=kt>int</span> <span class=n>y</span> <span class=o>=</span> <span class=n>position</span> <span class=o>/</span> <span class=n>BOARD_COLS</span>
+</code></pre></div><p>Após a conversão, a função multiplica essas coordenadas por <code>SIZE</code>, que é o tamanho em pixel de cada retângulo, desenhando tudo no seu devido lugar.</p>
+<p>Ela recebe também mais 3 inteiros representando uma cor em RGB.</p>
+<p>Destas, a função <code>main()</code> é a que tem maior responsabilidade pois, além de conter o <a href=http://gameprogrammingpatterns.com/game-loop.html target=_blank rel=noopener><em>main loop</em></a>, verifica as teclas digitadas pelo usuário e também calcula o <strong>delta</strong> para a função <code>update()</code> que veremos mais tarde.</p>
+<div id=main></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span><span class=o>**</span> <span class=n>argv</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=k>return</span> <span class=n>EXIT_FAILURE</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>SDL_CreateWindowAndRenderer</span><span class=p>(</span><span class=n>SIZE</span> <span class=o>*</span> <span class=n>BOARD_COLS</span><span class=p>,</span> <span class=n>SIZE</span> <span class=o>*</span> <span class=n>BOARD_ROWS</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>canvas</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>ctx</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=k>return</span> <span class=n>EXIT_FAILURE</span><span class=p>;</span>
+
+    <span class=k>while</span> <span class=p>(</span><span class=o>!</span><span class=n>SDL_QuitRequested</span><span class=p>())</span> <span class=p>{</span>
+        <span class=k>if</span>      <span class=p>(</span><span class=n>SDL_GetKeyboardState</span><span class=p>(</span><span class=nb>NULL</span><span class=p>)[</span><span class=n>SDL_SCANCODE_UP</span><span class=p>])</span>    <span class=n>setDirection</span><span class=p>(</span><span class=o>-</span><span class=n>BOARD_COLS</span><span class=p>);</span>
+        <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>SDL_GetKeyboardState</span><span class=p>(</span><span class=nb>NULL</span><span class=p>)[</span><span class=n>SDL_SCANCODE_DOWN</span><span class=p>])</span>  <span class=n>setDirection</span><span class=p>(</span> <span class=n>BOARD_COLS</span><span class=p>);</span>
+        <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>SDL_GetKeyboardState</span><span class=p>(</span><span class=nb>NULL</span><span class=p>)[</span><span class=n>SDL_SCANCODE_LEFT</span><span class=p>])</span>  <span class=n>setDirection</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>);</span>
+        <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>SDL_GetKeyboardState</span><span class=p>(</span><span class=nb>NULL</span><span class=p>)[</span><span class=n>SDL_SCANCODE_RIGHT</span><span class=p>])</span> <span class=n>setDirection</span><span class=p>(</span> <span class=mi>1</span><span class=p>);</span>
+
+        <span class=n>SDL_SetRenderDrawColor</span><span class=p>(</span><span class=n>ctx</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>SDL_ALPHA_OPAQUE</span><span class=p>);</span>
+        <span class=n>SDL_RenderClear</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
+
+        <span class=n>Uint32</span> <span class=n>current</span> <span class=o>=</span> <span class=n>SDL_GetTicks</span><span class=p>();</span>
+        <span class=n>Uint32</span> <span class=n>delta</span>   <span class=o>=</span> <span class=n>current</span> <span class=o>-</span> <span class=n>previousTicks</span><span class=p>;</span>
+        <span class=n>previousTicks</span>  <span class=o>=</span> <span class=n>current</span><span class=p>;</span>
+
+        <span class=n>update</span><span class=p>(</span><span class=n>delta</span><span class=p>);</span>
+
+        <span class=n>SDL_RenderPresent</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=n>SDL_DestroyRenderer</span><span class=p>(</span><span class=n>ctx</span><span class=p>);</span>
+    <span class=n>SDL_DestroyWindow</span><span class=p>(</span><span class=n>canvas</span><span class=p>);</span>
+    <span class=n>SDL_Quit</span><span class=p>();</span>
+    <span class=k>return</span> <span class=n>EXIT_SUCCESS</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=funções-portáveis>Funções portáveis</h2>
+<p>Aproveitando a deixa e já entrando na parte especifica da lógica do jogo, podemos ver que a função <code>setDirection()</code> é bastante simples.</p>
+<div id=setDirection></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>setDirection</span><span class=p>(</span><span class=kt>int</span> <span class=n>dir</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>dir</span> <span class=o>!=</span> <span class=o>-</span><span class=n>direction</span> <span class=o>||</span> <span class=n>length</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=n>direction</span> <span class=o>=</span> <span class=n>dir</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>Quando a cobrinha tem comprimento (medido pela variável <code>length</code>) 0, ela pode se mover pra qualquer direção à qualquer momento, porém, quando seu comprimento é maior que 0, alguns cuidados devem ser tomados.</p>
+<p>Se a cobrinha estiver indo pra direita e o jogador apertar a seta pra esquerda, o movimento seria inválido, pois nessa situação, ela passaria por cima do próprio corpo.</p>
+<p>Ali, <code>direction</code> é uma variável do tipo <code>int</code>. Ela guarda a direção da cobrinha da seguinte forma:</p>
+<ul>
+<li>Se estiver indo pra direita, <code>direction</code> vale 1.</li>
+<li>Se estiver indo pra esquerda, <code>direction</code> vale -1.</li>
+<li>Se estiver indo pra cima, <code>direction</code> vale <code>-BOARD_COLS</code>.</li>
+<li>Se estiver indo pra baixo, <code>direction</code> vale <code>BOARD_COLS</code>.</li>
+</ul>
+<p>Esse valor é somado à posição da cobrinha, que é representada pela variável <code>head</code>.</p>
+<p>A direção só é alterada se a nova direção não for a oposta da atual ou se o comprimento for 0.</p>
+<p>Outra função importante é a que verifica se colisões ocorreram com a cauda.</p>
+<div id=hasCollisionWithTail></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>bool</span> <span class=nf>hasCollisionWithTail</span><span class=p>(</span><span class=kt>int</span> <span class=n>position</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>length</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=k>if</span> <span class=p>(</span><span class=n>tail</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>==</span> <span class=n>pos</span><span class=p>)</span> <span class=k>return</span> <span class=nb>true</span><span class=p>;</span>
+    <span class=k>return</span> <span class=nb>false</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>A cauda é representada por um array de <code>int</code>. O tamanho desse array deve ser igual ao tamanho total do tabuleiro (colunas * linhas).</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=n>tail</span><span class=p>[</span><span class=n>BOARD_SIZE</span><span class=p>];</span>
+</code></pre></div><p>Apesar do array ter esse tamanho todo, a quantidade de elementos utilizados será igual ao valor da variável <code>length</code>. Logo, não utilizaremos sua capacidade total, mas é bom estarmos preparados.</p>
+<p>Utilizaremos a função acima em duas situações:</p>
+<ul>
+<li>Ao definir uma nova posição para a maçã. Uma posição aleatória será escolhida, mas se essa posição coincidir com a posição da cauda (ou com a da cabeça), ela será recalculada.</li>
+</ul>
+<div id=placeApple></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>placeApple</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>do</span> <span class=n>apple</span> <span class=o>=</span> <span class=n>random</span><span class=p>();</span>
+    <span class=k>while</span> <span class=p>(</span><span class=n>head</span> <span class=o>==</span> <span class=n>apple</span> <span class=o>||</span> <span class=n>hasCollisionWithTail</span><span class=p>(</span><span class=n>apple</span><span class=p>));</span>
+<span class=p>}</span>
+</code></pre></div><ul>
+<li>Para ver se houve colisão entre a cabeça e a cauda. Se o jogador colidir com o próprio corpo, o jogo acaba.</li>
+</ul>
+<p>Com a função <code>drawBoard()</code>, desenharemos o tabuleiro e todos os seus elementos. Ela é bastante simples, já que a função <code>draw</code> faz a parte dos cálculos necessários.</p>
+<div id=drawBoard></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>drawBoard</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>length</span><span class=p>;</span> <span class=o>++</span><span class=n>i</span><span class=p>)</span>
+        <span class=n>draw</span><span class=p>(</span><span class=n>tail</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+
+    <span class=n>draw</span><span class=p>(</span><span class=n>head</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span>
+    <span class=n>draw</span><span class=p>(</span><span class=n>apple</span><span class=p>,</span> <span class=mi>255</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><p>A função <code>move()</code> é bastante importante e a segunda função mais complexa desta lógica. Ela cuida do movimento da cobrinha verificando e corrigindo nos momentos em que ela ultrapassa os limites do tabuleiro.</p>
+<div id=move></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>move</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>tail</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>head</span><span class=p>;</span>
+    <span class=n>head</span> <span class=o>+=</span> <span class=n>direction</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=o>++</span><span class=n>i</span> <span class=o>&gt;=</span> <span class=n>length</span><span class=p>)</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>isOnLimits</span><span class=p>())</span>
+        <span class=n>head</span> <span class=o>-=</span> <span class=n>BOARD_COLS</span> <span class=o>*</span> <span class=n>direction</span><span class=p>;</span>
+    <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>head</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=n>head</span> <span class=o>+=</span> <span class=n>BOARD_SIZE</span><span class=p>;</span>
+    <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>head</span> <span class=o>&gt;=</span> <span class=n>BOARD_SIZE</span><span class=p>)</span>
+        <span class=n>head</span> <span class=o>-=</span> <span class=n>BOARD_SIZE</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>Enquanto <code>head &lt; 0</code> e <code>head >= BOARD_SIZE</code> são suficientes para corrigir a posição da cobrinha caso ela exceda os limites superior e inferior do tabuleiro, para fazer a correção nas laterais, utilizamos <code>isOnLimits()</code>.</p>
+<div id=isOnLimits></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>bool</span> <span class=nf>isOnLimits</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=p>(</span><span class=n>direction</span> <span class=o>==</span>  <span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>head</span> <span class=o>%</span> <span class=n>BOARD_COLS</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=o>||</span>
+           <span class=p>(</span><span class=n>direction</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=p>(</span><span class=n>head</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>%</span> <span class=n>BOARD_COLS</span> <span class=o>==</span> <span class=mi>0</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><p>O segredo para o movimento correto da cauda é posicionar uma de suas partes no mesmo lugar em que a cabeça está no momento e só depois disso mover a cabeça para a próxima posição.</p>
+<p>Qual parte da cauda deve ser posicionada desta forma é definida pela variável <code>i</code> que é incrementada a cada loop, mas volta pra 0 quando fica igual ou maior que o comprimento atual da cauda.</p>
+<p>Por fim, temos a função <code>update()</code> que é a mais complexa.</p>
+<div id=update></div>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>update</span><span class=p>(</span><span class=kt>int</span> <span class=n>delta</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>accumulator</span> <span class=o>+=</span> <span class=n>delta</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>accumulator</span> <span class=o>&gt;=</span> <span class=n>TIMEOUT</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=n>isDead</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>accumulator</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+        <span class=n>move</span><span class=p>();</span>
+
+        <span class=k>if</span> <span class=p>(</span><span class=n>head</span> <span class=o>==</span> <span class=n>apple</span><span class=p>)</span> <span class=p>{</span>
+            <span class=n>placeApple</span><span class=p>();</span>
+            <span class=n>tail</span><span class=p>[</span><span class=n>length</span><span class=o>++</span><span class=p>]</span> <span class=o>=</span> <span class=n>head</span><span class=p>;</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>hasCollisionWithTail</span><span class=p>(</span><span class=n>head</span><span class=p>))</span> <span class=n>isDead</span> <span class=o>=</span> <span class=nb>true</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=n>drawBoard</span><span class=p>();</span>
+<span class=p>}</span>
+</code></pre></div><p>Ela acumula (<code>accumulator</code>) o delta até atingir um certo valor e só então permite que a cobrinha se movimente. É com esse controle que podemos fazer a cobrinha se movimentar mais ou menos rápido, basta alterar o valor de <code>TIMEOUT</code>. Para fazê-la se movimentar apenas uma vez por segundo, <code>TIMEOUT</code> deveria ser 1000.</p>
+<p>Quando o timeout é alcançado, o acumulador é zerado, <code>move()</code> é chamada e 2 testes são realizados.</p>
+<ol>
+<li>
+<p>Se a cabeça e a maçã colidirem, a maçã é reposicionada, o comprimento aumenta e a nova parte da cauda entra em cena na mesma posição em que a cabeça está.</p>
+</li>
+<li>
+<p>Verificamos se a cabeça colidiu com alguma parte da cauda, se sim, é fim de jogo.</p>
+</li>
+</ol>
+<p>Depois, independente do timeout, a função que desenha o tabuleiro é chamada.</p>
+<h2 id=conclusão>Conclusão</h2>
+<p>Embora o resultado final não seja visualmente atraente, a lógica básica está toda aí.</p>
+<p>Se comparar os códigos em C e em JavaScript, verá que pouquíssima coisa muda além das funções não portáveis, as diferenças maiores ficam por conta de certas palavras chaves e por C ser estaticamente tipada.</p>
+<p>A versão em Java é a mais diferente, pois ao invés de usar um loop com <code>while</code>, usei um timer para controlar a atualização do jogo e tive que lidar com as particularidades do <em>Swing</em>.</p>
+<p>É claro que tanto JavaScript quanto Java fornecem certas facilidades ao se trabalhar com arrays, tornando a variável <code>length</code> desnecessária. Mas tentei manter a estrutura do código o mais semelhante a C que pude como uma prova de conceito.</p>
+<p>Teste os códigos e modifique-os para entender melhor seu funcionamento. Tente implementar o resto do jogo. Acrescente um contador para mostrar os pontos, uma mensagem de inicio e uma de <em>game over</em> e uma opção para reiniciar o jogo.</p>
+<p>Boa sorte.</p>
+</div>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/",this.page.identifier="https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</article>
+</div>
+</main>
+<footer class="site-footer h-card">
+<div class=wrapper>
+<div class=footer-col-wrapper>
+<ul class=social-media-list>
+<li>
+<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+<li>
+<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=theme-color content="#ffffff">
+<meta name=msapplication-TileColor content="#da532c">
+<title>SDL 2 - O guia definitivo para criar caixas de mensagem</title>
+<meta name=description content="Caixas de mensagens são pop ups informativos, veja aqui tudo o que você precisa para usar no SDL 2">
+<meta name=keywords content="Programação,Tutoriais">
+<link rel=stylesheet href=/assets/main.css>
+<link rel=stylesheet href=/assets/molokai.css>
+<link rel=canonical href=https://wldomiciano.com/guia-para-criar-caixas-de-mensagem-sdl-2/>
+<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
+<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
+<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
+</head>
+<body>
+<header class=site-header role=banner>
+<div class=wrapper>
+<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
+</div>
+</header>
+<main class=page-content aria-label=Content>
+<div class=wrapper>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-09-09","dateModified":"2018-09-09","name":"SDL 2 - O guia definitivo para criar caixas de mensagem","headline":"Caixas de mensagens são pop ups informativos, veja aqui tudo o que você precisa para usar no SDL 2","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
+<article class="post h-entry">
+<header class=post-header>
+<h1 class="post-title p-name">SDL 2 - O guia definitivo para criar caixas de mensagem</h1>
+<div class=post-meta>
+<time class=dt-published datetime=2018-09-09T00:00:00Z>
+September 9, 2018
+</time>
+</div>
+<div class=post-tag-list>
+<a class=post-tag-item href=https://wldomiciano.com/tags/sdl-2/>SDL 2</a>
+</div>
+</header>
+<div class="post-content e-content">
+<p>
+</p>
+<h2 id=apresentação>Apresentação</h2>
+<p>Quando trabalhando com SDL 2, como desenvolvedor, gosto de fazer testes usando a função <code>SDL_Log()</code> para imprimir mensagens no terminal e saber como anda a execução do meu código.</p>
+<p>Porém, como usuário, ao executar um jogo, não é muito atrativo ter que abrir o terminal e interpretar as mensagens ali apresentadas para saber o que aconteceu de errado.</p>
+<p>Como uma alternativa ao uso das mensagens no terminal, a SDL 2 fornece funções para criar caixas de mensagem.</p>
+<p><img src=print-caixa-de-mensagem-simples.jpg alt="Print de uma caixa de mensagem simples"></p>
+<p>Estas caixas podem conter apenas texto simples para alertar o usuário sobre um erro ou outro tipo de informação importante, bem como botões para que ele tome alguma decisão.</p>
+<h2 id=considerações-iniciais>Considerações iniciais</h2>
+<p>Para este guia vou considerar que você já tem um ambiente de desenvolvimento devidamente configurado e é capaz de compilar e executar os exemplos apresentados sem problemas.</p>
+<p>Todos os exemplos foram testados nas seguintes plataformas:</p>
+<ul>
+<li>Ubuntu 18.04</li>
+<li>Windows 10</li>
+<li>Android 7.0</li>
+</ul>
+<p>As funções que criam essas caixas podem ser invocadas mesmo antes da invocação da <code>SDL_Init()</code>, por isso a omiti dos exemplos para deixá-los mais limpos. Num código real, você ainda deve inicializar e finalizar corretamente os subsistemas da biblioteca.</p>
+<h2 id=uma-caixinha-simples>Uma caixinha simples</h2>
+<p>Se tudo o que você quer é uma caixa com uma mensagem simples, a função <code>SDL_ShowSimpleMessageBox()</code> fará bem o trabalho.</p>
+<p>Trata-se de uma caixinha com título, uma mensagem (que é opcional) e um botão <em>OK</em>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=err>#</span><span class=n>include</span> <span class=p>&lt;</span><span class=n>SDL</span><span class=p>.</span><span class=n>h</span><span class=p>&gt;</span>
+
+<span class=kt>int</span> <span class=n>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_ShowSimpleMessageBox</span><span class=p>(</span><span class=m>0</span><span class=p>,</span> <span class=s>&#34;Título&#34;</span><span class=p>,</span> <span class=s>&#34;Mensagem&#34;</span><span class=p>,</span> <span class=n>NULL</span><span class=p>)</span> <span class=p>&lt;</span> <span class=m>0</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+
+    <span class=k>return</span> <span class=m>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=checando-erros>Checando erros</h3>
+<p>Esta função retorna 0 em caso de sucesso e um valor negativo em caso de falha.</p>
+<p>Podemos usar a <code>SDL_GetError()</code> para ter uma descrição do ocorrido caso necessário.</p>
+<h3 id=definindo-o-tipo-de-caixa>Definindo o tipo de caixa</h3>
+<p>O primeiro argumento é uma flag que pode ser uma das 3 apresentadas abaixo.</p>
+<ul>
+<li><code>SDL_MESSAGEBOX_ERROR</code></li>
+<li><code>SDL_MESSAGEBOX_WARNING</code></li>
+<li><code>SDL_MESSAGEBOX_INFORMATION</code></li>
+</ul>
+<p>A ideia é que, dependendo da flag, a caixa exiba um ícone característico. Porém, fiz o teste no Window, Ubuntu e Android e em nenhuma dessas plataformas o ícone foi exibido.</p>
+<h3 id=título-e-mensagem>Título e mensagem</h3>
+<p>Os próximos dois argumentos são autoexplicativos.</p>
+<p>São o texto que aparecerá na barra de título seguido pela mensagem que aparecerá no corpo da caixa.</p>
+<p>A mensagem pode ser <code>NULL</code>, mas o título deve ser uma string válida ou um erro ocorrerá.</p>
+<h3 id=janela-mãe-e-caixas-independentes>Janela-mãe e caixas independentes</h3>
+<p>O último argumento representa a janela-mãe. Pode ser nulo caso a caixa seja independente.</p>
+<p>No Ubuntu, normalmente a caixa é criada e posicionada bem no centro de sua janela-mãe e caso passemos <code>NULL</code> como argumento, a caixa é posicionada no centro da tela.</p>
+<h2 id=criando-caixas-de-diálogo-mais-complexas>Criando caixas de diálogo mais complexas</h2>
+<p>A função <code>SDL_ShowMessageBox()</code> nos dá maior controle.</p>
+<p>Ela permite a criação de caixas com nenhum ou vários botões e com o texto que quisermos neles.</p>
+<p>É possível saber exatamente em qual botão o usuário clicou e realizar ações diferentes com base nesta informação.</p>
+<p>E também podemos alterar as cores de cada elemento em plataformas que suportam este recurso! Em meus testes, foi possível criar caixas coloridas no Ubuntu e no Android.</p>
+<p>O primeiro argumento representa os dados da caixa que veremos mais <a href=#definindo-dados-da-caixa-de-mensagem>a frente</a>, e o segundo é um ponteiro para uma variável que conterá o <em>id</em> do botão clicado pelo usuário, é por ela que saberemos qual ação tomar.</p>
+<h3 id=verificando-erros>Verificando erros</h3>
+<p>Assim como a primeira função, esta retorna 0 em caso de sucesso e um valor negativo em caso de falha. Veja <a href=#checando-erros>Checando Erros</a> da seção anterior para mais informações.</p>
+<h3 id=definindo-dados-da-caixa-de-mensagem>Definindo dados da caixa de mensagem</h3>
+<p>O primeiro argumento desta função deve ser um ponteiro para uma <code>SDL_MessageBoxData</code>, uma estrutura que contém os dados usados na criação da caixa.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=err>#</span><span class=n>include</span> <span class=p>&lt;</span><span class=n>SDL</span><span class=p>.</span><span class=n>h</span><span class=p>&gt;</span>
+
+<span class=kt>int</span> <span class=n>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>SDL_MessageBoxData</span> <span class=n>message_box_data</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>flags</span>       <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>window</span>      <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>title</span>       <span class=p>=</span> <span class=s>&#34;Titulo&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>message</span>     <span class=p>=</span> <span class=s>&#34;Mensagem&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>numbuttons</span>  <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>buttons</span>     <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>colorScheme</span> <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_ShowMessageBox</span><span class=p>(&amp;</span><span class=n>message_box_data</span><span class=p>,</span> <span class=n>NULL</span><span class=p>)</span> <span class=p>&lt;</span> <span class=m>0</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+
+    <span class=k>return</span> <span class=m>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>Como visto no código acima, esta estrutura contém vários membros e a maioria deles funciona de forma semelhante aos argumentos da função <code>SDL_ShowSimpleMessageBox()</code>.</p>
+<p>O membro <code>flag</code> define o tipo de janela, veja <a href=#definindo-o-tipo-de-caixa>a seção anterior</a> para conhecer os valores possíveis e maiores detalhes.</p>
+<p>O membro <code>window</code> representa a janela-mãe da caixa, seu valor pode <code>NULL</code> veja <a href=#janela-m%c3%a3e-e-caixas-independentes>a seção anterior</a> para maiores informações.</p>
+<p>Os membros <code>title</code> e <code>message</code> são, respectivamente, o texto da barra de título e o texto do corpo da caixa. O membro <code>message</code> pode ser <code>NULL</code>. Veja <a href=#t%c3%adtulo-e-mensagem>a seção anterior</a>.</p>
+<p>O membro <code>buttons</code> é um ponteiro para um array de <code>SDL_MessageBoxButtonData</code>, uma estrutura que contém informações sobre os botões que farão parte da nossa caixinha.</p>
+<p>O membro <code>numbuttons</code> representa a quantidade de botões que usaremos. Essa quantidade deve ser igual a quantidades de elementos contido no array mencionado acima.</p>
+<p>Por último, <code>colorScheme</code> é um ponteiro para uma estrutura do tipo <code>SDL_MessageBoxColorScheme</code>. Ela contém informações sobre as cores personalizadas.</p>
+<h3 id=adicionando-botões>Adicionando botões</h3>
+<p>Podemos adicionar botões para dar ao usuário opções diante de uma determinada situação, para isso usamos um array de <code>SDL_MessageBoxButtonData</code>.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=n>SDL_MessageBoxButtonData</span> <span class=n>button_data</span><span class=p>[</span><span class=m>3</span><span class=p>]</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Sim&#34;</span><span class=p>;</span>
+
+<span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>1</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Não&#34;</span><span class=p>;</span>
+
+<span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>2</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Cancelar&#34;</span><span class=p>;</span>
+</code></pre></div><p>É possível usar uma variável comum caso você precise de apenas um botão.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=n>SDL_MessageBoxButtonData</span> <span class=n>button_data</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+<span class=n>button_data</span><span class=p>.</span><span class=n>flags</span>    <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>.</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+<span class=n>button_data</span><span class=p>.</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Texto&#34;</span><span class=p>;</span>
+</code></pre></div><p>Como podemos ver nos trechos acima, esta estrutura possui 3 membros.</p>
+<p>O membro <code>buttonid</code> é o número que representará este botão. É o valor que será passado para o segundo argumento da <code>SDL_ShowMessageBox()</code> caso o botão seja clicado.</p>
+<p>O membro <code>text</code> é simplesmente o texto que aparecerá dentro do botão.</p>
+<p>E o membro <code>flags</code> é um pouco mais interessante como veremos a seguir.</p>
+<h4 id=definindo-comportamento-especial-com-flags>Definindo comportamento especial com flags</h4>
+<p>O membro <code>flags</code> é usado para definir um comportamento especial. Ela pode ter 3 possíveis valores: 0, <code>SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</code> e <code>SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</code>.</p>
+<p>Com o valor 0 nada de especial acontece.</p>
+<p>Com <code>SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</code> significa que aquele botão será ativado caso o usuário pressionar a tecla <em>Enter</em>.</p>
+<p>Com <code>SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</code> significa que o botão será ativado caso o usuário pressione a tecla <em>Esc</em>.</p>
+<blockquote>
+<p><strong>NOTA:</strong> <em>No Windows há um comportamento estranho ao usar estas teclas. Pressionando Enter, ele entende como &ldquo;Não&rdquo; e pressionando Esc, ele entende como &ldquo;Cancelar&rdquo;.</em></p>
+<p><em>No Android, com um teclado físico, não houve esse problema.</em></p>
+</blockquote>
+<h4 id=testando-nossos-botões>Testando nossos botões</h4>
+<p>Com os dados definidos, basta passá-los para o membro <code>buttons</code> da estrutura <code>SDL_MessageBoxData</code>. Não podemos esquecer de passar também a quantidade de botões correta.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=n>message_box_data</span><span class=p>.</span><span class=n>numbuttons</span> <span class=p>=</span> <span class=m>3</span><span class=p>;</span>
+<span class=n>message_box_data</span><span class=p>.</span><span class=n>buttons</span>    <span class=p>=</span> <span class=n>button_data</span><span class=p>;</span>
+<span class=c1>// use &amp;button_data caso a variável não seja um array, assim:
+</span><span class=c1>// message_box_data.buttons = &amp;button_data;
+</span></code></pre></div><p>Segue abaixo o código completo para testar.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=err>#</span><span class=n>include</span> <span class=p>&lt;</span><span class=n>SDL</span><span class=p>.</span><span class=n>h</span><span class=p>&gt;</span>
+
+<span class=kt>int</span> <span class=n>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>SDL_MessageBoxButtonData</span> <span class=n>button_data</span><span class=p>[</span><span class=m>3</span><span class=p>]</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Sim&#34;</span><span class=p>;</span>
+
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>1</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Não&#34;</span><span class=p>;</span>
+
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>2</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Cancelar&#34;</span><span class=p>;</span>
+
+    <span class=n>SDL_MessageBoxData</span> <span class=n>message_box_data</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>flags</span>       <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>window</span>      <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>title</span>       <span class=p>=</span> <span class=s>&#34;Titulo&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>message</span>     <span class=p>=</span> <span class=s>&#34;Mensagem&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>numbuttons</span>  <span class=p>=</span> <span class=m>3</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>buttons</span>     <span class=p>=</span> <span class=n>button_data</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>colorScheme</span> <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+
+    <span class=kt>int</span> <span class=n>buttonid</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_ShowMessageBox</span><span class=p>(&amp;</span><span class=n>message_box_data</span><span class=p>,</span> <span class=p>&amp;</span><span class=n>buttonid</span><span class=p>)</span> <span class=p>&lt;</span> <span class=m>0</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+    <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=n>buttonid</span> <span class=p>==</span> <span class=p>-</span><span class=m>1</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Você NÃO clicou nos botões&#34;</span><span class=p>);</span>
+    <span class=k>else</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Você clicou no botão %s&#34;</span><span class=p>,</span> <span class=n>button_data</span><span class=p>[</span><span class=n>buttonid</span><span class=p>].</span><span class=n>text</span><span class=p>);</span>
+
+    <span class=k>return</span> <span class=m>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><blockquote>
+<p><strong>NOTA:</strong> <em>No Ubuntu a caixa é exibida com o botão &ldquo;Fechar&rdquo;, aquele &ldquo;X&rdquo; no topo das janelas, e, se clicarmos neste botão, <code>buttonid</code> será igual a -1.</em></p>
+<p><em>Isso não acontece no Windows e nem no Android, pois a caixa exibida nessas plataformas não possui este &ldquo;X&rdquo;.</em></p>
+</blockquote>
+<h2 id=personalizando-cores>Personalizando cores</h2>
+<p>Há 5 elementos que podem ser personalizados.</p>
+<ul>
+<li><code>SDL_MESSAGEBOX_COLOR_BACKGROUND</code> (O fundo da caixa)</li>
+<li><code>SDL_MESSAGEBOX_COLOR_TEXT</code> (O texto)</li>
+<li><code>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</code> (A borda do botão)</li>
+<li><code>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</code> (O fundo do botão)</li>
+<li><code>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</code> (O texto do botão quando o mouse está sobre ele ou quando está pressionado</li>
+</ul>
+<p>A estrutura que representa as cores dos elementos, <code>SDL_MessageBoxColorScheme</code>, possui apenas o membro <code>colors</code>.</p>
+<p>Este membro é um array de 5 elementos do tipo <code>SDL_MessageBoxColor</code>, uma estrutura contendo os valores em RGB.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=n>SDL_MessageBoxColorScheme</span> <span class=n>color_scheme</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+<span class=c1>// Vermelho
+</span><span class=c1></span><span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>r</span>        <span class=p>=</span> <span class=m>200</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>g</span>        <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>b</span>        <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=c1>// Verde
+</span><span class=c1></span><span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>r</span>              <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>g</span>              <span class=p>=</span> <span class=m>200</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>b</span>              <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=c1>// Azul
+</span><span class=c1></span><span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>r</span>     <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>g</span>     <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>b</span>     <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+<span class=c1>// Amarelo
+</span><span class=c1></span><span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>r</span> <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>g</span> <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>b</span> <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=c1>// Rosa
+</span><span class=c1></span><span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>r</span>   <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>g</span>   <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+<span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>b</span>   <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+</code></pre></div><p>Segue abaixo o código completo para testes.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-cs data-lang=cs><span class=err>#</span><span class=n>include</span> <span class=p>&lt;</span><span class=n>SDL</span><span class=p>.</span><span class=n>h</span><span class=p>&gt;</span>
+
+<span class=kt>int</span> <span class=n>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>SDL_MessageBoxButtonData</span> <span class=n>button_data</span><span class=p>[</span><span class=m>3</span><span class=p>]</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>0</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Sim&#34;</span><span class=p>;</span>
+
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=n>SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>1</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>1</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Não&#34;</span><span class=p>;</span>
+
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>flags</span>    <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>buttonid</span> <span class=p>=</span> <span class=m>2</span><span class=p>;</span>
+    <span class=n>button_data</span><span class=p>[</span><span class=m>2</span><span class=p>].</span><span class=n>text</span>     <span class=p>=</span> <span class=s>&#34;Cancelar&#34;</span><span class=p>;</span>
+
+    <span class=n>SDL_MessageBoxColorScheme</span> <span class=n>color_scheme</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=c1>// Vermelho
+</span><span class=c1></span>    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>r</span>        <span class=p>=</span> <span class=m>200</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>g</span>        <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BACKGROUND</span><span class=p>].</span><span class=n>b</span>        <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=c1>// Verde
+</span><span class=c1></span>    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>r</span>              <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>g</span>              <span class=p>=</span> <span class=m>200</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_TEXT</span><span class=p>].</span><span class=n>b</span>              <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=c1>// Azul
+</span><span class=c1></span>    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>r</span>     <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>g</span>     <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BORDER</span><span class=p>].</span><span class=n>b</span>     <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+    <span class=c1>// Amarelo
+</span><span class=c1></span>    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>r</span> <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>g</span> <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND</span><span class=p>].</span><span class=n>b</span> <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=c1>// Rosa
+</span><span class=c1></span>    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>r</span>   <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>g</span>   <span class=p>=</span>   <span class=m>0</span><span class=p>;</span>
+    <span class=n>color_scheme</span><span class=p>.</span><span class=n>colors</span><span class=p>[</span><span class=n>SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED</span><span class=p>].</span><span class=n>b</span>   <span class=p>=</span> <span class=m>240</span><span class=p>;</span>
+
+    <span class=n>SDL_MessageBoxData</span> <span class=n>message_box_data</span> <span class=p>=</span> <span class=p>{</span><span class=m>0</span><span class=p>};</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>flags</span>       <span class=p>=</span> <span class=m>0</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>window</span>      <span class=p>=</span> <span class=n>NULL</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>title</span>       <span class=p>=</span> <span class=s>&#34;Titulo&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>message</span>     <span class=p>=</span> <span class=s>&#34;Mensagem&#34;</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>numbuttons</span>  <span class=p>=</span> <span class=m>3</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>buttons</span>     <span class=p>=</span> <span class=n>button_data</span><span class=p>;</span>
+    <span class=n>message_box_data</span><span class=p>.</span><span class=n>colorScheme</span> <span class=p>=</span> <span class=p>&amp;</span><span class=n>color_scheme</span><span class=p>;</span>
+
+    <span class=kt>int</span> <span class=n>buttonid</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_ShowMessageBox</span><span class=p>(&amp;</span><span class=n>message_box_data</span><span class=p>,</span> <span class=p>&amp;</span><span class=n>buttonid</span><span class=p>)</span> <span class=p>&lt;</span> <span class=m>0</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+    <span class=k>else</span> <span class=k>if</span> <span class=p>(</span> <span class=n>buttonid</span> <span class=p>==</span> <span class=p>-</span><span class=m>1</span> <span class=p>)</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Você NÃO clicou nos botões&#34;</span><span class=p>);</span>
+    <span class=k>else</span>
+        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Você clicou no botão %s&#34;</span><span class=p>,</span> <span class=n>button_data</span><span class=p>[</span><span class=n>buttonid</span><span class=p>].</span><span class=n>text</span><span class=p>);</span>
+
+    <span class=k>return</span> <span class=m>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p>E o resultado:</p>
+<p><img src=print-caixa-de-mensagem-colorida.jpg alt="Print da caixa de mensagem com cores personalizadas"></p>
+<p>Como somos programadores e não designers, o resultado não ficou muito atrativo, contudo, o objetivo aqui é aprender como personalizar as cores, se vai ficar bonito é outra história.</p>
+<h2 id=considerações-finais>Considerações finais</h2>
+<p>Caixas de mensagens são um recurso bastante importante para transmitir informações ao usuário, sejam erros ou escolhas a serem feitas.</p>
+<p>Usá-las corretamente pode fazer a diferença pro sucesso do seu jogo, já que se algo não sair como esperado, deixar o jogador sem saber o que aconteceu pode fazê-lo desistir.</p>
+<p>Também é importante usá-las com moderação, afinal ninguém gosta de caixas de mensagem pulando a todo instante na cara.</p>
+<p>Espero que este breve guia lhe seja útil.</p>
+<p>Até a próxima!</p>
+</div>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/guia-para-criar-caixas-de-mensagem-sdl-2/",this.page.identifier="https://wldomiciano.com/guia-para-criar-caixas-de-mensagem-sdl-2/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</article>
+</div>
+</main>
+<footer class="site-footer h-card">
+<div class=wrapper>
+<div class=footer-col-wrapper>
+<ul class=social-media-list>
+<li>
+<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+<li>
+<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
+</body>
+</html>
