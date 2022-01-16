@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ .Language }}">
+  {{ partial "head.html" . }}
+
+  <body>
+    {{ partial "header.html" . }}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">{{ block "main" . }}{{ end }}</div>
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    <!-- -->
+
+    {{ if not .Site.IsServer }}
+    <script>
+      if ("serviceWorker" in navigator) {
+        const PREFETCH = true;
+        const PREFETCH_LINK_RELS = ["index", "next", "prev", "prefetch"];
+
+        function prefetchCache() {
+          if (navigator.serviceWorker.controller) {
+            const links = document.querySelectorAll(
+              PREFETCH_LINK_RELS.map((rel) => "link[rel=" + rel + "]").join(",")
+            );
+
+            if (links.length > 0) {
+              Array.from(links).map((link) => {
+                const url = link.getAttribute("href");
+                const data = { action: "cache", url };
+                navigator.serviceWorker.controller.postMessage(data);
+              });
+            }
+          }
+        }
+
+        navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(() => {
+          console.log("Service Worker Registered");
+        });
+
+        navigator.serviceWorker.ready.then(() => {
+          if (PREFETCH) prefetchCache();
+        });
+      }
+    </script>
+    {{ end }}
+  </body>
+</html>

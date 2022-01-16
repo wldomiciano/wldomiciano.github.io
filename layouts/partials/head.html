@@ -1,0 +1,53 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+
+  <title>{{ .Title }}</title>
+
+  <meta name="description" content='{{ .Param "description" }}' />
+  <meta name="keywords" content='{{ delimit (.Param "keywords") ", " }}' />
+
+  <link rel="stylesheet" href="/assets/main.css" />
+  <link rel="stylesheet" href="/assets/molokai.css" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="{{ .Site.Title }}"
+    href="/index.xml"
+  />
+
+  {{ if (isset .Params "alternate") }}
+  <link
+    rel="alternate"
+    href="{{ .Params.alternate }}"
+    hreflang='{{ cond (eq (default .Site.LanguageCode .Params.language) "en") "pt-br" "en" }}'
+  />
+  {{ end }}
+
+  <style>
+    .video-responsive {
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      position: relative;
+      height: 0;
+    }
+    .video-responsive iframe {
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+  </style>
+
+  {{ partial "google-analytics.html" . }}
+</head>

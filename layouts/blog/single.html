@@ -1,0 +1,62 @@
+{{ define "main" }}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "blogPosting",
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "dateModified": "{{ (default .Date .Lastmod).Format "2006-01-02" }}",
+    "name": "{{ .Title }}",
+    "headline": {{ .Param "description" }},
+    "author": {
+      "@type": "Person",
+      "name": "{{ .Site.Title }}"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ .Site.BaseURL }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ .Site.Title }}"
+      
+    }
+  }
+</script>
+
+
+<article class="post h-entry">
+  <header class="post-header">
+    <h1 class="post-title p-name">{{ .Title }}</h1>
+
+    <div class="post-meta">
+      <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+      {{ if .Site.Author }}
+      • <span><span class="p-author h-card">{{ .Site.Author }}</span></span>
+      {{ end }}</div>
+
+    {{ partial "tags-list.html" . }}
+  </header>
+
+  <div class="post-content e-content">
+    <p>
+      {{ with index .Translations 0 }}
+      <a
+        class="post-info-item"
+        href="{{ .Permalink }}"
+        title="{{ .Language.LanguageName }}"
+        >{{ cond (eq .Lang "en") "Read in" "Leia em" }} {{ .Language.LanguageName }}</a
+      >
+      {{ end }}
+    </p>
+    
+    {{ .Content }}
+  </div>
+
+  {{ if and (.Site.DisqusShortname) (not .Site.IsServer) }}
+  {{ partial "disqus_comments.html" . }}
+  {{ end }}
+</article>
+{{ end }}

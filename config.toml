@@ -1,0 +1,39 @@
+baseURL = "https://wldomiciano.com/"
+defaultContentLanguage = "pt-br"
+title = "Wellington Domiciano"
+author = "Wellington Domiciano"
+disableKinds = ["section", "taxonomyTerm"]
+googleAnalytics = "UA-48568115-1"
+disqusShortname = "wldomiciano"
+
+[params]
+  description = "Blog sobre coisas que tenho aprendido"
+  github_username = "wldomiciano"
+  twitter_username = "wldomiciano"
+
+[languages.en]
+  languageCode = "en"
+  description = 'A simple blog to share what I have learned.'
+  keywords = ['Programming', 'Tutorials']
+  languageName = 'English'
+[languages.pt-br]
+  languageCode = "pt-br"
+  description = 'Um simples blog para compartilhar o que tenho aprendido.'
+  keywords = ['Programação', 'Tutoriais']
+  languageName = 'Português'
+
+[taxonomies]
+  tag = 'tags'
+
+[frontmatter]
+  date = [":filename", ":default"]
+  lastmod = ["lastmod"]
+
+[permalinks]
+  blog = ":slug"
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark.renderer]
+  unsafe = true

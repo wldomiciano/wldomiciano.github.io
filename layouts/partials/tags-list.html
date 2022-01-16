@@ -1,0 +1,5 @@
+<div class="post-tag-list">
+  {{ range (.GetTerms "tags") }}
+  <a class="post-tag-item" href="{{ .Permalink }}">{{ .Title }}</a>
+  {{ end }}
+</div>
