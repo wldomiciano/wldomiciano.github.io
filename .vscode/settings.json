@@ -2,5 +2,11 @@
   "files.exclude": {
     "resources": true,
     ".hugo_build.lock": true
+  },
+
+  "editor.rulers": [120],
+
+  "[html]": {
+    "editor.formatOnSave": false
   }
 }

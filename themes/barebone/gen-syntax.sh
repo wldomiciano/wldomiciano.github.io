@@ -1,0 +1,1 @@
+hugo gen chromastyles --style=$2 > $1/_$2.css
