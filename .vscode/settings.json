@@ -1,8 +1,6 @@
 {
-  "cSpell.language": "pt-BR,en-US",
-  "cSpell.words": [
-    "Daaa",
-    "Dbbb",
-    "lastmod"
-  ]
+  "files.exclude": {
+    "resources": true,
+    ".hugo_build.lock": true
+  }
 }
