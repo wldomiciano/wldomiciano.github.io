@@ -5,6 +5,7 @@ author = "Wellington Domiciano"
 disableKinds = ["section", "taxonomyTerm"]
 googleAnalytics = "UA-48568115-1"
 disqusShortname = "wldomiciano"
+theme = "default"
 
 [params]
   description = "Blog sobre coisas que tenho aprendido"
