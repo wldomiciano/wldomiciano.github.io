@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/wldomiciano
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://wldomiciano.com
+  * I am wldomiciano (https://keybase.io/wldomiciano) on keybase.
+  * I have a public key ASDtxbksQZwI0YAHq0qYy8axno683HxmgtPIHZyVSDHmngo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120edc5b92c419c08d18007ab4a98cbc6b19e8ebcdc7c6682d3c81d9c954831e69e0a",
+      "host": "keybase.io",
+      "kid": "0120edc5b92c419c08d18007ab4a98cbc6b19e8ebcdc7c6682d3c81d9c954831e69e0a",
+      "uid": "201d84d3b866a244b5a91717fb833a19",
+      "username": "wldomiciano"
+    },
+    "merkle_root": {
+      "ctime": 1644169965,
+      "hash": "33ccafce637fcdb1a6223e4601ff35cb095ef85597217a5a7d30b6e7dc6e1e2b5efac1dc853e812553d9975af206e321c8745887e2201a9d7cd87d7e71a740cb",
+      "hash_meta": "ff6dcc9f451ef4d31217ae62e0cda7cab160ca0bd0187faf0f240205070b4d92",
+      "seqno": 21808973
+    },
+    "service": {
+      "entropy": "jdGv3S4dfdQTKyH+S0+eGIkf",
+      "hostname": "wldomiciano.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.9.0"
+  },
+  "ctime": 1644170031,
+  "expire_in": 504576000,
+  "prev": "44fb6f38a0f9bd6297344b4856dce643256bd34d60e25b5552494a68df66cfc2",
+  "seqno": 12,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg7cW5LEGcCNGAB6tKmMvGsZ6OvNx8ZoLTyB2clUgx5p4Kp3BheWxvYWTESpcCDMQgRPtvOKD5vWKXNEtIVtzmQyVr001g4ltVUklKaN9mz8LEIHLiZ1t40k5R/skM6XEXVHq1SuK6wMR+b4rqQnPAAQ/hAgHCo3NpZ8RAsmaGj5y47diBfhLbVL1ou8XkkA4LgYS8L9u6IT+x/0Hl1tX4+4l2A327msqILY07RZ8SyHNJi4oDMgI8NVE5BKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIAdsxG5PwYnOLbR/dcVfr/QHyK4FNQQC2CG5ispHFKNMo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/wldomiciano
+
+==================================================================
