@@ -1,0 +1,135 @@
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=theme-color content="#ffffff">
+<meta name=msapplication-TileColor content="#da532c">
+<title>Como agrupar asserts no JUnit</title>
+<meta name=description content="Sem julgamentos, veja uma forma melhor de agrupar múltiplos asserts em um mesmo teste">
+<meta name=keywords content="Programação,Tutoriais">
+<link rel=stylesheet href=/assets/main.css>
+<link rel=stylesheet href=/assets/molokai.css>
+<link rel=canonical href=https://wldomiciano.com/como-agrupar-asserts-no-junit/>
+<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
+<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
+<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
+</head>
+<body>
+<header class=site-header role=banner>
+<div class=wrapper>
+<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
+</div>
+</header>
+<main class=page-content aria-label=Content>
+<div class=wrapper>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2022-03-16","dateModified":"2022-03-16","name":"Como agrupar asserts no JUnit","headline":"Sem julgamentos, veja uma forma melhor de agrupar múltiplos asserts em um mesmo teste","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
+<article class="post h-entry">
+<header class=post-header>
+<h1 class="post-title p-name">Como agrupar asserts no JUnit</h1>
+<div class=post-meta>
+<time class=dt-published datetime=2022-03-16T00:00:00Z>
+March 16, 2022
+</time>
+</div>
+<div class=post-tag-list>
+<a class=post-tag-item href=https://wldomiciano.com/tags/java/>Java</a>
+</div>
+</header>
+<div class="post-content e-content">
+<p>
+</p>
+<p>Pode haver momentos em que precisamos usar múltiplos asserts em um mesmo teste. Independente se você considera certo ou errado, afinal não estamos aqui para julgar, eu gostaria de apresentar uma forma de lidar melhor com estes asserts agrupando-os através do método <code>assertAll()</code>.</p>
+<p>No código abaixo eu tenho 2 testes, cada um com 2 asserts que falham. No primeiro eu usei asserts individuais enquanto no segundo eu os agrupei.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>org.junit.jupiter.api.Assertions.assertAll</span><span class=o>;</span>
+<span class=kn>import static</span> <span class=nn>org.junit.jupiter.api.Assertions.fail</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>org.junit.jupiter.api.Test</span><span class=o>;</span>
+
+<span class=kd>class</span> <span class=nc>AppTest</span> <span class=o>{</span>
+  <span class=nd>@Test</span>
+  <span class=kt>void</span> <span class=nf>usingIndividualAsserts</span><span class=o>()</span> <span class=o>{</span>
+    <span class=n>fail</span><span class=o>(</span><span class=s>&#34;Test 1, assert 1&#34;</span><span class=o>);</span>
+    <span class=n>fail</span><span class=o>(</span><span class=s>&#34;Test 1, assert 2&#34;</span><span class=o>);</span>
+  <span class=o>}</span>
+
+  <span class=nd>@Test</span>
+  <span class=kt>void</span> <span class=nf>usingGroupedAsserts</span><span class=o>()</span> <span class=o>{</span>
+    <span class=n>assertAll</span><span class=o>(</span>
+      <span class=o>()</span> <span class=o>-&gt;</span> <span class=n>fail</span><span class=o>(</span><span class=s>&#34;Test 2, assert 1&#34;</span><span class=o>),</span>
+      <span class=o>()</span> <span class=o>-&gt;</span> <span class=n>fail</span><span class=o>(</span><span class=s>&#34;Test 2, assert 2&#34;</span><span class=o>)</span>
+    <span class=o>);</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div><p>Meu <code>build.gradle</code> está assim:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-groovy data-lang=groovy><span class=n>plugins</span> <span class=o>{</span>
+  <span class=n>id</span> <span class=s1>&#39;java&#39;</span>
+<span class=o>}</span>
+
+<span class=n>repositories</span> <span class=o>{</span>
+  <span class=n>mavenCentral</span><span class=o>()</span>
+<span class=o>}</span>
+
+<span class=n>dependencies</span> <span class=o>{</span>
+  <span class=n>testImplementation</span> <span class=s1>&#39;org.junit.jupiter:junit-jupiter-engine:5.8.2&#39;</span>
+<span class=o>}</span>
+
+<span class=n>test</span> <span class=o>{</span>
+  <span class=n>useJUnitPlatform</span><span class=o>()</span>
+
+  <span class=n>testLogging</span> <span class=o>{</span>
+    <span class=n>showExceptions</span> <span class=kc>true</span>
+    <span class=n>showCauses</span> <span class=kc>false</span>
+    <span class=n>showStackTraces</span> <span class=kc>false</span>
+    <span class=n>exceptionFormat</span> <span class=s1>&#39;FULL&#39;</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div><p>E esta é a estrutura do meu projeto de teste:</p>
+<pre tabindex=0><code>project
+├── build.gradle
+└── src
+    └── test
+        └── java
+            └── AppTest.java
+</code></pre><p>A princípio ambos os testes rodam da mesma forma, porém, veja a saída no console quando eu executo o comando <code>gradle test</code>:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=l>AppTest &gt; usingIndividualAsserts() FAILED</span><span class=w>
+</span><span class=w>    </span><span class=nt>org.opentest4j.AssertionFailedError</span><span class=p>:</span><span class=w> </span><span class=l>Test 1, assert 1</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=l>AppTest &gt; usingGroupedAsserts() FAILED</span><span class=w>
+</span><span class=w>    </span><span class=nt>org.gradle.internal.exceptions.DefaultMultiCauseException</span><span class=p>:</span><span class=w> </span><span class=l>Multiple Failures (2 failures)</span><span class=w>
+</span><span class=w>        </span><span class=nt>org.opentest4j.AssertionFailedError</span><span class=p>:</span><span class=w> </span><span class=l>Test 2, assert 1</span><span class=w>
+</span><span class=w>        </span><span class=nt>org.opentest4j.AssertionFailedError</span><span class=p>:</span><span class=w> </span><span class=l>Test 2, assert 2</span><span class=w>
+</span></code></pre></div><p>Veja como no primeiro teste apenas a primeira falha é reportada. Na verdade, ele nem chega a executar o segundo assert, pois o teste é interrompido imediatamente.</p>
+<p>Já no segundo teste as 2 falhas são reportadas nos dando a visão completa do que deu errado logo de cara.</p>
+<p>Por isso, se vai usar vários asserts num mesmo teste, não deixe de agrupá-los, beleza?</p>
+</div>
+<div id=disqus_thread></div>
+<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-agrupar-asserts-no-junit/",this.page.identifier="https://wldomiciano.com/como-agrupar-asserts-no-junit/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
+<noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
+</article>
+</div>
+</main>
+<footer class="site-footer h-card">
+<div class=wrapper>
+<div class=footer-col-wrapper>
+<ul class=social-media-list>
+<li>
+<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+<li>
+<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
+<span class=username>wldomiciano</span></a>
+</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
+</body>
+</html>
