@@ -43,7 +43,7 @@ March 16, 2022
 <div class="post-content e-content">
 <p>
 </p>
-<p>Pode haver momentos em que precisamos usar múltiplos asserts em um mesmo teste. Independente se você considera certo ou errado, afinal não estamos aqui para julgar, eu gostaria de apresentar uma forma de lidar melhor com estes asserts agrupando-os através do método <code>assertAll()</code>.</p>
+<p>Pode haver momentos em que precisamos usar múltiplos asserts em um mesmo teste. Independente se você considera certo ou errado, afinal não estamos aqui para julgar, eu gostaria de apresentar uma forma de lidar melhor com estes asserts agrupando-os através do método <a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html#assertAll%28org.junit.jupiter.api.function.Executable...%29 target=_blank rel=noopener><code>assertAll()</code></a>.</p>
 <p>No código abaixo eu tenho 2 testes, cada um com 2 asserts que falham. No primeiro eu usei asserts individuais enquanto no segundo eu os agrupei.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>org.junit.jupiter.api.Assertions.assertAll</span><span class=o>;</span>
 <span class=kn>import static</span> <span class=nn>org.junit.jupiter.api.Assertions.fail</span><span class=o>;</span>
