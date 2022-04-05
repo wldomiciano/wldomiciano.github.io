@@ -1,108 +1,26 @@
-<!doctype html><html lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<meta name=theme-color content="#ffffff">
-<meta name=msapplication-TileColor content="#da532c">
-<title>Como usar o decorator @Attribute em Angular</title>
-<meta name=description content="Aprenda como usar o decorator @Attribute em Angular e sua diferença em relação ao @Input">
-<meta name=keywords content="Programação,Tutoriais">
-<link rel=stylesheet href=/assets/main.css>
-<link rel=stylesheet href=/assets/molokai.css>
-<link rel=canonical href=https://wldomiciano.com/como-usar-decorator-attribute-em-angular/>
-<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
-<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
-<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
-</head>
-<body>
-<header class=site-header role=banner>
-<div class=wrapper>
-<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
-</div>
-</header>
-<main class=page-content aria-label=Content>
-<div class=wrapper>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2021-02-09","dateModified":"2021-02-09","name":"Como usar o decorator @Attribute em Angular","headline":"Aprenda como usar o decorator @Attribute em Angular e sua diferença em relação ao @Input","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
-<article class="post h-entry">
-<header class=post-header>
-<h1 class="post-title p-name">Como usar o decorator @Attribute em Angular</h1>
-<div class=post-meta>
-<time class=dt-published datetime=2021-02-09T00:00:00Z>
-February 9, 2021
-</time>
-</div>
-<div class=post-tag-list>
-<a class=post-tag-item href=https://wldomiciano.com/tags/angular/>Angular</a>
-</div>
-</header>
-<div class="post-content e-content">
-<p>
-<a class=post-info-item href=https://wldomiciano.com/en/how-to-use-attribute-decorator-in-angular/ title=English>Read in English</a>
-</p>
-<p>O <em>decorator</em> <a href=https://angular.io/api/core/Attribute target=_blank rel=noopener><code>@Attribute</code></a> permite passar dados de um componente pai para um componente filho de forma bem parecida com como é feito com o decorator <a href=https://angular.io/api/core/Input target=_blank rel=noopener><code>@Input</code></a>.</p>
-<p>Mas <code>@Attribute</code> é bastante limitado em comparação com <code>@Input</code> já que ele permite apenas <code>string</code> estática.</p>
-<h2 id=como-usar>Como usar</h2>
-<p>Primeiro, você deve decorar um parâmetro do <em>constructor</em>.</p>
-<p>No código abaixo eu usei a palavra-chave <code>readonly</code> apenas por questão de preferência, seu parâmetro não precisa ser &ldquo;read-only&rdquo; e você pode usar qualquer modificador de acesso que quiser.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=kd>@Component</span><span class=p>({</span>
-  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-hello&#34;</span><span class=p>,</span>
-  <span class=nx>template</span><span class=o>:</span> <span class=sb>`{{ parameter }}`</span><span class=p>,</span>
-<span class=p>})</span>
-<span class=kr>export</span> <span class=kr>class</span> <span class=nx>HelloComponent</span> <span class=p>{</span>
-  <span class=kr>constructor</span><span class=p>(</span><span class=kd>@Attribute</span><span class=p>(</span><span class=s2>&#34;message&#34;</span><span class=p>)</span> <span class=kr>readonly</span> <span class=nx>parameter</span>: <span class=kt>string</span><span class=p>)</span> <span class=p>{}</span>
-<span class=p>}</span>
-</code></pre></div><p>Então você pode passar uma simples <code>string</code> estática como se fosse um atributo HTML normal. Note que o nome do atributo deve ser igual ao argumento passado para <code>@Attribute</code>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=kd>@Component</span><span class=p>({</span>
-  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-root&#34;</span><span class=p>,</span>
-  <span class=nx>template</span><span class=o>:</span> <span class=sb>`&lt;app-hello message=&#34;Hello&#34;&gt;&lt;/app-hello&gt;`</span><span class=p>,</span>
-<span class=p>})</span>
-<span class=kr>export</span> <span class=kr>class</span> <span class=nx>AppComponent</span> <span class=p>{}</span>
-</code></pre></div><h2 id=como-não-usar>Como NÃO usar</h2>
-<p>Você não pode usar <em>data binding</em> com <code>@Attribute</code>. O código abaixo mostra 4 formas <strong>ERRADAS</strong> de usar este decorator.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=kd>@Component</span><span class=p>({</span>
-  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-root&#34;</span><span class=p>,</span>
-  <span class=nx>template</span><span class=o>:</span> <span class=sb>`
-</span><span class=sb>    &lt;app-hello [attr.message]=&#34;&#39;Hello&#39;&#34;&gt;&lt;/app-hello&gt;
-</span><span class=sb>    &lt;app-hello [message]=&#34;&#39;Hello&#39;&#34;&gt;&lt;/app-hello&gt;
-</span><span class=sb>    &lt;app-hello message=&#34;{{ hello }}&#34;&gt;&lt;/app-hello&gt;
-</span><span class=sb>    &lt;app-hello [message]=&#34;hello&#34;&gt;&lt;/app-hello&gt;
-</span><span class=sb>  `</span><span class=p>,</span>
-<span class=p>})</span>
-<span class=kr>export</span> <span class=kr>class</span> <span class=nx>AppComponent</span> <span class=p>{</span>
-  <span class=nx>hello</span> <span class=o>=</span> <span class=s2>&#34;World&#34;</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><h2 id=considerações-finais>Considerações finais</h2>
-<p>Embora o decorator <code>@Input</code> seja mais flexível, algumas vezes uma simples <code>string</code> estática pode ser mais adequada. Nestas ocasiões o decorator <code>@Attribute</code> pode ser bastante útil.</p>
-<p>Eu espero que este artigo tenha sido útil.</p>
-</div>
-<div id=disqus_thread></div>
-<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-usar-decorator-attribute-em-angular/",this.page.identifier="https://wldomiciano.com/como-usar-decorator-attribute-em-angular/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</article>
-</div>
-</main>
-<footer class="site-footer h-card">
-<div class=wrapper>
-<div class=footer-col-wrapper>
-<ul class=social-media-list>
-<li>
-<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-<li>
-<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-</ul>
-</div>
-</div>
-</footer>
-<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
-</body>
-</html>
+<!doctype html><html lang=pt-br><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><title>Como usar o decorator @Attribute em Angular</title><meta name=description content="Aprenda como usar o decorator @Attribute em Angular e sua diferença em relação ao @Input"><meta name=keywords content="Programação,Tutoriais"><link rel=stylesheet href=/assets/main.css><link rel=stylesheet href=/assets/molokai.css><link rel=canonical href=https://wldomiciano.com/como-usar-decorator-attribute-em-angular/><link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml><style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style><script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(e,o,i,a,t,n,s){e.GoogleAnalyticsObject=t,e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},e[t].l=1*new Date,n=o.createElement(i),s=o.getElementsByTagName(i)[0],n.async=1,n.src=a,s.parentNode.insertBefore(n,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script></head><body><header class=site-header role=banner><div class=wrapper><a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a></div></header><main class=page-content aria-label=Content><div class=wrapper><script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2021-02-09","dateModified":"2021-02-09","name":"Como usar o decorator @Attribute em Angular","headline":"Aprenda como usar o decorator @Attribute em Angular e sua diferença em relação ao @Input","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script><article class="post h-entry"><header class=post-header><h1 class="post-title p-name">Como usar o decorator @Attribute em Angular</h1><div class=post-meta><time class=dt-published datetime=2021-02-09T00:00:00Z>February 9, 2021</time></div><div class=post-tag-list><a class=post-tag-item href=https://wldomiciano.com/tags/angular/>Angular</a></div></header><div class="post-content e-content"><p><a class=post-info-item href=https://wldomiciano.com/en/how-to-use-attribute-decorator-in-angular/ title=English>Read in English</a></p><p>O <em>decorator</em> <a href=https://angular.io/api/core/Attribute target=_blank rel=noopener><code>@Attribute</code></a> permite passar dados de um componente pai para um componente filho de forma bem parecida com como é feito com o decorator <a href=https://angular.io/api/core/Input target=_blank rel=noopener><code>@Input</code></a>.</p><p>Mas <code>@Attribute</code> é bastante limitado em comparação com <code>@Input</code> já que ele permite apenas <code>string</code> estática.</p><h2 id=como-usar>Como usar</h2><p>Primeiro, você deve decorar um parâmetro do <em>constructor</em>.</p><p>No código abaixo eu usei a palavra-chave <code>readonly</code> apenas por questão de preferência, seu parâmetro não precisa ser &ldquo;read-only&rdquo; e você pode usar qualquer modificador de acesso que quiser.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=line><span class=cl><span class=kd>@Component</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-hello&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>template</span><span class=o>:</span> <span class=sb>`{{ parameter }}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>class</span> <span class=nx>HelloComponent</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>constructor</span><span class=p>(</span><span class=kd>@Attribute</span><span class=p>(</span><span class=s2>&#34;message&#34;</span><span class=p>)</span> <span class=kr>readonly</span> <span class=nx>parameter</span>: <span class=kt>string</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Então você pode passar uma simples <code>string</code> estática como se fosse um atributo HTML normal. Note que o nome do atributo deve ser igual ao argumento passado para <code>@Attribute</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=line><span class=cl><span class=kd>@Component</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-root&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>template</span><span class=o>:</span> <span class=sb>`&lt;app-hello message=&#34;Hello&#34;&gt;&lt;/app-hello&gt;`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>class</span> <span class=nx>AppComponent</span> <span class=p>{}</span>
+</span></span></code></pre></div><h2 id=como-não-usar>Como NÃO usar</h2><p>Você não pode usar <em>data binding</em> com <code>@Attribute</code>. O código abaixo mostra 4 formas <strong>ERRADAS</strong> de usar este decorator.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ts data-lang=ts><span class=line><span class=cl><span class=kd>@Component</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>selector</span><span class=o>:</span> <span class=s2>&#34;app-root&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>template</span><span class=o>:</span> <span class=sb>`
+</span></span></span><span class=line><span class=cl><span class=sb>    &lt;app-hello [attr.message]=&#34;&#39;Hello&#39;&#34;&gt;&lt;/app-hello&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>    &lt;app-hello [message]=&#34;&#39;Hello&#39;&#34;&gt;&lt;/app-hello&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>    &lt;app-hello message=&#34;{{ hello }}&#34;&gt;&lt;/app-hello&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>    &lt;app-hello [message]=&#34;hello&#34;&gt;&lt;/app-hello&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>  `</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>class</span> <span class=nx>AppComponent</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>hello</span> <span class=o>=</span> <span class=s2>&#34;World&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=considerações-finais>Considerações finais</h2><p>Embora o decorator <code>@Input</code> seja mais flexível, algumas vezes uma simples <code>string</code> estática pode ser mais adequada. Nestas ocasiões o decorator <code>@Attribute</code> pode ser bastante útil.</p><p>Eu espero que este artigo tenha sido útil.</p></div><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-usar-decorator-attribute-em-angular/",this.page.identifier="https://wldomiciano.com/como-usar-decorator-attribute-em-angular/"};(function(){var e=document,t=e.createElement("script");t.src="https://wldomiciano.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></article></div></main><footer class="site-footer h-card"><div class=wrapper><div class=footer-col-wrapper><ul class=social-media-list><li><a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg><span class=username>wldomiciano</span></a></li><li><a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg><span class=username>wldomiciano</span></a></li></ul></div></div></footer><script>if("serviceWorker"in navigator){const e=!0,t=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const e=document.querySelectorAll(t.map(e=>"link[rel="+e+"]").join(","));e.length>0&&Array.from(e).map(e=>{const t=e.getAttribute("href"),n={action:"cache",url:t};navigator.serviceWorker.controller.postMessage(n)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{e&&prefetchCache()})}</script></body></html>

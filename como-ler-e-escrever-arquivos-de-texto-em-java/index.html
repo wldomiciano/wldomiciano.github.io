@@ -1,203 +1,102 @@
-<!doctype html><html lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<meta name=theme-color content="#ffffff">
-<meta name=msapplication-TileColor content="#da532c">
-<title>Como ler e escrever arquivos de texto com Java</title>
-<meta name=description content="Aprenda a ler e escrever arquivos de texto com Java">
-<meta name=keywords content="Programação,Tutoriais">
-<link rel=stylesheet href=/assets/main.css>
-<link rel=stylesheet href=/assets/molokai.css>
-<link rel=canonical href=https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/>
-<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
-<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
-<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
-</head>
-<body>
-<header class=site-header role=banner>
-<div class=wrapper>
-<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
-</div>
-</header>
-<main class=page-content aria-label=Content>
-<div class=wrapper>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2021-06-24","dateModified":"2021-06-24","name":"Como ler e escrever arquivos de texto com Java","headline":"Aprenda a ler e escrever arquivos de texto com Java","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
-<article class="post h-entry">
-<header class=post-header>
-<h1 class="post-title p-name">Como ler e escrever arquivos de texto com Java</h1>
-<div class=post-meta>
-<time class=dt-published datetime=2021-06-24T00:00:00Z>
-June 24, 2021
-</time>
-</div>
-<div class=post-tag-list>
-<a class=post-tag-item href=https://wldomiciano.com/tags/java/>Java</a>
-</div>
-</header>
-<div class="post-content e-content">
-<p>
-</p>
-<p>Neste artigo eu apresento alguns casos de usos simples de leitura e escrita de arquivos de texto com Java.</p>
-<h2 id=leitura>Leitura</h2>
-<p>O código abaixo mostra como retornar todo o conteúdo de um arquivo de texto como uma <code>String</code>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
-
-<span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
-
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ReadingAllContent</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>try</span> <span class=o>{</span>
-      <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-      <span class=kt>byte</span><span class=o>[]</span> <span class=n>bytes</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllBytes</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
-      <span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=n>bytes</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
-      <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>content</span><span class=o>);</span>
-    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
-      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
-    <span class=o>}</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p>Com Java 11 ou mais recente o código fica mais simples usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readString%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#readString</code></a>:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Path</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-<span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
-</code></pre></div><p>Também é possível retornar todas as linhas do arquivo como uma lista de <code>String</code> usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readAllLines%28java.nio.file.Path%29 target=_blank rel=noopener><code>Files#readAllLines</code></a>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-<span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>lines</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllLines</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
-<span class=n>lines</span><span class=o>.</span><span class=na>forEach</span><span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>::</span><span class=n>println</span><span class=o>);</span>
-</code></pre></div><p>Os métodos acima carregam todo o conteúdo do arquivo na memória de uma só vez, por isso só devem ser usados quando o arquivo não for tão grande.</p>
-<p>Para ler arquivos maiores, linha a linha, podemos usar o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#lines%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#lines</code></a> que retorna uma <code>Stream</code> que lê as linhas conforme é consumida.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
-
-<span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.util.stream.Stream</span><span class=o>;</span>
-
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ReadingAsStream</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-    <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-
-    <span class=k>try</span> <span class=o>(</span><span class=n>Stream</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>stream</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>lines</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>))</span> <span class=o>{</span>
-      <span class=n>stream</span><span class=o>.</span><span class=na>forEach</span><span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>::</span><span class=n>println</span><span class=o>);</span>
-    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
-      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
-    <span class=o>}</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p>A <code>Stream</code> retornada precisa ser fechada quando não for mais útil, por isso, no exemplo eu utilizei o <a href=https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html target=_blank rel=noopener><em>try-with-resource</em></a> que garante seu fechamento.</p>
-<h2 id=escrita>Escrita</h2>
-<p>O código abaixo mostra como escrever uma <code>String</code> em um arquivo.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
-
-<span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
-
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>WritingString</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-    <span class=k>try</span> <span class=o>{</span>
-      <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-      <span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=s>&#34;abc&#34;</span><span class=o>;</span>
-      <span class=kt>byte</span><span class=o>[]</span> <span class=n>bytes</span> <span class=o>=</span> <span class=n>content</span><span class=o>.</span><span class=na>getBytes</span><span class=o>(</span><span class=n>UTF_16</span><span class=o>);</span>
-      <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>bytes</span><span class=o>);</span>
-    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
-      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
-    <span class=o>}</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p>Com Java 11 ou mais recente o código fica mais simples usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#writeString%28java.nio.file.Path,java.lang.CharSequence,java.nio.charset.Charset,java.nio.file.OpenOption...%29 target=_blank rel=noopener><code>Files#writeString</code></a>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Path</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-<span class=n>Files</span><span class=o>.</span><span class=na>writeString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
-</code></pre></div><p>O método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#write%28java.nio.file.Path,java.lang.Iterable,java.nio.charset.Charset,java.nio.file.OpenOption...%29 target=_blank rel=noopener><code>Files#write</code></a> também aceita uma lista de <code>String</code> como argumento.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-<span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>lines</span> <span class=o>=</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=s>&#34;a&#34;</span><span class=o>,</span> <span class=s>&#34;b&#34;</span><span class=o>,</span> <span class=s>&#34;c&#34;</span><span class=o>);</span>
-<span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>lines</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
-</code></pre></div><p>Neste caso, cada <code>String</code> da lista será escrita como uma nova linha no arquivo.</p>
-<h2 id=observação-1-escolhendo-o-charset>Observação 1: Escolhendo o charset</h2>
-<p>Nos exemplos acima eu passei o <code>Charset</code> <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/charset/StandardCharsets.html#UTF_16 target=_blank rel=noopener>UTF-16</a> explicitamente apenas para mostrar que é possível, pois nem sempre é necessário.</p>
-<p>O método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readString%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#readString</code></a>, por exemplo, poderia ser invocado assim:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-<span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
-</code></pre></div><p>Neste caso o charset usado por padrão será o UTF-8 e o mesmo vale para os métodos mostrados abaixo:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
-
-<span class=n>String</span> <span class=n>a</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
-
-<span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>b</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllLines</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
-
-<span class=n>Stream</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>c</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>lines</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
-
-<span class=n>Files</span><span class=o>.</span><span class=na>writeString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>);</span>
-
-<span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=s>&#34;a&#34;</span><span class=o>,</span> <span class=s>&#34;b&#34;</span><span class=o>,</span> <span class=s>&#34;c&#34;</span><span class=o>));</span>
-</code></pre></div><p>Já no método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html#getBytes%28%29 target=_blank rel=noopener><code>String#getBytes</code></a>, se o charset não for passado explicitamente, será usado o charset padrão da sua plataforma. Para obter o charset padrão, você pode usar o método abaixo:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Charset</span> <span class=n>charset</span> <span class=o>=</span> <span class=n>Charset</span><span class=o>.</span><span class=na>defaultCharset</span><span class=o>();</span>
-</code></pre></div><p>Por fim, a classe <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/charset/StandardCharsets.html target=_blank rel=noopener><code>StandardCharsets</code></a> possui constantes apenas para os charsets que são requeridos por qualquer implementação da plataforma Java. Se você precisar de um charset não definido nesta classe, é possível obter da seguinte forma:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Charset</span> <span class=n>charset</span> <span class=o>=</span> <span class=n>Charset</span><span class=o>.</span><span class=na>forName</span><span class=o>(</span><span class=s>&#34;UTF-32&#34;</span><span class=o>);</span>
-</code></pre></div><p>Se o charset desejado for suportado pela JVM, uma instância de <code>Charset</code> será retornada, caso contrário uma exceção será lançada.</p>
-<h2 id=observação-2-outras-opções>Observação 2: Outras opções</h2>
-<p>Os métodos de escrita <code>Files#writeString</code> e <code>Files#write</code> também aceitam opções extras.</p>
-<p>Por padrão eles criarão um novo arquivo caso não exista ou sobrescreverão o conteúdo de um arquivo existente, mas é possível mudar este comportamento.</p>
-<p>Considere o código abaixo:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.APPEND</span><span class=o>;</span>
-<span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.CREATE</span><span class=o>;</span>
-<span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.CREATE_NEW</span><span class=o>;</span>
-
-<span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
-
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>WritingWithOptions</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>IOException</span> <span class=o>{</span>
-    <span class=kt>byte</span><span class=o>[]</span> <span class=n>content</span> <span class=o>=</span> <span class=s>&#34;abc&#34;</span><span class=o>.</span><span class=na>getBytes</span><span class=o>();</span>
-
-    <span class=cm>/* 1 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;a.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>APPEND</span><span class=o>);</span>
-    <span class=cm>/* 2 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;b.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>CREATE</span><span class=o>,</span> <span class=n>APPEND</span><span class=o>);</span>
-    <span class=cm>/* 3 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;c.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>CREATE_NEW</span><span class=o>);</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></div><p>O <strong>exemplo 1</strong> acrescentará <code>content</code> à um arquivo existente e lançará uma exceção caso o arquivo não exista.</p>
-<p>O <strong>exemplo 2</strong> é parecido com o primeiro, mas criará um novo arquivo caso não exista ao invés de lançar uma exceção.</p>
-<p>Já no <strong>exemplo 3</strong> ele sempre tentará criar um novo arquivo e lançará uma exceção se o arquivo já existir.</p>
-<p>Há outras opções disponíveis na classe <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/StandardOpenOption.html target=_blank rel=noopener><code>StandardOpenOption</code></a>, consulte a documentação para saber mais.</p>
-<h2 id=conclusão>Conclusão</h2>
-<p>Há outras formas de ler e escrever arquivos em Java e compreender os métodos acima é um bom ponto de partida antes de partir para casos mais complexos.</p>
-<p>Se encontrar algum erro ou tiver alguma informação adicional, não deixe de usar os comentários.</p>
-</div>
-<div id=disqus_thread></div>
-<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/",this.page.identifier="https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</article>
-</div>
-</main>
-<footer class="site-footer h-card">
-<div class=wrapper>
-<div class=footer-col-wrapper>
-<ul class=social-media-list>
-<li>
-<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-<li>
-<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-</ul>
-</div>
-</div>
-</footer>
-<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
-</body>
-</html>
+<!doctype html><html lang=pt-br><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><title>Como ler e escrever arquivos de texto com Java</title><meta name=description content="Aprenda a ler e escrever arquivos de texto com Java"><meta name=keywords content="Programação,Tutoriais"><link rel=stylesheet href=/assets/main.css><link rel=stylesheet href=/assets/molokai.css><link rel=canonical href=https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/><link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml><style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style><script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(e,o,i,a,t,n,s){e.GoogleAnalyticsObject=t,e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},e[t].l=1*new Date,n=o.createElement(i),s=o.getElementsByTagName(i)[0],n.async=1,n.src=a,s.parentNode.insertBefore(n,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script></head><body><header class=site-header role=banner><div class=wrapper><a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a></div></header><main class=page-content aria-label=Content><div class=wrapper><script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2021-06-24","dateModified":"2021-06-24","name":"Como ler e escrever arquivos de texto com Java","headline":"Aprenda a ler e escrever arquivos de texto com Java","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script><article class="post h-entry"><header class=post-header><h1 class="post-title p-name">Como ler e escrever arquivos de texto com Java</h1><div class=post-meta><time class=dt-published datetime=2021-06-24T00:00:00Z>June 24, 2021</time></div><div class=post-tag-list><a class=post-tag-item href=https://wldomiciano.com/tags/java/>Java</a></div></header><div class="post-content e-content"><p></p><p>Neste artigo eu apresento alguns casos de usos simples de leitura e escrita de arquivos de texto com Java.</p><h2 id=leitura>Leitura</h2><p>O código abaixo mostra como retornar todo o conteúdo de um arquivo de texto como uma <code>String</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>ReadingAllContent</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>      <span class=kt>byte</span><span class=o>[]</span> <span class=n>bytes</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllBytes</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=n>bytes</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>content</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>Com Java 11 ou mais recente o código fica mais simples usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readString%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#readString</code></a>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Path</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
+</span></span></code></pre></div><p>Também é possível retornar todas as linhas do arquivo como uma lista de <code>String</code> usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readAllLines%28java.nio.file.Path%29 target=_blank rel=noopener><code>Files#readAllLines</code></a>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>lines</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllLines</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>lines</span><span class=o>.</span><span class=na>forEach</span><span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>::</span><span class=n>println</span><span class=o>);</span>
+</span></span></code></pre></div><p>Os métodos acima carregam todo o conteúdo do arquivo na memória de uma só vez, por isso só devem ser usados quando o arquivo não for tão grande.</p><p>Para ler arquivos maiores, linha a linha, podemos usar o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#lines%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#lines</code></a> que retorna uma <code>Stream</code> que lê as linhas conforme é consumida.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.util.stream.Stream</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>ReadingAsStream</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>try</span> <span class=o>(</span><span class=n>Stream</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>stream</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>lines</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>stream</span><span class=o>.</span><span class=na>forEach</span><span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>::</span><span class=n>println</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>A <code>Stream</code> retornada precisa ser fechada quando não for mais útil, por isso, no exemplo eu utilizei o <a href=https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html target=_blank rel=noopener><em>try-with-resource</em></a> que garante seu fechamento.</p><h2 id=escrita>Escrita</h2><p>O código abaixo mostra como escrever uma <code>String</code> em um arquivo.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.charset.StandardCharsets.UTF_16</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>WritingString</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=s>&#34;abc&#34;</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>      <span class=kt>byte</span><span class=o>[]</span> <span class=n>bytes</span> <span class=o>=</span> <span class=n>content</span><span class=o>.</span><span class=na>getBytes</span><span class=o>(</span><span class=n>UTF_16</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>bytes</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>Com Java 11 ou mais recente o código fica mais simples usando o método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#writeString%28java.nio.file.Path,java.lang.CharSequence,java.nio.charset.Charset,java.nio.file.OpenOption...%29 target=_blank rel=noopener><code>Files#writeString</code></a>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Path</span><span class=o>.</span><span class=na>of</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>Files</span><span class=o>.</span><span class=na>writeString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
+</span></span></code></pre></div><p>O método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#write%28java.nio.file.Path,java.lang.Iterable,java.nio.charset.Charset,java.nio.file.OpenOption...%29 target=_blank rel=noopener><code>Files#write</code></a> também aceita uma lista de <code>String</code> como argumento.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>lines</span> <span class=o>=</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=s>&#34;a&#34;</span><span class=o>,</span> <span class=s>&#34;b&#34;</span><span class=o>,</span> <span class=s>&#34;c&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>lines</span><span class=o>,</span> <span class=n>UTF_16</span><span class=o>);</span>
+</span></span></code></pre></div><p>Neste caso, cada <code>String</code> da lista será escrita como uma nova linha no arquivo.</p><h2 id=observação-1-escolhendo-o-charset>Observação 1: Escolhendo o charset</h2><p>Nos exemplos acima eu passei o <code>Charset</code> <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/charset/StandardCharsets.html#UTF_16 target=_blank rel=noopener>UTF-16</a> explicitamente apenas para mostrar que é possível, pois nem sempre é necessário.</p><p>O método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/Files.html#readString%28java.nio.file.Path,java.nio.charset.Charset%29 target=_blank rel=noopener><code>Files#readString</code></a>, por exemplo, poderia ser invocado assim:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl><span class=n>String</span> <span class=n>content</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
+</span></span></code></pre></div><p>Neste caso o charset usado por padrão será o UTF-8 e o mesmo vale para os métodos mostrados abaixo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Path</span> <span class=n>path</span> <span class=o>=</span> <span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;text.txt&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>String</span> <span class=n>a</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readString</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>b</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>readAllLines</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Stream</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>c</span> <span class=o>=</span> <span class=n>Files</span><span class=o>.</span><span class=na>lines</span><span class=o>(</span><span class=n>path</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Files</span><span class=o>.</span><span class=na>writeString</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=s>&#34;abc&#34;</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>path</span><span class=o>,</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=s>&#34;a&#34;</span><span class=o>,</span> <span class=s>&#34;b&#34;</span><span class=o>,</span> <span class=s>&#34;c&#34;</span><span class=o>));</span>
+</span></span></code></pre></div><p>Já no método <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html#getBytes%28%29 target=_blank rel=noopener><code>String#getBytes</code></a>, se o charset não for passado explicitamente, será usado o charset padrão da sua plataforma. Para obter o charset padrão, você pode usar o método abaixo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Charset</span> <span class=n>charset</span> <span class=o>=</span> <span class=n>Charset</span><span class=o>.</span><span class=na>defaultCharset</span><span class=o>();</span>
+</span></span></code></pre></div><p>Por fim, a classe <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/charset/StandardCharsets.html target=_blank rel=noopener><code>StandardCharsets</code></a> possui constantes apenas para os charsets que são requeridos por qualquer implementação da plataforma Java. Se você precisar de um charset não definido nesta classe, é possível obter da seguinte forma:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=n>Charset</span> <span class=n>charset</span> <span class=o>=</span> <span class=n>Charset</span><span class=o>.</span><span class=na>forName</span><span class=o>(</span><span class=s>&#34;UTF-32&#34;</span><span class=o>);</span>
+</span></span></code></pre></div><p>Se o charset desejado for suportado pela JVM, uma instância de <code>Charset</code> será retornada, caso contrário uma exceção será lançada.</p><h2 id=observação-2-outras-opções>Observação 2: Outras opções</h2><p>Os métodos de escrita <code>Files#writeString</code> e <code>Files#write</code> também aceitam opções extras.</p><p>Por padrão eles criarão um novo arquivo caso não exista ou sobrescreverão o conteúdo de um arquivo existente, mas é possível mudar este comportamento.</p><p>Considere o código abaixo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.APPEND</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.CREATE</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import static</span> <span class=nn>java.nio.file.StandardOpenOption.CREATE_NEW</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Files</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Path</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>java.nio.file.Paths</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>public</span> <span class=kd>class</span> <span class=nc>WritingWithOptions</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>...</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>IOException</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>byte</span><span class=o>[]</span> <span class=n>content</span> <span class=o>=</span> <span class=s>&#34;abc&#34;</span><span class=o>.</span><span class=na>getBytes</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=cm>/* 1 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;a.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>APPEND</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=cm>/* 2 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;b.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>CREATE</span><span class=o>,</span> <span class=n>APPEND</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>    <span class=cm>/* 3 */</span> <span class=n>Files</span><span class=o>.</span><span class=na>write</span><span class=o>(</span><span class=n>Paths</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;c.txt&#34;</span><span class=o>),</span> <span class=n>content</span><span class=o>,</span> <span class=n>CREATE_NEW</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>O <strong>exemplo 1</strong> acrescentará <code>content</code> à um arquivo existente e lançará uma exceção caso o arquivo não exista.</p><p>O <strong>exemplo 2</strong> é parecido com o primeiro, mas criará um novo arquivo caso não exista ao invés de lançar uma exceção.</p><p>Já no <strong>exemplo 3</strong> ele sempre tentará criar um novo arquivo e lançará uma exceção se o arquivo já existir.</p><p>Há outras opções disponíveis na classe <a href=https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/nio/file/StandardOpenOption.html target=_blank rel=noopener><code>StandardOpenOption</code></a>, consulte a documentação para saber mais.</p><h2 id=conclusão>Conclusão</h2><p>Há outras formas de ler e escrever arquivos em Java e compreender os métodos acima é um bom ponto de partida antes de partir para casos mais complexos.</p><p>Se encontrar algum erro ou tiver alguma informação adicional, não deixe de usar os comentários.</p></div><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/",this.page.identifier="https://wldomiciano.com/como-ler-e-escrever-arquivos-de-texto-em-java/"};(function(){var e=document,t=e.createElement("script");t.src="https://wldomiciano.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></article></div></main><footer class="site-footer h-card"><div class=wrapper><div class=footer-col-wrapper><ul class=social-media-list><li><a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg><span class=username>wldomiciano</span></a></li><li><a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg><span class=username>wldomiciano</span></a></li></ul></div></div></footer><script>if("serviceWorker"in navigator){const e=!0,t=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const e=document.querySelectorAll(t.map(e=>"link[rel="+e+"]").join(","));e.length>0&&Array.from(e).map(e=>{const t=e.getAttribute("href"),n={action:"cache",url:t};navigator.serviceWorker.controller.postMessage(n)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{e&&prefetchCache()})}</script></body></html>

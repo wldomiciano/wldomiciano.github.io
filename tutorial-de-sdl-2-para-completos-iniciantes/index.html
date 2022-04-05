@@ -1,184 +1,64 @@
-<!doctype html><html lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<meta name=theme-color content="#ffffff">
-<meta name=msapplication-TileColor content="#da532c">
-<title>SDL 2 - Apenas um tutorial básico para completos iniciantes</title>
-<meta name=description content="Veja como começar a usar a biblioteca SDL 2">
-<meta name=keywords content="Programação,Tutoriais">
-<link rel=stylesheet href=/assets/main.css>
-<link rel=stylesheet href=/assets/molokai.css>
-<link rel=canonical href=https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/>
-<link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml>
-<style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style>
-<script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script>
-</head>
-<body>
-<header class=site-header role=banner>
-<div class=wrapper>
-<a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a>
-</div>
-</header>
-<main class=page-content aria-label=Content>
-<div class=wrapper>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-09-08","dateModified":"2018-09-08","name":"SDL 2 - Apenas um tutorial básico para completos iniciantes","headline":"Veja como começar a usar a biblioteca SDL 2","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script>
-<article class="post h-entry">
-<header class=post-header>
-<h1 class="post-title p-name">SDL 2 - Apenas um tutorial básico para completos iniciantes</h1>
-<div class=post-meta>
-<time class=dt-published datetime=2018-09-08T00:00:00Z>
-September 8, 2018
-</time>
-</div>
-<div class=post-tag-list>
-<a class=post-tag-item href=https://wldomiciano.com/tags/sdl-2/>SDL 2</a>
-</div>
-</header>
-<div class="post-content e-content">
-<p>
-</p>
-<p>Olá.</p>
-<p>Neste artigo quero lhe ajudar a dar seus primeiros passos com <a href=https://www.libsdl.org/ target=_blank rel=noopener>SDL 2</a>, uma biblioteca multimídia escrita em C, bastante usada no desenvolvimento de jogos.</p>
-<p>Começaremos instalando os componentes necessários para o desenvolvimento no Ubuntu e em seguida apresentarei o código que servirá de base para as explicações.</p>
-<h2 id=instalando-as-ferramentas-no-ubuntu>Instalando as ferramentas no Ubuntu</h2>
-<p>Abra o terminal e use o comando abaixo para instalar o compilador e a biblioteca.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sudo apt install gcc libsdl2-dev
-</code></pre></div><p>Para compilar nosso exemplo, basta usar o comando abaixo.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>gcc tutorial.c -o tutorial <span class=sb>`</span>sdl2-config --cflags --libs<span class=sb>`</span>
-</code></pre></div><p>E para rodar o programa, basta executar o seguinte comando:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>./tutorial
-</code></pre></div><p>Como usaremos o terminal para compilar nosso programa, você é livre para usar o editor de texto que quiser.</p>
-<h2 id=o-código-base>O código base</h2>
-<p>Considere o código abaixo e não se preocupe se sentir-se perdido, pois explicarei parte por parte.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=cp>#include</span> <span class=cpf>&lt;SDL.h&gt;</span><span class=cp>
-</span><span class=cp></span>
-<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-   <span class=n>SDL_Window</span><span class=o>*</span> <span class=n>window</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>
-
-    <span class=cm>/*
-</span><span class=cm>     * Inicialização e criação da janela
-</span><span class=cm>     */</span>
-    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>)</span>
-        <span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
-    <span class=k>else</span>
-        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na inicialização: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
-
-    <span class=cm>/*
-</span><span class=cm>     * Main loop
-</span><span class=cm>     */</span>
-    <span class=k>if</span> <span class=p>(</span> <span class=n>window</span> <span class=o>!=</span> <span class=nb>NULL</span> <span class=p>)</span>
-        <span class=k>while</span><span class=p>(</span> <span class=o>!</span><span class=n>SDL_QuitRequested</span><span class=p>()</span> <span class=p>)</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}</span>
-    <span class=k>else</span>
-        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na criação da janela: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
-
-    <span class=cm>/*
-</span><span class=cm>     * Finialização
-</span><span class=cm>     */</span>
-    <span class=n>SDL_DestroyWindow</span><span class=p>(</span><span class=n>window</span><span class=p>);</span>
-    <span class=n>SDL_Quit</span><span class=p>();</span>
-    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><h2 id=o-cabeçalho-e-a-função-main>O cabeçalho e a função main</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=cp>#include</span> <span class=cpf>&lt;SDL.h&gt;</span><span class=cp>
-</span><span class=cp></span>
-<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-   <span class=n>SDL_Window</span><span class=o>*</span> <span class=n>window</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>
-</code></pre></div><p>Na primeira linha adicionamos o cabeçalho que nos dá acesso as diversas funções da biblioteca.</p>
-<p>Em seguida temos a função <code>main()</code> que dará inicio ao nosso programa.</p>
-<p>A variável <code>window</code> representa a janela que nos fornecerá o contexto para desenharmos formas e imagens, e receberá eventos vindos de fontes diversas como teclado e mouse.</p>
-<h2 id=a-inicialização-e-criação-da-janela>A inicialização e criação da janela</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c>    <span class=cm>/*
-</span><span class=cm>     * Inicialização
-</span><span class=cm>     */</span>
-    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>)</span>
-        <span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
-    <span class=k>else</span>
-        <span class=nf>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na inicialização: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
-</code></pre></div><p>A SDL é dividida em subsistemas e a função <a href=https://wiki.libsdl.org/SDL_Init target=_blank rel=noopener><code>SDL_Init()</code></a> serve para inicializa-los. Ela retorna 0 em caso de sucesso ou um valor negativo em caso de falha.</p>
-<p>A macro <code>SDL_INIT_VIDEO</code> é uma flag que representa o subsistema de vídeo, necessário para a criação de janelas.</p>
-<p>Há outros seis subsistemas que podem ser inicializados com esta função. Saiba mais na <a href=https://wiki.libsdl.org/SDL_Init#Remarks target=_blank rel=noopener>documentação oficial</a>.</p>
-<p>É possível inicializar todos os subsistemas de uma só vez, assim:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_EVERYTHING</span><span class=p>)</span>
-</code></pre></div><p>E mais de um ao mesmo tempo usando o operador lógico <strong>OU</strong>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span> <span class=o>|</span> <span class=n>SDL_INIT_AUDIO</span> <span class=o>|</span> <span class=n>SDL_INIT_TIMER</span><span class=p>)</span>
-</code></pre></div><p>Não há problema em chamar esta função mais de uma vez no mesmo programa.</p>
-<p>Esta prática pode ser útil caso deseje habilitar ou desabilitar recursos de acordo com as configurações feitas pelo usuário.</p>
-<p>Um exemplo é o subsistema de áudio, que pode ser desabilitado caso o usuário queira jogar sem nenhum som.</p>
-<p>Para desabilitar subsistemas específicos, usamos a função <a href=https://wiki.libsdl.org/SDL_QuitSubSystem target=_blank rel=noopener><code>SDL_QuitSubSystem()</code></a>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>SDL_QuitSubSystem</span><span class=p>(</span><span class=n>SDL_INIT_AUDIO</span><span class=p>);</span>
-</code></pre></div><p>Mesmo que você use esta função para encerrar todos os subsistemas, ainda é necessário chamar a <a href=https://wiki.libsdl.org/SDL_Quit target=_blank rel=noopener><code>SDL_Quit()</code></a> ao final do programa.</p>
-<p>Há também a função <a href=https://wiki.libsdl.org/SDL_InitSubSystem target=_blank rel=noopener><code>SDL_InitSubSystem()</code></a>, ela é idêntica à <code>SDL_Init()</code> (na verdade <code>SDL_Init()</code> invoca <code>SDL_InitSubSystem()</code> internamente).</p>
-<h3 id=logging-e-erros>Logging e erros</h3>
-<p>A função <a href=https://wiki.libsdl.org/SDL_Log target=_blank rel=noopener><code>SDL_Log()</code></a> imprime no console uma mensagem, ela funciona de forma semelhante à função <code>printf()</code> da biblioteca padrão.</p>
-<p>É importante organizarmos o código desta maneira, com mensagens, para sabermos exatamente qual erro ocorreu, caso ele ocorra.</p>
-<p>E se ocorrer, a função <a href=https://wiki.libsdl.org/SDL_GetError target=_blank rel=noopener><code>SDL_GetError()</code></a> retornará uma string contendo uma descrição mais especifica.</p>
-<h3 id=a-criação-da-janela>A criação da janela</h3>
-<p>Se tudo sair como planejado, a função <a href=https://wiki.libsdl.org/SDL_CreateWindow target=_blank rel=noopener><code>SDL_CreateWindow()</code></a> retornará um ponteiro para a janela criada ou <code>NULL</code> em caso de falha. Ela aceita 6 argumentos.</p>
-<p>O <strong>primeiro</strong> é o texto que aparecerá na barra de titulo.</p>
-<p>O <strong>segundo</strong> e o <strong>terceiro</strong> são, respectivamente, as posições x e y com base no canto superior esquerdo da tela.</p>
-<p>Para criar uma janela posicionada bem no centro podemos usar a macro <code>SDL_WINDOWPOS_CENTERED</code> da seguinte forma:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span>
-                          <span class=n>SDL_WINDOWPOS_CENTERED</span><span class=p>,</span>
-                          <span class=n>SDL_WINDOWPOS_CENTERED</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
-</code></pre></div><p>O <strong>quarto</strong> e o <strong>quinto</strong> representam, respectivamente, a largura e a altura.</p>
-<p>E o <strong>sexto</strong> argumento pode ser uma ou mais flags que representam detalhes adicionais.</p>
-<p>Por exemplo, com a flag <code>SDL_WINDOW_FULLSCREEN</code> a janela será criada já em tela cheia e com a flag <code>SDL_WINDOW_OPENGL</code> ela estará pronta para ser usada em conjunto com a <a href=https://pt.wikipedia.org/wiki/OpenGL target=_blank rel=noopener>OpenGL</a>.</p>
-<p>Para saber mais sobre as outras flags disponíveis, visite a <a href=https://wiki.libsdl.org/SDL_CreateWindow#Remarks target=_blank rel=noopener>documentação oficial</a>.</p>
-<h2 id=o-main-loop>O Main Loop</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c>    <span class=cm>/*
-</span><span class=cm>     * Main loop
-</span><span class=cm>     */</span>
-    <span class=k>if</span> <span class=p>(</span> <span class=n>window</span> <span class=o>!=</span> <span class=nb>NULL</span> <span class=p>)</span>
-        <span class=k>while</span><span class=p>(</span> <span class=o>!</span><span class=n>SDL_QuitRequested</span><span class=p>()</span> <span class=p>)</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}</span>
-    <span class=k>else</span>
-        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na criação da janela: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
-</code></pre></div><p>Se a janela foi criada com sucesso, o <a href=https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_de_jogos_eletr%C3%B4nicos#Loop_principal target=_blank rel=noopener>Main Loop</a> é iniciado.</p>
-<p>O Main Loop é onde a mágica acontece, mas, por enquanto, ele não faz grande coisa, apenas continua executando enquanto o usuário não requisitar o encerramento do programa.</p>
-<p>A macro <a href=https://wiki.libsdl.org/SDL_QuitRequested target=_blank rel=noopener><code>SDL_QuitRequested()</code></a> verifica se o usuário fez essa requisição.</p>
-<p>Há várias formas do encerramento ser requisitado e uma delas é clicar no botão &ldquo;fechar&rdquo; (no &ldquo;X&rdquo;) da janela.</p>
-<h2 id=a-finalização>A finalização</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c>    <span class=cm>/*
-</span><span class=cm>     * Finialização
-</span><span class=cm>     */</span>
-    <span class=n>SDL_DestroyWindow</span><span class=p>(</span><span class=n>window</span><span class=p>);</span>
-    <span class=n>SDL_Quit</span><span class=p>();</span>
-    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><p>Por fim, devemos chamar a função <a href=https://wiki.libsdl.org/SDL_DestroyWindow target=_blank rel=noopener><code>SDL_DestroyWindow()</code></a> para destruir a janela e <code>SDL_Quit()</code> para finalizar corretamente a biblioteca antes de terminar o programa.</p>
-<h2 id=considerações-finais>Considerações finais</h2>
-<p>Apesar de simples, sei que pra muita gente pode ser difícil dar os primeiros passos, por isso espero que este tutorial lhe seja útil de alguma forma.</p>
-<p>Não deixe de olhar com mais atenção a <a href=https://wiki.libsdl.org/ target=_blank rel=noopener>documentação oficial</a>.</p>
-<p>Até a próxima!</p>
-</div>
-<div id=disqus_thread></div>
-<script>var disqus_config=function(){this.page.url="https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/",this.page.identifier="https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/"};(function(){var a=document,b=a.createElement("script");b.src="https://wldomiciano.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()</script>
-<noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript>
-</article>
-</div>
-</main>
-<footer class="site-footer h-card">
-<div class=wrapper>
-<div class=footer-col-wrapper>
-<ul class=social-media-list>
-<li>
-<a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-<li>
-<a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg>
-<span class=username>wldomiciano</span></a>
-</li>
-</ul>
-</div>
-</div>
-</footer>
-<script>if("serviceWorker"in navigator){const a=!0,b=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const a=document.querySelectorAll(b.map(a=>"link[rel="+a+"]").join(","));a.length>0&&Array.from(a).map(a=>{const b=a.getAttribute("href"),c={action:"cache",url:b};navigator.serviceWorker.controller.postMessage(c)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{a&&prefetchCache()})}</script>
-</body>
-</html>
+<!doctype html><html lang=pt-br><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><title>SDL 2 - Apenas um tutorial básico para completos iniciantes</title><meta name=description content="Veja como começar a usar a biblioteca SDL 2"><meta name=keywords content="Programação,Tutoriais"><link rel=stylesheet href=/assets/main.css><link rel=stylesheet href=/assets/molokai.css><link rel=canonical href=https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/><link rel=alternate type=application/rss+xml title="Wellington Domiciano" href=/index.xml><style>.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}</style><script>window.doNotTrack==="1"||navigator.doNotTrack==="1"||navigator.doNotTrack==="yes"||navigator.msDoNotTrack==="1"||(function(e,o,i,a,t,n,s){e.GoogleAnalyticsObject=t,e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},e[t].l=1*new Date,n=o.createElement(i),s=o.getElementsByTagName(i)[0],n.async=1,n.src=a,s.parentNode.insertBefore(n,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-48568115-1","auto"),ga("send","pageview"))</script></head><body><header class=site-header role=banner><div class=wrapper><a class=site-title rel=author href=https://wldomiciano.com/>Wellington Domiciano</a></div></header><main class=page-content aria-label=Content><div class=wrapper><script type=application/ld+json>{"@context":"https://schema.org","@type":"blogPosting","datePublished":"2018-09-08","dateModified":"2018-09-08","name":"SDL 2 - Apenas um tutorial básico para completos iniciantes","headline":"Veja como começar a usar a biblioteca SDL 2","author":{"@type":"Person","name":"Wellington Domiciano"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/wldomiciano.com\/"},"publisher":{"@type":"Organization","name":"Wellington Domiciano"}}</script><article class="post h-entry"><header class=post-header><h1 class="post-title p-name">SDL 2 - Apenas um tutorial básico para completos iniciantes</h1><div class=post-meta><time class=dt-published datetime=2018-09-08T00:00:00Z>September 8, 2018</time></div><div class=post-tag-list><a class=post-tag-item href=https://wldomiciano.com/tags/sdl-2/>SDL 2</a></div></header><div class="post-content e-content"><p></p><p>Olá.</p><p>Neste artigo quero lhe ajudar a dar seus primeiros passos com <a href=https://www.libsdl.org/ target=_blank rel=noopener>SDL 2</a>, uma biblioteca multimídia escrita em C, bastante usada no desenvolvimento de jogos.</p><p>Começaremos instalando os componentes necessários para o desenvolvimento no Ubuntu e em seguida apresentarei o código que servirá de base para as explicações.</p><h2 id=instalando-as-ferramentas-no-ubuntu>Instalando as ferramentas no Ubuntu</h2><p>Abra o terminal e use o comando abaixo para instalar o compilador e a biblioteca.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install gcc libsdl2-dev
+</span></span></code></pre></div><p>Para compilar nosso exemplo, basta usar o comando abaixo.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gcc tutorial.c -o tutorial <span class=sb>`</span>sdl2-config --cflags --libs<span class=sb>`</span>
+</span></span></code></pre></div><p>E para rodar o programa, basta executar o seguinte comando:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>./tutorial
+</span></span></code></pre></div><p>Como usaremos o terminal para compilar nosso programa, você é livre para usar o editor de texto que quiser.</p><h2 id=o-código-base>O código base</h2><p>Considere o código abaixo e não se preocupe se sentir-se perdido, pois explicarei parte por parte.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;SDL.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=n>SDL_Window</span><span class=o>*</span> <span class=n>window</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Inicialização e criação da janela
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na inicialização: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Main loop
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span> <span class=n>window</span> <span class=o>!=</span> <span class=nb>NULL</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>while</span><span class=p>(</span> <span class=o>!</span><span class=n>SDL_QuitRequested</span><span class=p>()</span> <span class=p>)</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na criação da janela: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Finialização
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=n>SDL_DestroyWindow</span><span class=p>(</span><span class=n>window</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>SDL_Quit</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=o-cabeçalho-e-a-função-main>O cabeçalho e a função main</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;SDL.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=n>SDL_Window</span><span class=o>*</span> <span class=n>window</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>
+</span></span></code></pre></div><p>Na primeira linha adicionamos o cabeçalho que nos dá acesso as diversas funções da biblioteca.</p><p>Em seguida temos a função <code>main()</code> que dará inicio ao nosso programa.</p><p>A variável <code>window</code> representa a janela que nos fornecerá o contexto para desenharmos formas e imagens, e receberá eventos vindos de fontes diversas como teclado e mouse.</p><h2 id=a-inicialização-e-criação-da-janela>A inicialização e criação da janela</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Inicialização
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span> <span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nf>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na inicialização: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+</span></span></code></pre></div><p>A SDL é dividida em subsistemas e a função <a href=https://wiki.libsdl.org/SDL_Init target=_blank rel=noopener><code>SDL_Init()</code></a> serve para inicializa-los. Ela retorna 0 em caso de sucesso ou um valor negativo em caso de falha.</p><p>A macro <code>SDL_INIT_VIDEO</code> é uma flag que representa o subsistema de vídeo, necessário para a criação de janelas.</p><p>Há outros seis subsistemas que podem ser inicializados com esta função. Saiba mais na <a href=https://wiki.libsdl.org/SDL_Init#Remarks target=_blank rel=noopener>documentação oficial</a>.</p><p>É possível inicializar todos os subsistemas de uma só vez, assim:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_EVERYTHING</span><span class=p>)</span>
+</span></span></code></pre></div><p>E mais de um ao mesmo tempo usando o operador lógico <strong>OU</strong>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>SDL_Init</span><span class=p>(</span><span class=n>SDL_INIT_VIDEO</span> <span class=o>|</span> <span class=n>SDL_INIT_AUDIO</span> <span class=o>|</span> <span class=n>SDL_INIT_TIMER</span><span class=p>)</span>
+</span></span></code></pre></div><p>Não há problema em chamar esta função mais de uma vez no mesmo programa.</p><p>Esta prática pode ser útil caso deseje habilitar ou desabilitar recursos de acordo com as configurações feitas pelo usuário.</p><p>Um exemplo é o subsistema de áudio, que pode ser desabilitado caso o usuário queira jogar sem nenhum som.</p><p>Para desabilitar subsistemas específicos, usamos a função <a href=https://wiki.libsdl.org/SDL_QuitSubSystem target=_blank rel=noopener><code>SDL_QuitSubSystem()</code></a>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>SDL_QuitSubSystem</span><span class=p>(</span><span class=n>SDL_INIT_AUDIO</span><span class=p>);</span>
+</span></span></code></pre></div><p>Mesmo que você use esta função para encerrar todos os subsistemas, ainda é necessário chamar a <a href=https://wiki.libsdl.org/SDL_Quit target=_blank rel=noopener><code>SDL_Quit()</code></a> ao final do programa.</p><p>Há também a função <a href=https://wiki.libsdl.org/SDL_InitSubSystem target=_blank rel=noopener><code>SDL_InitSubSystem()</code></a>, ela é idêntica à <code>SDL_Init()</code> (na verdade <code>SDL_Init()</code> invoca <code>SDL_InitSubSystem()</code> internamente).</p><h3 id=logging-e-erros>Logging e erros</h3><p>A função <a href=https://wiki.libsdl.org/SDL_Log target=_blank rel=noopener><code>SDL_Log()</code></a> imprime no console uma mensagem, ela funciona de forma semelhante à função <code>printf()</code> da biblioteca padrão.</p><p>É importante organizarmos o código desta maneira, com mensagens, para sabermos exatamente qual erro ocorreu, caso ele ocorra.</p><p>E se ocorrer, a função <a href=https://wiki.libsdl.org/SDL_GetError target=_blank rel=noopener><code>SDL_GetError()</code></a> retornará uma string contendo uma descrição mais especifica.</p><h3 id=a-criação-da-janela>A criação da janela</h3><p>Se tudo sair como planejado, a função <a href=https://wiki.libsdl.org/SDL_CreateWindow target=_blank rel=noopener><code>SDL_CreateWindow()</code></a> retornará um ponteiro para a janela criada ou <code>NULL</code> em caso de falha. Ela aceita 6 argumentos.</p><p>O <strong>primeiro</strong> é o texto que aparecerá na barra de titulo.</p><p>O <strong>segundo</strong> e o <strong>terceiro</strong> são, respectivamente, as posições x e y com base no canto superior esquerdo da tela.</p><p>Para criar uma janela posicionada bem no centro podemos usar a macro <code>SDL_WINDOWPOS_CENTERED</code> da seguinte forma:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>window</span> <span class=o>=</span> <span class=n>SDL_CreateWindow</span><span class=p>(</span><span class=s>&#34;Tutorial SDL 2&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                          <span class=n>SDL_WINDOWPOS_CENTERED</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                          <span class=n>SDL_WINDOWPOS_CENTERED</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span></code></pre></div><p>O <strong>quarto</strong> e o <strong>quinto</strong> representam, respectivamente, a largura e a altura.</p><p>E o <strong>sexto</strong> argumento pode ser uma ou mais flags que representam detalhes adicionais.</p><p>Por exemplo, com a flag <code>SDL_WINDOW_FULLSCREEN</code> a janela será criada já em tela cheia e com a flag <code>SDL_WINDOW_OPENGL</code> ela estará pronta para ser usada em conjunto com a <a href=https://pt.wikipedia.org/wiki/OpenGL target=_blank rel=noopener>OpenGL</a>.</p><p>Para saber mais sobre as outras flags disponíveis, visite a <a href=https://wiki.libsdl.org/SDL_CreateWindow#Remarks target=_blank rel=noopener>documentação oficial</a>.</p><h2 id=o-main-loop>O Main Loop</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Main loop
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span> <span class=n>window</span> <span class=o>!=</span> <span class=nb>NULL</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>while</span><span class=p>(</span> <span class=o>!</span><span class=n>SDL_QuitRequested</span><span class=p>()</span> <span class=p>)</span> <span class=p>{</span> <span class=cm>/* ... */</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=n>SDL_Log</span><span class=p>(</span><span class=s>&#34;Erro na criação da janela: %s&#34;</span><span class=p>,</span> <span class=n>SDL_GetError</span><span class=p>());</span>
+</span></span></code></pre></div><p>Se a janela foi criada com sucesso, o <a href=https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_de_jogos_eletr%C3%B4nicos#Loop_principal target=_blank rel=noopener>Main Loop</a> é iniciado.</p><p>O Main Loop é onde a mágica acontece, mas, por enquanto, ele não faz grande coisa, apenas continua executando enquanto o usuário não requisitar o encerramento do programa.</p><p>A macro <a href=https://wiki.libsdl.org/SDL_QuitRequested target=_blank rel=noopener><code>SDL_QuitRequested()</code></a> verifica se o usuário fez essa requisição.</p><p>Há várias formas do encerramento ser requisitado e uma delas é clicar no botão &ldquo;fechar&rdquo; (no &ldquo;X&rdquo;) da janela.</p><h2 id=a-finalização>A finalização</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     * Finialização
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span>
+</span></span><span class=line><span class=cl>    <span class=n>SDL_DestroyWindow</span><span class=p>(</span><span class=n>window</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>SDL_Quit</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Por fim, devemos chamar a função <a href=https://wiki.libsdl.org/SDL_DestroyWindow target=_blank rel=noopener><code>SDL_DestroyWindow()</code></a> para destruir a janela e <code>SDL_Quit()</code> para finalizar corretamente a biblioteca antes de terminar o programa.</p><h2 id=considerações-finais>Considerações finais</h2><p>Apesar de simples, sei que pra muita gente pode ser difícil dar os primeiros passos, por isso espero que este tutorial lhe seja útil de alguma forma.</p><p>Não deixe de olhar com mais atenção a <a href=https://wiki.libsdl.org/ target=_blank rel=noopener>documentação oficial</a>.</p><p>Até a próxima!</p></div><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/",this.page.identifier="https://wldomiciano.com/tutorial-de-sdl-2-para-completos-iniciantes/"};(function(){var e=document,t=e.createElement("script");t.src="https://wldomiciano.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script><noscript>Please enable JavaScript to view the
+<a href=https://disqus.com/?ref_noscript rel=nofollow>comments powered by Disqus.</a></noscript></article></div></main><footer class="site-footer h-card"><div class=wrapper><div class=footer-col-wrapper><ul class=social-media-list><li><a href=https://github.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"/></svg><span class=username>wldomiciano</span></a></li><li><a href=https://twitter.com/wldomiciano><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"/></svg><span class=username>wldomiciano</span></a></li></ul></div></div></footer><script>if("serviceWorker"in navigator){const e=!0,t=["index","next","prev","prefetch"];function prefetchCache(){if(navigator.serviceWorker.controller){const e=document.querySelectorAll(t.map(e=>"link[rel="+e+"]").join(","));e.length>0&&Array.from(e).map(e=>{const t=e.getAttribute("href"),n={action:"cache",url:t};navigator.serviceWorker.controller.postMessage(n)})}}navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(()=>{console.log("Service Worker Registered")}),navigator.serviceWorker.ready.then(()=>{e&&prefetchCache()})}</script></body></html>
