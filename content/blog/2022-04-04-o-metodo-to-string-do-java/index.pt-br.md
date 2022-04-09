@@ -28,7 +28,7 @@ public class Main {
 
 Não se preocupe, a sua classe está apenas usando o método `toString()` implementado na classe `Object`.
 
-Nesta implementação é usado o nome da classe seguindo pelo símbolo @ e finalizando com o hashcode do objeto (mas em hexadecimal).
+Nesta implementação é usado o nome da classe seguido pelo símbolo @ e finalizando com o hashcode do objeto (mas em hexadecimal).
 
 Dá para atestar isso com o código abaixo.
 
@@ -113,7 +113,7 @@ public class Main {
 }
 ```
 
-Se for uma array de arrays, `toString()` não é o bastante. Precisamos do [`deepToString()`](<https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Arrays.html#deepToString(java.lang.Object%5B%5D)>):
+Se for um array de arrays, `toString()` não é o bastante. Precisamos do [`deepToString()`](<https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Arrays.html#deepToString(java.lang.Object%5B%5D)>):
 
 ```java
 import java.util.Arrays;
