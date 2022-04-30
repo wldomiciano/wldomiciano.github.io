@@ -30,27 +30,33 @@
     <h1 class="post-title p-name">{{ .Title }}</h1>
 
     <div class="post-meta">
-      <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      {{ .Site.Params.labels.postedOn }}
+      <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">
         {{ .Date.Format "January 2, 2006" }}
       </time>
-      {{ if .Site.Author }}
-      • <span><span class="p-author h-card">{{ .Site.Author }}</span></span>
+
+      {{ with .Params.lastmod }}
+        • {{ $.Site.Params.labels.updatedOn }} 
+        <time class="dt-updated" datetime="{{ .Format "2006-01-02" }}">
+          {{ .Format "January 2, 2006" }}
+        </time>
+      {{end}}
+
+      {{ with .Site.Author }}
+      • <span class="p-author h-card">{{ . }}</span>
       {{ end }}</div>
 
     {{ partial "tags-list.html" . }}
   </header>
 
   <div class="post-content e-content">
-    <p>
-      {{ with index .Translations 0 }}
-      <a
-        class="post-info-item"
-        href="{{ .Permalink }}"
-        title="{{ .Language.LanguageName }}"
-        >{{ cond (eq .Lang "en") "Read in" "Leia em" }} {{ .Language.LanguageName }}</a
-      >
-      {{ end }}
-    </p>
+    {{ with index .Translations 0 }}
+      <p>
+        <a class="post-info-item" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+          {{ .Site.Params.labels.readIn }}
+        </a>
+      </p>
+    {{ end }}
     
     {{ .Content }}
   </div>
