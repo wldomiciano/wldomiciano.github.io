@@ -21,6 +21,7 @@ theme = 'default'
     postedOn = 'Posted on'
     updatedOn = 'Updated on'
     readIn = 'Read in English'
+    tagLabel = 'Posts tagged with'
 [languages.pt-br]
   languageCode = 'pt-br'
   languageName = 'Português'
@@ -30,6 +31,7 @@ theme = 'default'
     postedOn = 'Postado em'
     updatedOn = 'Atualizado em'
     readIn = 'Leia em Português'
+    tagLabel = 'Posts com a tag'
 
 [taxonomies]
   tag = 'tags'

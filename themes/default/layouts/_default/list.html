@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="home">
   <div style="display: flex; align-items: baseline">
-    <h2 class="post-list-heading">Posts</h2>
+    <h2 class="post-list-heading">{{ .Site.Params.labels.tagLabel }} {{ .Data.Term }}</h2>
 
     <small style="margin-left: 10px">
       {{ with index .Translations 0 }}
