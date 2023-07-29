@@ -3,10 +3,29 @@
     "resources": true,
     ".hugo_build.lock": true
   },
-
-  "editor.rulers": [120],
-
+  "editor.rulers": [
+    120
+  ],
   "[html]": {
     "editor.formatOnSave": false
-  }
+  },
+  "cSpell.language": "en,pt-BR",
+  "cSpell.words": [
+    "Configurer",
+    "configurers",
+    "csrf",
+    "customizer",
+    "Customizer",
+    "springframework"
+  ],
+  "prettier.proseWrap": "always",
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
 }
