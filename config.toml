@@ -2,7 +2,7 @@ baseURL = 'https://wldomiciano.com/'
 defaultContentLanguage = 'pt-br'
 title = 'Wellington Domiciano'
 author = 'Wellington Domiciano'
-disableKinds = ['section', 'taxonomyTerm']
+disableKinds = ['section', 'taxonomy']
 googleAnalytics = 'UA-48568115-1'
 disqusShortname = 'wldomiciano'
 theme = 'default'
@@ -15,9 +15,9 @@ theme = 'default'
 [languages.en]
   languageCode = 'en'
   languageName = 'English'
-  description = 'A simple blog to share what I have learned.'
-  keywords = ['Programming', 'Tutorials']
-  [languages.en.labels]
+  [languages.en.params]
+    description = 'A simple blog to share what I have learned.'
+    keywords = ['Programming', 'Tutorials']
     postedOn = 'Posted on'
     updatedOn = 'Updated on'
     readIn = 'Read in English'
@@ -25,9 +25,9 @@ theme = 'default'
 [languages.pt-br]
   languageCode = 'pt-br'
   languageName = 'Português'
-  description = 'Um simples blog para compartilhar o que tenho aprendido.'
-  keywords = ['Programação', 'Tutoriais']
-  [languages.pt-br.labels]
+  [languages.pt-br.params]
+    description = 'Um simples blog para compartilhar o que tenho aprendido.'
+    keywords = ['Programação', 'Tutoriais']
     postedOn = 'Postado em'
     updatedOn = 'Atualizado em'
     readIn = 'Leia em Português'
