@@ -30,13 +30,13 @@
     <h1 class="post-title p-name">{{ .Title }}</h1>
 
     <div class="post-meta">
-      {{ .Site.Params.labels.postedOn }}
+      {{ .Site.Params.postedOn }}
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">
         {{ .Date.Format "January 2, 2006" }}
       </time>
 
       {{ with .Params.lastmod }}
-        • {{ $.Site.Params.labels.updatedOn }} 
+        • {{ $.Site.Params.updatedOn }} 
         <time class="dt-updated" datetime="{{ .Format "2006-01-02" }}">
           {{ .Format "January 2, 2006" }}
         </time>
@@ -53,7 +53,7 @@
     {{ with index .Translations 0 }}
       <p>
         <a class="post-info-item" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
-          {{ .Site.Params.labels.readIn }}
+          {{ .Site.Params.readIn }}
         </a>
       </p>
     {{ end }}
