@@ -31,11 +31,11 @@ class AppTest {
 }
 ```
 
-Meu `build.gradle` está assim:
+Meu `build.gradle.kts` está assim (estou usando Gradle 8.4):
 
-```groovy
+```kotlin
 plugins {
-  id 'java'
+  java
 }
 
 repositories {
@@ -43,17 +43,18 @@ repositories {
 }
 
 dependencies {
-  testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+  testImplementation(platform("org.junit:junit-bom:5.10.0"))
+  testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-test {
+tasks.test {
   useJUnitPlatform()
 
   testLogging {
-    showExceptions true
-    showCauses false
-    showStackTraces false
-    exceptionFormat 'FULL'
+    showExceptions = true
+    showCauses = false
+    showStackTraces = false
+    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
   }
 }
 ```
