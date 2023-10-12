@@ -1,6 +1,7 @@
 ---
 title: Como agrupar asserts no JUnit
 description: Sem julgamentos, veja uma forma melhor de agrupar múltiplos asserts em um mesmo teste
+lastmod: 2023-10-12T12:00:00-03:00
 tags: [Java]
 ---
 
