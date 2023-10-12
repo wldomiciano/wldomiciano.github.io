@@ -19,28 +19,29 @@
 </span></span><span class=line><span class=cl>    <span class=o>);</span>
 </span></span><span class=line><span class=cl>  <span class=o>}</span>
 </span></span><span class=line><span class=cl><span class=o>}</span>
-</span></span></code></pre></div><p>Meu <code>build.gradle</code> está assim:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-groovy data-lang=groovy><span class=line><span class=cl><span class=n>plugins</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>  <span class=n>id</span> <span class=s1>&#39;java&#39;</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>Meu <code>build.gradle.kts</code> está assim (estou usando Gradle 8.4):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=n>plugins</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>java</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>repositories</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>  <span class=n>mavenCentral</span><span class=o>()</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=n>repositories</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>mavenCentral</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>dependencies</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>  <span class=n>testImplementation</span> <span class=s1>&#39;org.junit.jupiter:junit-jupiter-engine:5.8.2&#39;</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=n>dependencies</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>testImplementation</span><span class=p>(</span><span class=n>platform</span><span class=p>(</span><span class=s2>&#34;org.junit:junit-bom:5.10.0&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=n>testImplementation</span><span class=p>(</span><span class=s2>&#34;org.junit.jupiter:junit-jupiter&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>test</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>  <span class=n>useJUnitPlatform</span><span class=o>()</span>
+</span></span><span class=line><span class=cl><span class=n>tasks</span><span class=p>.</span><span class=n>test</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>useJUnitPlatform</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=n>testLogging</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>showExceptions</span> <span class=kc>true</span>
-</span></span><span class=line><span class=cl>    <span class=n>showCauses</span> <span class=kc>false</span>
-</span></span><span class=line><span class=cl>    <span class=n>showStackTraces</span> <span class=kc>false</span>
-</span></span><span class=line><span class=cl>    <span class=n>exceptionFormat</span> <span class=s1>&#39;FULL&#39;</span>
-</span></span><span class=line><span class=cl>  <span class=o>}</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=n>testLogging</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>showExceptions</span> <span class=p>=</span> <span class=k>true</span>
+</span></span><span class=line><span class=cl>    <span class=n>showCauses</span> <span class=p>=</span> <span class=k>false</span>
+</span></span><span class=line><span class=cl>    <span class=n>showStackTraces</span> <span class=p>=</span> <span class=k>false</span>
+</span></span><span class=line><span class=cl>    <span class=n>exceptionFormat</span> <span class=p>=</span> <span class=n>org</span><span class=p>.</span><span class=n>gradle</span><span class=p>.</span><span class=n>api</span><span class=p>.</span><span class=n>tasks</span><span class=p>.</span><span class=n>testing</span><span class=p>.</span><span class=n>logging</span><span class=p>.</span><span class=nc>TestExceptionFormat</span><span class=p>.</span><span class=n>FULL</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>E esta é a estrutura do meu projeto de teste:</p><pre tabindex=0><code>project
 ├── build.gradle
 └── src
