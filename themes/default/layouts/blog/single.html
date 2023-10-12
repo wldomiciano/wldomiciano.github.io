@@ -32,13 +32,13 @@
     <div class="post-meta">
       {{ .Site.Params.postedOn }}
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">
-        {{ .Date.Format "January 2, 2006" }}
+        {{ .Date.Format "02/01/2006" }}
       </time>
 
       {{ with .Params.lastmod }}
-        • {{ $.Site.Params.updatedOn }} 
+        • {{ $.Site.Params.updatedOn }}
         <time class="dt-updated" datetime="{{ .Format "2006-01-02" }}">
-          {{ .Format "January 2, 2006" }}
+          {{ .Format "02/01/2006" }}
         </time>
       {{end}}
 
