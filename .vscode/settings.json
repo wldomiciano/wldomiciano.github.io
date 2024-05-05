@@ -3,9 +3,7 @@
     "resources": true,
     ".hugo_build.lock": true
   },
-  "editor.rulers": [
-    120
-  ],
+  "editor.rulers": [120],
   "[html]": {
     "editor.formatOnSave": false
   },
@@ -16,7 +14,15 @@
     "csrf",
     "customizer",
     "Customizer",
-    "springframework"
+    "disqus",
+    "frontmatter",
+    "github",
+    "goldmark",
+    "hugo",
+    "lastmod",
+    "peaceiris",
+    "springframework",
+    "wldomiciano"
   ],
   "prettier.proseWrap": "always",
   "[markdown]": {
@@ -27,5 +33,5 @@
       "strings": "off",
       "other": "off"
     }
-  },
+  }
 }
