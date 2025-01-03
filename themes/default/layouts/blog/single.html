@@ -61,7 +61,7 @@
     {{ .Content }}
   </div>
 
-  {{ if and (.Site.DisqusShortname) (not .Site.IsServer) }}
+  {{ if and (.Site.Config.Services.Disqus.Shortname) (not hugo.IsServer) }}
   {{ partial "disqus_comments.html" . }}
   {{ end }}
 </article>

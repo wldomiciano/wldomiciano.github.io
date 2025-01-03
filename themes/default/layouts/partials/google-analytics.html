@@ -27,7 +27,7 @@
       "https://www.google-analytics.com/analytics.js",
       "ga"
     );
-    ga("create", "{{ .Site.GoogleAnalytics }}", "auto");
+    ga("create", "{{ .Site.Config.Services.GoogleAnalytics.ID }}", "auto");
     ga("send", "pageview");
   }
 </script>

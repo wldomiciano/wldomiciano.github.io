@@ -3,9 +3,13 @@ defaultContentLanguage = 'pt-br'
 title = 'Wellington Domiciano'
 author = 'Wellington Domiciano'
 disableKinds = ['section', 'taxonomy']
-googleAnalytics = 'UA-48568115-1'
-disqusShortname = 'wldomiciano'
 theme = 'default'
+
+[services]
+  [services.googleAnalytics]
+    ID = 'UA-48568115-1'
+  [services.disqus]
+    shortname = 'wldomiciano'
 
 [params]
   description = 'Blog sobre coisas que tenho aprendido'
