@@ -1,8 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on Wellington Domiciano</title><link>https://wldomiciano.com/tags/c/</link><description>Recent content in C on Wellington Domiciano</description><generator>Hugo</generator><language>pt-br</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="https://wldomiciano.com/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>O que são os Compound Literals em C</title><link>https://wldomiciano.com/o-que-sao-compound-literals-em-c/</link><pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate><guid>https://wldomiciano.com/o-que-sao-compound-literals-em-c/</guid><description>Você já ouviu falar sobre Compound Literals em C?
-O nome pode lhe ser estranho, mas há grandes chances de que você já tenha usado este recurso.
-Ele faz parte da linguagem desde o C99 e se ainda não o conhece, eu vou te explicar.
-Imagina que você tem uma struct chamada Point e uma função capaz de somar dois Points.
-typedef struct { int x; int y; } Point; Point sumPoints(Point a, Point b) { Point c; c.</description></item><item><title>Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica</title><link>https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/</link><pubDate>Sun, 22 Apr 2018 00:00:00 +0000</pubDate><guid>https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/</guid><description>O objetivo deste artigo é apresentar uma lógica independente de biblioteca, framework ou linguagem e que, por isso, pode ser facilmente portada.
-Abaixo estão os links para as versões em C (com SDL 2), JavaScript e Java do código completo.
-C version JavaScript version (jogue aqui) Java version Ao todo são 10 funções das quais apenas 3 são dependentes da plataforma. Aqui eu apresento a versão em C.
-random() (não portável) draw(int, int, int, int) (não portável) main(int, char**) (não portável) setDirection(int) isOnLimits() hasCollisionWithTail(int) placeApple() drawBoard() move() update(int) Funções não portáveis A função random() gera números aleatórios e será usada para determinar a posição da maçã.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on Wellington Domiciano</title><link>https://wldomiciano.com/tags/c/</link><description>Recent content in C on Wellington Domiciano</description><generator>Hugo</generator><language>pt-br</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="https://wldomiciano.com/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>O que são os Compound Literals em C</title><link>https://wldomiciano.com/o-que-sao-compound-literals-em-c/</link><pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate><guid>https://wldomiciano.com/o-que-sao-compound-literals-em-c/</guid><description>&lt;p>Você já ouviu falar sobre &lt;em>Compound Literals&lt;/em> em C?&lt;/p>
+&lt;p>O nome pode lhe ser estranho, mas há grandes chances de que você já tenha usado este recurso.&lt;/p>
+&lt;p>Ele faz parte da linguagem desde o C99 e se ainda não o conhece, eu vou te explicar.&lt;/p>
+&lt;p>Imagina que você tem uma &lt;code>struct&lt;/code> chamada &lt;code>Point&lt;/code> e uma função capaz de somar dois Points.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="k">typedef&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span> &lt;span class="n">Point&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Point&lt;/span> &lt;span class="nf">sumPoints&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Point&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Point&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Point&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ao invocar a função acima, você é obrigado a fornecer 2 Points válidos. Então, teríamos que fazer algo assim:&lt;/p></description></item><item><title>Uma implementação em C, JS e Java do Jogo da Cobrinha com foco na lógica</title><link>https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/</link><pubDate>Sun, 22 Apr 2018 00:00:00 +0000</pubDate><guid>https://wldomiciano.com/jogo-da-cobrinha-com-foco-na-logica/</guid><description>&lt;p>O objetivo deste artigo é apresentar uma lógica independente de biblioteca, framework ou linguagem e que, por isso, pode ser facilmente portada.&lt;/p>
+&lt;p>Abaixo estão os links para as versões em C (com SDL 2), JavaScript e Java do código completo.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gist.github.com/wldomiciano/b28fc30450c5aac0e8df21a4910388ed" target="_blank" rel="noopener">C version&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gist.github.com/wldomiciano/b7e8550b8fea5a722676cc0e8fe090ad" target="_blank" rel="noopener">JavaScript version&lt;/a> (&lt;a href="https://codepen.io/wldomiciano/full/wjKYzx/" target="_blank" rel="noopener">jogue aqui&lt;/a>)&lt;/li>
+&lt;li>&lt;a href="https://gist.github.com/wldomiciano/92fd8ac6939b7dc6711be2ac8bd1b8ca" target="_blank" rel="noopener">Java version&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Ao todo são 10 funções das quais apenas 3 são dependentes da plataforma. Aqui eu apresento a versão em C.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="#random">&lt;code>random()&lt;/code>&lt;/a> (não portável)&lt;/li>
+&lt;li>&lt;a href="#draw">&lt;code>draw(int, int, int, int)&lt;/code>&lt;/a> (não portável)&lt;/li>
+&lt;li>&lt;a href="#main">&lt;code>main(int, char**)&lt;/code>&lt;/a> (não portável)&lt;/li>
+&lt;li>&lt;a href="#setDirection">&lt;code>setDirection(int)&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#isOnLimits">&lt;code>isOnLimits()&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#hasCollisionWithTail">&lt;code>hasCollisionWithTail(int)&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#placeApple">&lt;code>placeApple()&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#drawBoard">&lt;code>drawBoard()&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#move">&lt;code>move()&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#update">&lt;code>update(int)&lt;/code>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="funções-não-portáveis">Funções não portáveis&lt;/h2>
+&lt;p>A função &lt;code>random()&lt;/code> gera números aleatórios e será usada para determinar a posição da maçã.&lt;/p></description></item></channel></rss>
