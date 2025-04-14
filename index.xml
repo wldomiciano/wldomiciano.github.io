@@ -219,8 +219,7 @@ ignorando se as letras são maiúsculas ou minúsculas, o resultado será igual 
 &lt;p>Obs.: Para usar os exemplo deste artigo é necessário que o arquivo &lt;em>VT323.ttf&lt;/em> esteja na mesma pasta que os códigos.&lt;/p>
 &lt;p>Você pode baixar esta fonte neste link:
 &lt;a href="https://fonts.google.com/specimen/VT323" target="_blank" rel="noopener">https://fonts.google.com/specimen/VT323&lt;/a>&lt;/p>
-&lt;p>Renomeie o arquivo baixado caso seja necessário.&lt;/p>
-&lt;/blockquote>
+&lt;p>Renomeie o arquivo baixado caso seja necessário.&lt;/p>&lt;/blockquote>
 &lt;p>Este tipo de dado muda constantemente e o pior: mistura números e texto!&lt;/p></description></item><item><title>Instalando o GCC no Windows com MinGW</title><link>https://wldomiciano.com/instalando-gcc-no-windows-com-mingw/</link><pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate><guid>https://wldomiciano.com/instalando-gcc-no-windows-com-mingw/</guid><description>&lt;p>&lt;strong>UPDATE (07-09-2018)&lt;br>Descobri uma forma ainda mais simples de instalar o GCC que é usando o Scoop. Para saber mais sobre esta ferramenta, leia &lt;a href="https://wldomiciano.com/instalando-e-usando-o-instalador-scoop/">Instalando e usando o Scoop, um instalador de linha de comando para Windows&lt;/a>.&lt;/strong>&lt;/p>
 &lt;hr>&lt;br>
 &lt;p>O &lt;a href="https://gcc.gnu.org/" target="_blank" rel="noopener">GCC&lt;/a> é um compilador de C, C++ e de &lt;a href="https://gcc.gnu.org/onlinedocs/gcc-7.2.0/gcc/G_002b_002b-and-GCC.html" target="_blank" rel="noopener">algumas outras linguagens&lt;/a>.&lt;/p>
